@@ -188,7 +188,6 @@ class flattenController: UIViewController {
     
     let outerView = UIView.init(frame: CGRectMake(0, 0, 200, 200))
     let innerView = UIView.init(frame: CGRectMake(50, 50, 100, 100))
-    let transformSegment = UISegmentedControl.init(items: ["RotateZ ","RotateY","RotateX","Normal"])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -200,6 +199,8 @@ class flattenController: UIViewController {
         innerView.backgroundColor = UIColor.redColor()
         outerView.center = self.view.center
         
+        let transformSegment = UISegmentedControl.init(items: ["RotateZ ","RotateY","RotateX","Normal"])
+
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
         transformSegment.addTarget(self, action: "changeSwitch:", forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)

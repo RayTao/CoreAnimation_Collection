@@ -20,7 +20,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ["AffineTransformController","CATransform3DM34Controller",
             "SublayerTransformController","DoubleSidedController",
             "flattenController","Object3DController"],
-        ["CAShapeLayerController"],
+        ["CAShapeLayerController","CATextLayerController",
+            "CATransformLayerViewController","CAGradientLayerViewController",
+        "CAReplicatorLayerViewController"],
         ["WaveViewController","GooeyViewController",
             "SwitchersCollectionViewController"]]
     var titleArray = [["1.1 CALayer"],
@@ -31,7 +33,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ["4.1 CornerRadius\n圆角","4.2 Broder \n图层边框","4.3 Shadow \n阴影","4.4 maskLayer \n图层蒙版",
         "4.5 MiniAndMagnificationFilter \n拉伸过滤","4.6 GroupOpacity \n组透明"],
         ["5.1 AffineTransform \n2D变换(旋转、缩放、位移)","5.2 CATransform3D \n3D变换 透视投影","5.3 SublayerTransform \n3D变换 共同变换","5.4 DoubleSided \n双面视图","5.5 flattening \n通过旋转展现扁平化特性","5.6 Object3D \n固体对象"],
-        ["6.1 CAShapeLayer"],
+        ["6.1 CAShapeLayer","6.2 CATextLayer","6.3 CATransformLayer",
+        "6.4 CAGradientLayer \n 渐变图层","6.5 CAReplicatorLayer \n 重复图层"],
         ["Waveing\n类似siri的波浪","Gooey\n橡皮筋弹性动画","SwitcherCollection\n开关动画合集"]]
     var headTitle:[String] = ["图层树CALayer",
         "寄宿图contents","图层几何学","视觉效果","图层变换","专属图层",

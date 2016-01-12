@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E400AF001C3F8CCF005B45A4 /* LayerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E400AEFF1C3F8CCF005B45A4 /* LayerLabel.m */; };
 		E40450311C3CAA4000F88AAF /* TransformController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40450301C3CAA4000F88AAF /* TransformController.swift */; };
 		E404C7E51C1973B0007DC001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E404C7E41C1973B0007DC001 /* AppDelegate.swift */; };
 		E404C7E71C1973B0007DC001 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E404C7E61C1973B0007DC001 /* ViewController.swift */; };
@@ -59,6 +60,8 @@
 		3E6354EBCD04CB58FBA66681 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8D9C05DA76F16A54735D56C0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E316062CC85222F085AB2E14 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E400AEFE1C3F8CCF005B45A4 /* LayerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerLabel.h; sourceTree = "<group>"; };
+		E400AEFF1C3F8CCF005B45A4 /* LayerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerLabel.m; sourceTree = "<group>"; };
 		E40450301C3CAA4000F88AAF /* TransformController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformController.swift; sourceTree = "<group>"; };
 		E404C7E11C1973B0007DC001 /* CoreAnimation_Collection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreAnimation_Collection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E404C7E41C1973B0007DC001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +144,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E400AEFA1C3F8C77005B45A4 /* LayerLabel */ = {
+			isa = PBXGroup;
+			children = (
+				E400AEFE1C3F8CCF005B45A4 /* LayerLabel.h */,
+				E400AEFF1C3F8CCF005B45A4 /* LayerLabel.m */,
+			);
+			path = LayerLabel;
+			sourceTree = "<group>";
+		};
 		E404C7D81C1973B0007DC001 = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +188,7 @@
 				E49180131C21B3CF0010B224 /* CAlayerAppearanceViewController.swift */,
 				E40450301C3CAA4000F88AAF /* TransformController.swift */,
 				E4E1FFBC1C3E717D00AD87E5 /* SpecialLayerController.swift */,
+				E400AEFA1C3F8C77005B45A4 /* LayerLabel */,
 				E404C8121C198650007DC001 /* Animations */,
 				E4A292911C1C881C004835EB /* R.generated.swift */,
 				E404C7EB1C1973B0007DC001 /* Assets.xcassets */,
@@ -459,6 +472,7 @@
 				E4B07C811C1E56C9003C3BA5 /* TKSmileSwitch.swift in Sources */,
 				E404C8151C19868A007DC001 /* WaveViewController.swift in Sources */,
 				E4B07C731C1E54CC003C3BA5 /* GooeyViewController.swift in Sources */,
+				E400AF001C3F8CCF005B45A4 /* LayerLabel.m in Sources */,
 				E41604191C1C747300D29926 /* CALayerViewController.swift in Sources */,
 				E49180141C21B3CF0010B224 /* CAlayerAppearanceViewController.swift in Sources */,
 				E49180121C21A9170010B224 /* HitTestingViewController.swift in Sources */,
