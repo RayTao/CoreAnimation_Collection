@@ -80,7 +80,6 @@ class AffineTransformController: UIViewController {
 class CATransform3DM34Controller: UIViewController {
 
     let layerView = UIImageView.init(image: R.image.snowman)
-    let transformSegment = UISegmentedControl.init(items: ["透视off","透视on"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,9 +87,9 @@ class CATransform3DM34Controller: UIViewController {
         let imageSize = layerView.image?.size
         layerView.backgroundColor = UIColor.whiteColor()
         layerView.frame = CGRectMake(50, 90, (imageSize?.width)!, (imageSize?.height)!)
-        
         self.view.addSubview(layerView)
         
+        let transformSegment = UISegmentedControl.init(items: ["透视off","透视on"])
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
         transformSegment.addTarget(self, action: "changeSwitch:", forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)

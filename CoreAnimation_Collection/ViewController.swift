@@ -22,7 +22,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             "flattenController","Object3DController"],
         ["CAShapeLayerController","CATextLayerController",
             "CATransformLayerViewController","CAGradientLayerViewController",
-        "CAReplicatorLayerViewController"],
+        "CAReplicatorLayerViewController","CAScrollLayerViewController",
+        "CATiledLayerViewController","CAEmitterLayerViewController",
+        "CAEAGLLayerViewController","GLKViewDemoController",
+        "AVPlayerLayerViewController"],
+        ["CATransactionViewController","PresentationLayerViewController"],
         ["WaveViewController","GooeyViewController",
             "SwitchersCollectionViewController"]]
     var titleArray = [["1.1 CALayer"],
@@ -34,10 +38,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "4.5 MiniAndMagnificationFilter \n拉伸过滤","4.6 GroupOpacity \n组透明"],
         ["5.1 AffineTransform \n2D变换(旋转、缩放、位移)","5.2 CATransform3D \n3D变换 透视投影","5.3 SublayerTransform \n3D变换 共同变换","5.4 DoubleSided \n双面视图","5.5 flattening \n通过旋转展现扁平化特性","5.6 Object3D \n固体对象"],
         ["6.1 CAShapeLayer","6.2 CATextLayer","6.3 CATransformLayer",
-        "6.4 CAGradientLayer \n 渐变图层","6.5 CAReplicatorLayer \n 重复图层"],
+        "6.4 CAGradientLayer \n 渐变图层","6.5 CAReplicatorLayer \n 重复图层",
+        "6.5 CAScrollLayer \n 滚动图层","6.6 CATiledLayer \n 小片裁剪",
+        "6.7 CAEmitterLayer \n 粒子图层","6.8 CAEAGLLayer \n OpenGL 图层",
+        "6.9 GLKView ","6.10 AVPlayerLayer \n 视屏图层"],
+        ["7.1 CATransaction \n 事务","7.2 PresentationLayer \n 呈现图层"],
         ["Waveing\n类似siri的波浪","Gooey\n橡皮筋弹性动画","SwitcherCollection\n开关动画合集"]]
     var headTitle:[String] = ["图层树CALayer",
-        "寄宿图contents","图层几何学","视觉效果","图层变换","专属图层",
+        "寄宿图contents","图层几何学","视觉效果","图层变换","专属图层","隐式动画",
+        "显式动画",
         "自定义动画集合"]
     
     let cellIndentifier = "cell"

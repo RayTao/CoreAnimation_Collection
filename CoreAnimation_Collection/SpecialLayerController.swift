@@ -6,6 +6,7 @@
 //  Copyright © 2016年 ray. All rights reserved.
 //
 import UIKit
+import GLKit
 
 /// CAShapeLayer处理不规则形状的图层
 class CAShapeLayerController: UIViewController {
@@ -280,12 +281,29 @@ class CAReplicatorLayerViewController: UIViewController {
         
         self.view.addSubview(containerView)
         containerView.center = self.view.center
-        
         self.containerView.layer.addSublayer(replicatorLayer());
         
+        let reflectionView = self.reflectionView()
+        self.view.addSubview(reflectionView)
         
     }
 
+    /**
+     获取自定义的反射视图
+    */
+    func reflectionView() -> ReflectionView
+    {
+        let reflectionView = ReflectionView.init(frame:
+            CGRectMake((self.view.frame.width - 160) / 2, 100, 160, 160))
+        reflectionView.reflectionScale = 1.0
+        let imageView = UIImageView.init(image: R.image.anchor)
+        imageView.frame = reflectionView.bounds
+        reflectionView.addSubview(imageView)
+        
+        return reflectionView
+    }
+    
+    
     func replicatorLayer() -> CAReplicatorLayer
     {
         //create a replicator layer and add it to our view
@@ -308,14 +326,325 @@ class CAReplicatorLayerViewController: UIViewController {
         
         //create a sublayer and place it inside the replicator
         let layer = CALayer();
-        layer.frame = CGRectMake(100.0, 100.0, 50.0, 50.0);
+        layer.frame = CGRectMake((replicator.frame.width - 50.0) / 2.0, 100.0, 50.0, 50.0);
         layer.backgroundColor = UIColor.whiteColor().CGColor;
         replicator.addSublayer(layer);
         
         return replicator
     }
-
-
 }
 
+/// CAScrollLayer显示部分图层
+class CAScrollLayerViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let scrollView = ScrollView.init(frame: CGRectMake(0, 0, 200, 200))
+        scrollView.center = self.view.center
+        let imageView = UIImageView.init(image: R.image.bigSnowman)
+        imageView.frame = CGRectMake(0, 0, 400, 400)
+        scrollView.addSubview(imageView)
+        
+        self.view.addSubview(scrollView)
+    }
+}
 
+/// CATiledLayer: 将大图分解成小图,按需载入
+class CATiledLayerViewController: UIViewController {
+
+    let scrollView = UIScrollView()
+    let tileLayer = CATiledLayer();
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        scrollView.frame = self.view.bounds
+        self.view.addSubview(scrollView)
+    
+        //add the tiled layer
+        let scale = UIScreen.mainScreen().scale
+        tileLayer.frame = CGRectMake(0, 0, 2048 / scale, 2048 / scale);
+        tileLayer.contentsScale = scale
+        tileLayer.delegate = self;
+        self.scrollView.layer.addSublayer(tileLayer);
+        
+        //configure the scroll view
+        self.scrollView.contentSize = tileLayer.frame.size;
+        
+        //draw layer
+        tileLayer.setNeedsDisplay();
+    }
+    
+    deinit
+    {
+        print(self.description + " deinit");
+        self.tileLayer.delegate = nil
+    }
+    
+    override func drawLayer(layer: CALayer, inContext ctx: CGContext) {
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            
+            //draw a thick red circle
+            //determine tile coordinate
+            let tiledLayer = layer as! CATiledLayer
+            let bounds = CGContextGetClipBoundingBox(ctx);
+            let scale = UIScreen.mainScreen().scale
+            let x = Int(bounds.origin.x / tiledLayer.tileSize.width * scale);
+            let y = Int(bounds.origin.y / tiledLayer.tileSize.height * scale);
+            //load tile image
+            let imageName = NSString.init(format: "Snowman_%02i_%02i", x, y);
+            let tileImage = UIImage.init(named: imageName as String);
+            print("imageName" + (imageName as String))
+            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                //draw tile
+                UIGraphicsPushContext(ctx);
+                tileImage?.drawInRect(bounds);
+                UIGraphicsPopContext();
+            })
+        })
+    }
+}
+
+/// CAEmitterLayer: 展示粒子效果的图层
+class CAEmitterLayerViewController: UIViewController {
+    let emitter = CAEmitterLayer();
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let value = UIInterfaceOrientation.LandscapeRight.rawValue
+        UIDevice.currentDevice().setValue(value, forKey: "orientation")
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            
+            self.emitter.frame = self.view.bounds;
+            self.setCAEmitterLayer(self.emitter)
+            self.view.layer.addSublayer(self.emitter);
+            
+            let renderModeSegment = UISegmentedControl.init(items: [kCAEmitterLayerAdditive,kCAEmitterLayerBackToFront,kCAEmitterLayerOldestLast,kCAEmitterLayerOldestFirst,kCAEmitterLayerUnordered])
+            renderModeSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
+            renderModeSegment.addTarget(self, action: "changeRenderMode:", forControlEvents: .ValueChanged)
+            self.view.addSubview(renderModeSegment)
+            
+            let preservesDepthSegment = UISegmentedControl.init(items: ["preservesDepthSegment on","preservesDepth off"])
+            preservesDepthSegment.center = CGPointMake(self.view.center.x, renderModeSegment.frame.maxY - 50)
+            preservesDepthSegment.addTarget(self, action: "changePreservesDepth:", forControlEvents: .ValueChanged)
+            self.view.addSubview(preservesDepthSegment)
+        }
+    }
+    
+    func changePreservesDepth(segment: UISegmentedControl) {
+        let title = segment.titleForSegmentAtIndex(segment.selectedSegmentIndex)!
+        if (title.hasSuffix("on")) {
+            emitter.preservesDepth = true
+        } else {
+            emitter.preservesDepth = false
+        }
+    }
+    
+    func changeRenderMode(segment: UISegmentedControl) {
+        let RenderMode = segment.titleForSegmentAtIndex(segment.selectedSegmentIndex)
+        self.emitter.renderMode = RenderMode!
+    }
+    
+    func setCAEmitterLayer(emitter: CAEmitterLayer) -> CAEmitterLayer {
+        //configure emitter
+        emitter.renderMode = kCAEmitterLayerAdditive;
+        //        emitter.renderMode = kCAEmitterLayerUnordered
+        //        emitter.preservesDepth = true
+        emitter.emitterPosition = CGPointMake(emitter.frame.size.width / 2.0,
+            emitter.frame.size.height / 2.0);
+        
+        //create a particle template
+        let cell = CAEmitterCell();
+        cell.contents = R.image.spark!.CGImage;
+        cell.birthRate = 150;
+        cell.lifetime = 5.0;
+        //orange color
+        cell.color = UIColor.init(red: 1, green: 0.5, blue: 0.2, alpha: 1.0).CGColor;
+        cell.alphaSpeed = -0.4;
+        cell.velocity = 50;
+        cell.velocityRange = 50;
+        cell.emissionRange = CGFloat(M_PI * 2.0);
+        
+        //add particle template to emitter
+        emitter.emitterCells = [cell];
+        
+        return emitter
+    }
+    
+    deinit
+    {
+        print(self.description + " deinit");
+        let value = UIInterfaceOrientation.Portrait.rawValue
+        UIDevice.currentDevice().setValue(value, forKey: "orientation")
+    }
+}
+
+/**
+*  CAEAGLLayer: 使用OpenGL高效绘制自定义图层
+*/
+class CAEAGLLayerViewController: UIViewController {
+    let glView = UIView.init(frame: CGRectMake(0, 0, 200, 200))
+    let glContext = EAGLContext.init(API: .OpenGLES2)
+    let glLayer = CAEAGLLayer()
+    var framebuffer: GLuint = 0
+    var colorRenderbuffer: GLuint = 0
+    var framebufferWidth: GLsizei = 0
+    var framebufferHeight: GLsizei = 0
+    let effect = GLKBaseEffect()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        glView.center = self.view.center
+        self.view.addSubview(glView)
+        //set up context
+        EAGLContext.setCurrentContext(self.glContext);
+        
+        //set up layer
+        self.glLayer.frame = self.glView.bounds;
+        self.glView.layer.addSublayer(self.glLayer);
+        self.glLayer.drawableProperties = [kEAGLDrawablePropertyRetainedBacking: false,
+            kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8];
+        
+        //set up buffers
+        self.setUpBuffers();
+        
+        //draw frame
+        self.drawFrame();
+    }
+
+    func setUpBuffers() {
+        //set up frame buffer
+        glGenFramebuffers(1, &framebuffer);
+        glBindFramebuffer(GLenum(GL_FRAMEBUFFER), framebuffer);
+        
+        //set up color render buffer
+        glGenRenderbuffers(1, &colorRenderbuffer);
+        glBindRenderbuffer(GLenum(GL_RENDERBUFFER), colorRenderbuffer);
+        glFramebufferRenderbuffer(GLenum(GL_FRAMEBUFFER), GLenum(GL_COLOR_ATTACHMENT0), GLenum(GL_RENDERBUFFER), colorRenderbuffer);
+        self.glContext.renderbufferStorage(Int(GL_RENDERBUFFER), fromDrawable: self.glLayer)
+        glGetRenderbufferParameteriv(GLenum(GL_RENDERBUFFER), GLenum(GL_RENDERBUFFER_WIDTH), &framebufferWidth);
+        glGetRenderbufferParameteriv(GLenum(GL_RENDERBUFFER), GLenum(GL_RENDERBUFFER_HEIGHT), &framebufferHeight);
+        
+        //check success
+        if (glCheckFramebufferStatus(GLenum(GL_FRAMEBUFFER)) != GLenum(GL_FRAMEBUFFER_COMPLETE))
+        {
+            print("Failed to make complete framebuffer object: %i", glCheckFramebufferStatus(GLenum(GL_FRAMEBUFFER)));
+        }
+    }
+    
+    func drawFrame() {
+        //bind framebuffer & set viewport
+        glBindFramebuffer(GLenum(GL_FRAMEBUFFER), framebuffer);
+        glViewport(0, 0, framebufferWidth, framebufferHeight);
+        
+        //bind shader program
+        self.effect.prepareToDraw();
+        
+        //clear the screen
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT));
+        glClearColor(0.0, 0.0, 0.0, 1.0);
+        
+        //set up vertices
+        let vertices: [GLfloat] = [
+            -0.5, -0.5, -1.0,
+            0.0, 0.5, -1.0,
+            0.5, -0.5, -1.0,]
+        
+        //set up colors
+        let colors: [GLfloat] = [
+            0.0, 0.0, 1.0, 1.0,
+            0.0, 1.0, 0.0, 1.0,
+            1.0, 0.0, 0.0, 1.0,]
+        
+        //draw triangle
+        glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Position.rawValue));
+        glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Color.rawValue));
+        glVertexAttribPointer(GLuint(GLKVertexAttrib.Position.rawValue), 3, GLenum(GL_FLOAT),GLboolean(GL_FALSE), 0, vertices);
+        glVertexAttribPointer(GLuint(GLKVertexAttrib.Color.rawValue), 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, colors);
+        glDrawArrays(GLenum(GL_TRIANGLES), 0, 3);
+        
+        //present render buffer
+        glBindRenderbuffer(GLenum(GL_RENDERBUFFER), colorRenderbuffer);
+        self.glContext.presentRenderbuffer(Int(GL_RENDERBUFFER))
+
+    }
+
+    func tearDownBuffers() {
+        if (framebuffer != 0)
+        {
+            //delete framebuffer
+            glDeleteFramebuffers(1, &framebuffer);
+            framebuffer = 0;
+        }
+        
+        if (colorRenderbuffer != 0)
+        {
+            //delete color render buffer
+            glDeleteRenderbuffers(1, &colorRenderbuffer);
+            colorRenderbuffer = 0;
+        }
+    }
+    
+    deinit {
+        print(self.description + " deinit");
+
+    }
+}
+
+import AVFoundation
+/// AVPlayerLayer: 专门显示视屏的图层
+class AVPlayerLayerViewController: UIViewController {
+    let containerView = UIView.init(frame: CGRectMake(0, 0, 200, 200))
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        containerView.center = self.view.center
+        self.view.addSubview(containerView)
+        
+        //get video URL
+        let URL = R.file.shipMp4
+        
+        //create player and player layer
+        let player = AVPlayer.init(URL: URL!)
+        let playerLayer = AVPlayerLayer()
+        playerLayer.player = player
+        
+        //set player layer frame and attach it to our view
+        playerLayer.frame = self.containerView.bounds;
+        self.containerView.layer.addSublayer(playerLayer);
+        
+        //transform layer
+        var transform = CATransform3DIdentity;
+        transform.m34 = -1.0 / 500.0;
+        transform = CATransform3DRotate(transform, -CGFloat(M_PI_4), 1, 1, 0);
+        playerLayer.transform = transform;
+
+        
+        //add rounded corners and border
+        playerLayer.masksToBounds = true;
+        playerLayer.cornerRadius = 20.0;
+        playerLayer.borderColor = UIColor.redColor().CGColor;
+        playerLayer.borderWidth = 5.0;
+        
+        //play the video
+        playerLayer.player?.play()
+    }
+    
+}
+
+/// 给HelloGLKitViewController提供桥接
+class GLKViewDemoController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let childGLKitViewVC = HelloGLKitViewController()
+        self.addChildViewController(childGLKitViewVC)
+        childGLKitViewVC.view.frame = self.view.bounds
+        self.view.addSubview(childGLKitViewVC.view)
+    }
+}
