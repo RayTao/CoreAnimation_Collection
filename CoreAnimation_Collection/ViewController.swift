@@ -27,6 +27,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "CAEAGLLayerViewController","GLKViewDemoController",
         "AVPlayerLayerViewController"],
         ["CATransactionViewController","PresentationLayerViewController"],
+        ["PropertyAnimationViewController","CAKeyframeAnimationViewController",
+        "RotationViewController","AnimationGroupViewController",
+        "TransitionViewController","LayerTreeTransitionController",
+        "CustomTransitionController","StopAnimationController"],
+        ["DurationRepeatCountController","AutoreversesRepeatDurationController"],
         ["WaveViewController","GooeyViewController",
             "SwitchersCollectionViewController"]]
     var titleArray = [["1.1 CALayer"],
@@ -43,10 +48,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "6.7 CAEmitterLayer \n 粒子图层","6.8 CAEAGLLayer \n OpenGL 图层",
         "6.9 GLKView ","6.10 AVPlayerLayer \n 视屏图层"],
         ["7.1 CATransaction \n 事务","7.2 PresentationLayer \n 呈现图层"],
+        ["8.1 PropertyAnimation \n 属性动画","8.2 CAKeyframeAnimation \n 关键帧动画",
+            "8.3 Rotation \n 旋转","8.4 AnimationGroup \n 组动画",
+            "8.5 transition \n 转场动画","8.6 LayerTreeTransition \n 图层树转场动画",
+        "8.7 CustomTransition \n 自定义转场","8.8 StopAnimation \n 取消动画"],
+        ["9.1 Duration RepeatCount","9.2 Autoreverses RepeatDuration"],
         ["Waveing\n类似siri的波浪","Gooey\n橡皮筋弹性动画","SwitcherCollection\n开关动画合集"]]
     var headTitle:[String] = ["图层树CALayer",
         "寄宿图contents","图层几何学","视觉效果","图层变换","专属图层","隐式动画",
-        "显式动画",
+        "显式动画","图层时间 CAMediaTiming",
         "自定义动画集合"]
     
     let cellIndentifier = "cell"
