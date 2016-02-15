@@ -31,7 +31,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "RotationViewController","AnimationGroupViewController",
         "TransitionViewController","LayerTreeTransitionController",
         "CustomTransitionController","StopAnimationController"],
-        ["DurationRepeatCountController","AutoreversesRepeatDurationController"],
+        ["DurationRepeatCountController","AutoreversesRepeatDurationController",
+        "TimeoffsetSpeedFillmodeController","ManualAnimationViewController"],
         ["WaveViewController","GooeyViewController",
             "SwitchersCollectionViewController"]]
     var titleArray = [["1.1 CALayer"],
@@ -52,7 +53,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             "8.3 Rotation \n 旋转","8.4 AnimationGroup \n 组动画",
             "8.5 transition \n 转场动画","8.6 LayerTreeTransition \n 图层树转场动画",
         "8.7 CustomTransition \n 自定义转场","8.8 StopAnimation \n 取消动画"],
-        ["9.1 Duration RepeatCount","9.2 Autoreverses RepeatDuration"],
+        ["9.1 Duration RepeatCount","9.2 Autoreverses RepeatDuration",
+        "9.3 Timeoffset Speed Fillmode","9.4 ManualAnimation"],
         ["Waveing\n类似siri的波浪","Gooey\n橡皮筋弹性动画","SwitcherCollection\n开关动画合集"]]
     var headTitle:[String] = ["图层树CALayer",
         "寄宿图contents","图层几何学","视觉效果","图层变换","专属图层","隐式动画",
