@@ -20,8 +20,10 @@ struct R {
   
   struct image {
     static var anchor: UIImage? { return UIImage(named: "Anchor", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var ball: UIImage? { return UIImage(named: "Ball", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var bigSnowman: UIImage? { return UIImage(named: "BigSnowman", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var button: UIImage? { return UIImage(named: "Button", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var chalk: UIImage? { return UIImage(named: "Chalk", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var clockFace: UIImage? { return UIImage(named: "ClockFace", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var cone: UIImage? { return UIImage(named: "Cone", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var digits: UIImage? { return UIImage(named: "Digits", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }

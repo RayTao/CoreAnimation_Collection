@@ -18,6 +18,7 @@
 		E404C8171C1986AB007DC001 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E404C8161C1986AB007DC001 /* WaveView.swift */; };
 		E41604191C1C747300D29926 /* CALayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41604181C1C747300D29926 /* CALayerViewController.swift */; };
 		E41D7B5C1C2179CC000B8ACB /* CoordinateSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41D7B5B1C2179CC000B8ACB /* CoordinateSystemViewController.swift */; };
+		E42F96561C73231700FC1942 /* TimerAnimateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42F96551C73231700FC1942 /* TimerAnimateViewController.swift */; };
 		E453262D1C4B941100882B31 /* ExplicitAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E453262C1C4B941100882B31 /* ExplicitAnimationViewController.swift */; };
 		E4550C361C47351C00831886 /* HelloGLKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4550C351C47351C00831886 /* HelloGLKitViewController.m */; };
 		E4550C381C47380F00831886 /* tile_floor.png in Resources */ = {isa = PBXBuildFile; fileRef = E4550C371C47380F00831886 /* tile_floor.png */; };
@@ -41,10 +42,13 @@
 		E4B07C811C1E56C9003C3BA5 /* TKSmileSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C7B1C1E56C9003C3BA5 /* TKSmileSwitch.swift */; };
 		E4B07C861C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C841C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift */; };
 		E4B07C871C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B07C851C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib */; };
+		E4C88BE91C74421600F113FC /* EfficientDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */; };
+		E4C88BED1C74426500F113FC /* EfficientDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C88BEC1C74426500F113FC /* EfficientDrawView.m */; };
 		E4E1FFBB1C3E66DD00AD87E5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E1FFBA1C3E66DD00AD87E5 /* GLKit.framework */; };
 		E4E1FFBD1C3E717D00AD87E5 /* SpecialLayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1FFBC1C3E717D00AD87E5 /* SpecialLayerController.swift */; };
 		E4EB17711C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB17701C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift */; };
 		E4F8DE141C71750E006DD5C3 /* CAMediaTimingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8DE131C71750E006DD5C3 /* CAMediaTimingController.swift */; };
+		E4F8DE161C71B217006DD5C3 /* CAMediaTimingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8DE151C71B217006DD5C3 /* CAMediaTimingFunction.swift */; };
 		E9C3F4B77D5ED5F49203BFA6 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E316062CC85222F085AB2E14 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +90,7 @@
 		E404C8161C1986AB007DC001 /* WaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		E41604181C1C747300D29926 /* CALayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerViewController.swift; sourceTree = "<group>"; };
 		E41D7B5B1C2179CC000B8ACB /* CoordinateSystemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateSystemViewController.swift; sourceTree = "<group>"; };
+		E42F96551C73231700FC1942 /* TimerAnimateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerAnimateViewController.swift; sourceTree = "<group>"; };
 		E453262C1C4B941100882B31 /* ExplicitAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplicitAnimationViewController.swift; sourceTree = "<group>"; };
 		E4550C341C47351C00831886 /* HelloGLKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloGLKitViewController.h; sourceTree = "<group>"; };
 		E4550C351C47351C00831886 /* HelloGLKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloGLKitViewController.m; sourceTree = "<group>"; };
@@ -114,10 +119,14 @@
 		E4B07C7B1C1E56C9003C3BA5 /* TKSmileSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSmileSwitch.swift; sourceTree = "<group>"; };
 		E4B07C841C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchersCollectionViewController.swift; sourceTree = "<group>"; };
 		E4B07C851C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchersCollectionViewController.xib; sourceTree = "<group>"; };
+		E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfficientDrawViewController.swift; sourceTree = "<group>"; };
+		E4C88BEB1C74426500F113FC /* EfficientDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EfficientDrawView.h; sourceTree = "<group>"; };
+		E4C88BEC1C74426500F113FC /* EfficientDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EfficientDrawView.m; sourceTree = "<group>"; };
 		E4E1FFBA1C3E66DD00AD87E5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		E4E1FFBC1C3E717D00AD87E5 /* SpecialLayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialLayerController.swift; sourceTree = "<group>"; };
 		E4EB17701C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplicitAnomationViewController.swift; sourceTree = "<group>"; };
 		E4F8DE131C71750E006DD5C3 /* CAMediaTimingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAMediaTimingController.swift; sourceTree = "<group>"; };
+		E4F8DE151C71B217006DD5C3 /* CAMediaTimingFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAMediaTimingFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +214,9 @@
 				E4EB17701C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift */,
 				E453262C1C4B941100882B31 /* ExplicitAnimationViewController.swift */,
 				E4F8DE131C71750E006DD5C3 /* CAMediaTimingController.swift */,
+				E4F8DE151C71B217006DD5C3 /* CAMediaTimingFunction.swift */,
+				E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */,
+				E42F96551C73231700FC1942 /* TimerAnimateViewController.swift */,
 				E4550C341C47351C00831886 /* HelloGLKitViewController.h */,
 				E4550C351C47351C00831886 /* HelloGLKitViewController.m */,
 				E45CC43F1C45501000100DD8 /* Views */,
@@ -260,6 +272,7 @@
 		E45CC43F1C45501000100DD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E4C88BEA1C74426500F113FC /* EfficientDrawView */,
 				E45CC4401C45501000100DD8 /* LayerLabel */,
 				E45CC4431C45501000100DD8 /* ReflectionView */,
 				E45CC4461C45501000100DD8 /* ScrollView */,
@@ -316,6 +329,15 @@
 				E4B07C7B1C1E56C9003C3BA5 /* TKSmileSwitch.swift */,
 			);
 			path = SwitcherCollection;
+			sourceTree = "<group>";
+		};
+		E4C88BEA1C74426500F113FC /* EfficientDrawView */ = {
+			isa = PBXGroup;
+			children = (
+				E4C88BEB1C74426500F113FC /* EfficientDrawView.h */,
+				E4C88BEC1C74426500F113FC /* EfficientDrawView.m */,
+			);
+			path = EfficientDrawView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,12 +540,14 @@
 			files = (
 				E4B07C7F1C1E56C9003C3BA5 /* TKMainSwitcher.swift in Sources */,
 				E4B07C861C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift in Sources */,
+				E4C88BE91C74421600F113FC /* EfficientDrawViewController.swift in Sources */,
 				E4B07C741C1E54CC003C3BA5 /* TabbarMenu.swift in Sources */,
 				E4E1FFBD1C3E717D00AD87E5 /* SpecialLayerController.swift in Sources */,
 				E41D7B5C1C2179CC000B8ACB /* CoordinateSystemViewController.swift in Sources */,
 				E404C7E71C1973B0007DC001 /* ViewController.swift in Sources */,
 				E4A292921C1C881C004835EB /* R.generated.swift in Sources */,
 				E404C7E51C1973B0007DC001 /* AppDelegate.swift in Sources */,
+				E4F8DE161C71B217006DD5C3 /* CAMediaTimingFunction.swift in Sources */,
 				E4F8DE141C71750E006DD5C3 /* CAMediaTimingController.swift in Sources */,
 				E4B07C801C1E56C9003C3BA5 /* TKSimpleSwitch.swift in Sources */,
 				E453262D1C4B941100882B31 /* ExplicitAnimationViewController.swift in Sources */,
@@ -535,7 +559,9 @@
 				E4B07C7E1C1E56C9003C3BA5 /* TKLiquidSwitch.swift in Sources */,
 				E4B07C811C1E56C9003C3BA5 /* TKSmileSwitch.swift in Sources */,
 				E404C8151C19868A007DC001 /* WaveViewController.swift in Sources */,
+				E42F96561C73231700FC1942 /* TimerAnimateViewController.swift in Sources */,
 				E4B07C731C1E54CC003C3BA5 /* GooeyViewController.swift in Sources */,
+				E4C88BED1C74426500F113FC /* EfficientDrawView.m in Sources */,
 				E45CC4491C45501000100DD8 /* LayerLabel.m in Sources */,
 				E45CC44A1C45501000100DD8 /* ReflectionView.m in Sources */,
 				E41604191C1C747300D29926 /* CALayerViewController.swift in Sources */,

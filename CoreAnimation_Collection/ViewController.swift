@@ -33,6 +33,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "CustomTransitionController","StopAnimationController"],
         ["DurationRepeatCountController","AutoreversesRepeatDurationController",
         "TimeoffsetSpeedFillmodeController","ManualAnimationViewController"],
+        ["CAMediaTimingFunctionController","KeyFrameMediaTimingViewController",
+        "BezierMediaTimingFunctionController","CustomMediaTimingFunctionController",
+        "BallViewController"],
+        ["TimerAnimateViewController"],
+        ["EfficientDrawViewController"],
         ["WaveViewController","GooeyViewController",
             "SwitchersCollectionViewController"]]
     var titleArray = [["1.1 CALayer"],
@@ -55,10 +60,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "8.7 CustomTransition \n 自定义转场","8.8 StopAnimation \n 取消动画"],
         ["9.1 Duration RepeatCount","9.2 Autoreverses RepeatDuration",
         "9.3 Timeoffset Speed Fillmode","9.4 ManualAnimation"],
+        ["10.1 CAMediaTimingFunction","10.2 KeyFrameMediaTiming",
+            "10.3 Bezier for MediaTimingFunction","10.4 Custom MediaTimingFunction",
+        "10.5 Ball animate"],
+        ["11.1 timer Animate"],
+        ["12.1 efficient draw view"],
         ["Waveing\n类似siri的波浪","Gooey\n橡皮筋弹性动画","SwitcherCollection\n开关动画合集"]]
     var headTitle:[String] = ["图层树CALayer",
         "寄宿图contents","图层几何学","视觉效果","图层变换","专属图层","隐式动画",
-        "显式动画","图层时间 CAMediaTiming",
+        "显式动画","图层时间 CAMediaTiming","动画缓冲","定时器动画","高效绘图",
         "自定义动画集合"]
     
     let cellIndentifier = "cell"

@@ -34,6 +34,9 @@ class AnchorPointViewController: UIViewController {
         self.view.addSubview(switcher)
         switcher.addTarget(self, action: "changeAnchorPoint:", forControlEvents: .ValueChanged)
         switcher.center = CGPointMake(minuteHand.center.x, clockHand.frame.maxY + 20)
+        switcher.on = true
+        
+        changeAnchorPoint(switcher)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -60,9 +63,15 @@ class AnchorPointViewController: UIViewController {
         //calculate second hand angle
         let secondAngle = (Double(components!.second) / 60.0) * M_PI * 2.0;
         
-        self.hourHand.transform = CGAffineTransformMakeRotation(CGFloat(hourAngle));
-        self.minuteHand.transform = CGAffineTransformMakeRotation(CGFloat(minuteAngle));
-        self.secondHand.transform = CGAffineTransformMakeRotation(CGFloat(secondAngle));
+        setAngle(CGFloat(hourAngle), handView: hourHand)
+        setAngle(CGFloat(minuteAngle), handView: minuteHand)
+        setAngle(CGFloat(secondAngle), handView: secondHand)
+
+    }
+    
+    func setAngle(angle: CGFloat, handView: UIView) {
+        
+        handView.transform = CGAffineTransformMakeRotation(angle);
     }
     
     func changeAnchorPoint(switcher: UISwitch) {
