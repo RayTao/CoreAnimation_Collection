@@ -12,6 +12,7 @@ struct R {
   struct file {
     static var shipMp4: NSURL? { return _R.hostingBundle?.URLForResource("Ship", withExtension: "mp4") }
     static var tile_floorPng: NSURL? { return _R.hostingBundle?.URLForResource("tile_floor", withExtension: "png") }
+    static var vacationPhotos: NSURL? { return _R.hostingBundle?.URLForResource("Vacation Photos", withExtension: "") }
   }
   
   struct font {
@@ -31,6 +32,7 @@ struct R {
     static var hourHand: UIImage? { return UIImage(named: "HourHand", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var igloo: UIImage? { return UIImage(named: "Igloo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var minuteHand: UIImage? { return UIImage(named: "MinuteHand", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var rounded: UIImage? { return UIImage(named: "Rounded", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var secondHand: UIImage? { return UIImage(named: "SecondHand", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var ship: UIImage? { return UIImage(named: "Ship", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var snowman: UIImage? { return UIImage(named: "Snowman", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }

@@ -38,6 +38,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "BallViewController"],
         ["TimerAnimateViewController"],
         ["EfficientDrawViewController"],
+        ["EfficientImageViewController"],
+        ["OffscreenRenderController","InvisiableViewController"],
         ["WaveViewController","GooeyViewController",
             "SwitchersCollectionViewController"]]
     var titleArray = [["1.1 CALayer"],
@@ -65,10 +67,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         "10.5 Ball animate"],
         ["11.1 timer Animate"],
         ["12.1 efficient draw view"],
+        ["13.1 efficient image"],
+        ["14.1 Offscreen-Render","14.2 减少图层"],
         ["Waveing\n类似siri的波浪","Gooey\n橡皮筋弹性动画","SwitcherCollection\n开关动画合集"]]
     var headTitle:[String] = ["图层树CALayer",
         "寄宿图contents","图层几何学","视觉效果","图层变换","专属图层","隐式动画",
         "显式动画","图层时间 CAMediaTiming","动画缓冲","定时器动画","高效绘图",
+        "图像优化","图层性能",
         "自定义动画集合"]
     
     let cellIndentifier = "cell"

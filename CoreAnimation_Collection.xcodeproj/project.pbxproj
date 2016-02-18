@@ -44,6 +44,9 @@
 		E4B07C871C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B07C851C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib */; };
 		E4C88BE91C74421600F113FC /* EfficientDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */; };
 		E4C88BED1C74426500F113FC /* EfficientDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C88BEC1C74426500F113FC /* EfficientDrawView.m */; };
+		E4C88BEF1C746A7700F113FC /* EfficientImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C88BEE1C746A7700F113FC /* EfficientImageViewController.swift */; };
+		E4C88C0A1C747F1100F113FC /* Vacation Photos in Resources */ = {isa = PBXBuildFile; fileRef = E4C88C091C747F1100F113FC /* Vacation Photos */; };
+		E4DF6FA51C74B2E900E2A4A7 /* EfficientLayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF6FA41C74B2E900E2A4A7 /* EfficientLayerController.swift */; };
 		E4E1FFBB1C3E66DD00AD87E5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E1FFBA1C3E66DD00AD87E5 /* GLKit.framework */; };
 		E4E1FFBD1C3E717D00AD87E5 /* SpecialLayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1FFBC1C3E717D00AD87E5 /* SpecialLayerController.swift */; };
 		E4EB17711C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB17701C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift */; };
@@ -122,6 +125,9 @@
 		E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfficientDrawViewController.swift; sourceTree = "<group>"; };
 		E4C88BEB1C74426500F113FC /* EfficientDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EfficientDrawView.h; sourceTree = "<group>"; };
 		E4C88BEC1C74426500F113FC /* EfficientDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EfficientDrawView.m; sourceTree = "<group>"; };
+		E4C88BEE1C746A7700F113FC /* EfficientImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfficientImageViewController.swift; sourceTree = "<group>"; };
+		E4C88C091C747F1100F113FC /* Vacation Photos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Vacation Photos"; sourceTree = "<group>"; };
+		E4DF6FA41C74B2E900E2A4A7 /* EfficientLayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfficientLayerController.swift; sourceTree = "<group>"; };
 		E4E1FFBA1C3E66DD00AD87E5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		E4E1FFBC1C3E717D00AD87E5 /* SpecialLayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialLayerController.swift; sourceTree = "<group>"; };
 		E4EB17701C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplicitAnomationViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +222,8 @@
 				E4F8DE131C71750E006DD5C3 /* CAMediaTimingController.swift */,
 				E4F8DE151C71B217006DD5C3 /* CAMediaTimingFunction.swift */,
 				E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */,
+				E4C88BEE1C746A7700F113FC /* EfficientImageViewController.swift */,
+				E4DF6FA41C74B2E900E2A4A7 /* EfficientLayerController.swift */,
 				E42F96551C73231700FC1942 /* TimerAnimateViewController.swift */,
 				E4550C341C47351C00831886 /* HelloGLKitViewController.h */,
 				E4550C351C47351C00831886 /* HelloGLKitViewController.m */,
@@ -223,6 +231,7 @@
 				E404C8121C198650007DC001 /* Animations */,
 				E4A292911C1C881C004835EB /* R.generated.swift */,
 				E404C7EB1C1973B0007DC001 /* Assets.xcassets */,
+				E4C88C091C747F1100F113FC /* Vacation Photos */,
 				E48970F11C47FA560048F7E6 /* Ship.mp4 */,
 				E4550C371C47380F00831886 /* tile_floor.png */,
 				E404C7ED1C1973B0007DC001 /* LaunchScreen.storyboard */,
@@ -453,6 +462,7 @@
 				E4B07C871C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib in Resources */,
 				E404C7EC1C1973B0007DC001 /* Assets.xcassets in Resources */,
 				E48970F21C47FA570048F7E6 /* Ship.mp4 in Resources */,
+				E4C88C0A1C747F1100F113FC /* Vacation Photos in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,11 +565,13 @@
 				E4EB17711C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift in Sources */,
 				E46C2BD61C215FE600523D1A /* AnchorPointViewController.swift in Sources */,
 				E4550C361C47351C00831886 /* HelloGLKitViewController.m in Sources */,
+				E4DF6FA51C74B2E900E2A4A7 /* EfficientLayerController.swift in Sources */,
 				E4B07C7D1C1E56C9003C3BA5 /* TKExchangeSwitch.swift in Sources */,
 				E4B07C7E1C1E56C9003C3BA5 /* TKLiquidSwitch.swift in Sources */,
 				E4B07C811C1E56C9003C3BA5 /* TKSmileSwitch.swift in Sources */,
 				E404C8151C19868A007DC001 /* WaveViewController.swift in Sources */,
 				E42F96561C73231700FC1942 /* TimerAnimateViewController.swift in Sources */,
+				E4C88BEF1C746A7700F113FC /* EfficientImageViewController.swift in Sources */,
 				E4B07C731C1E54CC003C3BA5 /* GooeyViewController.swift in Sources */,
 				E4C88BED1C74426500F113FC /* EfficientDrawView.m in Sources */,
 				E45CC4491C45501000100DD8 /* LayerLabel.m in Sources */,
