@@ -25,16 +25,28 @@ struct R {
     static var bigSnowman: UIImage? { return UIImage(named: "BigSnowman", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var button: UIImage? { return UIImage(named: "Button", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var chalk: UIImage? { return UIImage(named: "Chalk", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var clock: UIImage? { return UIImage(named: "clock", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var clockFace: UIImage? { return UIImage(named: "ClockFace", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var clock_highlight: UIImage? { return UIImage(named: "clock_highlight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var cone: UIImage? { return UIImage(named: "Cone", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var digits: UIImage? { return UIImage(named: "Digits", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var door: UIImage? { return UIImage(named: "Door", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var hourHand: UIImage? { return UIImage(named: "HourHand", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var igloo: UIImage? { return UIImage(named: "Igloo", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var juice: UIImage? { return UIImage(named: "juice", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var juice_highlight: UIImage? { return UIImage(named: "juice_highlight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var minuteHand: UIImage? { return UIImage(named: "MinuteHand", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var pencil: UIImage? { return UIImage(named: "pencil", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var pencil_highlight: UIImage? { return UIImage(named: "pencil_highlight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var powerButton: UIImage? { return UIImage(named: "powerButton", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var powerButton_highlight: UIImage? { return UIImage(named: "powerButton_highlight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var rounded: UIImage? { return UIImage(named: "Rounded", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var secondHand: UIImage? { return UIImage(named: "SecondHand", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var service: UIImage? { return UIImage(named: "service", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var service_highlight: UIImage? { return UIImage(named: "service_highlight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var ship: UIImage? { return UIImage(named: "Ship", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var shower: UIImage? { return UIImage(named: "shower", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
+    static var shower_highlight: UIImage? { return UIImage(named: "shower_highlight", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var snowman: UIImage? { return UIImage(named: "Snowman", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var snowman_00_00: UIImage? { return UIImage(named: "Snowman_00_00", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }
     static var snowman_00_01: UIImage? { return UIImage(named: "Snowman_00_01", inBundle: _R.hostingBundle, compatibleWithTraitCollection: nil) }

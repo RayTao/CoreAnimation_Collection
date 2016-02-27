@@ -139,6 +139,7 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.edgesForExtendedLayout = .None
         self.scrollView.frame = self.view.bounds
         self.scrollView.contentSize =  CGSizeMake((WIDTH - 1)*SPACING,
             (HEIGHT - 1)*SPACING);
@@ -151,10 +152,10 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
         self.scrollView.layer.sublayerTransform = transform;
     }
 
-//    override func viewDidLayoutSubviews() {
-//    
-//        updateLayers()
-//    }
+    override func viewDidLayoutSubviews() {
+    
+        updateLayers()
+    }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
@@ -178,14 +179,14 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
         
         //create layers
         var recycled = 0;
-        let visibleLayers: NSMutableArray = NSMutableArray()
-        for (var z = DEPTH-1; z >= 0; z--) {
+        var visibleLayers: [CALayer] = []
+        for (var z:CGFloat = DEPTH-1.0; z >= 0.0; z--) {
             //increase bounds size to compensate for perspective
             var adjusted = bounds
             adjusted.size.width /= PERSPECTIVE(z*SPACING)
             adjusted.size.height /= PERSPECTIVE(z*SPACING)
-            adjusted.origin.x -= (adjusted.size.width - bounds.size.width) / 2;
-            adjusted.origin.y -= (adjusted.size.height - bounds.size.height) / 2;
+            adjusted.origin.x -= (adjusted.size.width - bounds.size.width) / 2.0;
+            adjusted.origin.y -= (adjusted.size.height - bounds.size.height) / 2.0;
         
             for (var y:CGFloat = 0.0; y < HEIGHT; y++)
             {
@@ -225,14 +226,14 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
                     //set background color
                     layer?.backgroundColor = UIColor.init(white: 1 - z*(1.0/DEPTH), alpha: 1.0).CGColor;
                     //attach to scroll view
-                    visibleLayers.addObject(layer!);
+                    visibleLayers.append(layer!);
                 }
             }
         }
         
         CATransaction.commit()
         
-        self.scrollView.layer.sublayers = visibleLayers as AnyObject as? [CALayer]
+        self.scrollView.layer.sublayers = visibleLayers
 
         print("displayed: " + "\(visibleLayers.count)/" + "\(DEPTH*HEIGHT*WIDTH)")
         print("recycled: " + "\(recycled)")

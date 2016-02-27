@@ -46,6 +46,11 @@
 		E4C88BED1C74426500F113FC /* EfficientDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C88BEC1C74426500F113FC /* EfficientDrawView.m */; };
 		E4C88BEF1C746A7700F113FC /* EfficientImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C88BEE1C746A7700F113FC /* EfficientImageViewController.swift */; };
 		E4C88C0A1C747F1100F113FC /* Vacation Photos in Resources */ = {isa = PBXBuildFile; fileRef = E4C88C091C747F1100F113FC /* Vacation Photos */; };
+		E4DD4D371C7CA33A0023606A /* SpreadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DD4D311C7CA33A0023606A /* SpreadButton.swift */; };
+		E4DD4D381C7CA33A0023606A /* SpreadSubButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DD4D321C7CA33A0023606A /* SpreadSubButton.swift */; };
+		E4DD4D3C1C7CA3E70023606A /* ZYSpreadButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DD4D3B1C7CA3E70023606A /* ZYSpreadButtonViewController.swift */; };
+		E4DD4D411C7CA4380023606A /* ZYSpreadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DD4D3E1C7CA4380023606A /* ZYSpreadButton.m */; };
+		E4DD4D421C7CA4380023606A /* ZYSpreadSubButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DD4D401C7CA4380023606A /* ZYSpreadSubButton.m */; };
 		E4DF6FA51C74B2E900E2A4A7 /* EfficientLayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF6FA41C74B2E900E2A4A7 /* EfficientLayerController.swift */; };
 		E4E1FFBB1C3E66DD00AD87E5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E1FFBA1C3E66DD00AD87E5 /* GLKit.framework */; };
 		E4E1FFBD1C3E717D00AD87E5 /* SpecialLayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1FFBC1C3E717D00AD87E5 /* SpecialLayerController.swift */; };
@@ -127,6 +132,13 @@
 		E4C88BEC1C74426500F113FC /* EfficientDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EfficientDrawView.m; sourceTree = "<group>"; };
 		E4C88BEE1C746A7700F113FC /* EfficientImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfficientImageViewController.swift; sourceTree = "<group>"; };
 		E4C88C091C747F1100F113FC /* Vacation Photos */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Vacation Photos"; sourceTree = "<group>"; };
+		E4DD4D311C7CA33A0023606A /* SpreadButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadButton.swift; sourceTree = "<group>"; };
+		E4DD4D321C7CA33A0023606A /* SpreadSubButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadSubButton.swift; sourceTree = "<group>"; };
+		E4DD4D3B1C7CA3E70023606A /* ZYSpreadButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZYSpreadButtonViewController.swift; sourceTree = "<group>"; };
+		E4DD4D3D1C7CA4380023606A /* ZYSpreadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSpreadButton.h; sourceTree = "<group>"; };
+		E4DD4D3E1C7CA4380023606A /* ZYSpreadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSpreadButton.m; sourceTree = "<group>"; };
+		E4DD4D3F1C7CA4380023606A /* ZYSpreadSubButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSpreadSubButton.h; sourceTree = "<group>"; };
+		E4DD4D401C7CA4380023606A /* ZYSpreadSubButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSpreadSubButton.m; sourceTree = "<group>"; };
 		E4DF6FA41C74B2E900E2A4A7 /* EfficientLayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfficientLayerController.swift; sourceTree = "<group>"; };
 		E4E1FFBA1C3E66DD00AD87E5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		E4E1FFBC1C3E717D00AD87E5 /* SpecialLayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialLayerController.swift; sourceTree = "<group>"; };
@@ -221,9 +233,10 @@
 				E453262C1C4B941100882B31 /* ExplicitAnimationViewController.swift */,
 				E4F8DE131C71750E006DD5C3 /* CAMediaTimingController.swift */,
 				E4F8DE151C71B217006DD5C3 /* CAMediaTimingFunction.swift */,
-				E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */,
+				E4DD4D3B1C7CA3E70023606A /* ZYSpreadButtonViewController.swift */,
 				E4C88BEE1C746A7700F113FC /* EfficientImageViewController.swift */,
 				E4DF6FA41C74B2E900E2A4A7 /* EfficientLayerController.swift */,
+				E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */,
 				E42F96551C73231700FC1942 /* TimerAnimateViewController.swift */,
 				E4550C341C47351C00831886 /* HelloGLKitViewController.h */,
 				E4550C351C47351C00831886 /* HelloGLKitViewController.m */,
@@ -281,6 +294,7 @@
 		E45CC43F1C45501000100DD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E4DD4D301C7CA33A0023606A /* ZYSpreadButton */,
 				E4C88BEA1C74426500F113FC /* EfficientDrawView */,
 				E45CC4401C45501000100DD8 /* LayerLabel */,
 				E45CC4431C45501000100DD8 /* ReflectionView */,
@@ -347,6 +361,19 @@
 				E4C88BEC1C74426500F113FC /* EfficientDrawView.m */,
 			);
 			path = EfficientDrawView;
+			sourceTree = "<group>";
+		};
+		E4DD4D301C7CA33A0023606A /* ZYSpreadButton */ = {
+			isa = PBXGroup;
+			children = (
+				E4DD4D311C7CA33A0023606A /* SpreadButton.swift */,
+				E4DD4D321C7CA33A0023606A /* SpreadSubButton.swift */,
+				E4DD4D3D1C7CA4380023606A /* ZYSpreadButton.h */,
+				E4DD4D3E1C7CA4380023606A /* ZYSpreadButton.m */,
+				E4DD4D3F1C7CA4380023606A /* ZYSpreadSubButton.h */,
+				E4DD4D401C7CA4380023606A /* ZYSpreadSubButton.m */,
+			);
+			path = ZYSpreadButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -566,20 +593,25 @@
 				E46C2BD61C215FE600523D1A /* AnchorPointViewController.swift in Sources */,
 				E4550C361C47351C00831886 /* HelloGLKitViewController.m in Sources */,
 				E4DF6FA51C74B2E900E2A4A7 /* EfficientLayerController.swift in Sources */,
+				E4DD4D381C7CA33A0023606A /* SpreadSubButton.swift in Sources */,
 				E4B07C7D1C1E56C9003C3BA5 /* TKExchangeSwitch.swift in Sources */,
 				E4B07C7E1C1E56C9003C3BA5 /* TKLiquidSwitch.swift in Sources */,
 				E4B07C811C1E56C9003C3BA5 /* TKSmileSwitch.swift in Sources */,
 				E404C8151C19868A007DC001 /* WaveViewController.swift in Sources */,
 				E42F96561C73231700FC1942 /* TimerAnimateViewController.swift in Sources */,
+				E4DD4D3C1C7CA3E70023606A /* ZYSpreadButtonViewController.swift in Sources */,
 				E4C88BEF1C746A7700F113FC /* EfficientImageViewController.swift in Sources */,
 				E4B07C731C1E54CC003C3BA5 /* GooeyViewController.swift in Sources */,
 				E4C88BED1C74426500F113FC /* EfficientDrawView.m in Sources */,
 				E45CC4491C45501000100DD8 /* LayerLabel.m in Sources */,
+				E4DD4D411C7CA4380023606A /* ZYSpreadButton.m in Sources */,
+				E4DD4D421C7CA4380023606A /* ZYSpreadSubButton.m in Sources */,
 				E45CC44A1C45501000100DD8 /* ReflectionView.m in Sources */,
 				E41604191C1C747300D29926 /* CALayerViewController.swift in Sources */,
 				E45CC44B1C45501000100DD8 /* ScrollView.m in Sources */,
 				E49180141C21B3CF0010B224 /* CAlayerAppearanceViewController.swift in Sources */,
 				E49180121C21A9170010B224 /* HitTestingViewController.swift in Sources */,
+				E4DD4D371C7CA33A0023606A /* SpreadButton.swift in Sources */,
 				E4B07C721C1E54CC003C3BA5 /* AnimatedButton.swift in Sources */,
 				E40450311C3CAA4000F88AAF /* TransformController.swift in Sources */,
 				E404C8171C1986AB007DC001 /* WaveView.swift in Sources */,
