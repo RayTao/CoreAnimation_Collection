@@ -70,7 +70,7 @@ class TimerAnimateViewController: UIViewController {
         if self.timer != nil {
             self.timer.invalidate()
         }
-        self.timer = CADisplayLink.init(target: self, selector:"step:")
+        self.timer = CADisplayLink.init(target: self, selector:#selector(TimerAnimateViewController.step(_:)))
         self.timer.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }
     

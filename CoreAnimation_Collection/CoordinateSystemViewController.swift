@@ -23,7 +23,7 @@ class CoordinateSystemViewController: UIViewController {
         self.view.addSubview(greenView)
         self.view.addSubview(redView)
         
-        switcher.addTarget(self, action: "changeAnchorPoint:", forControlEvents: .ValueChanged)
+        switcher.addTarget(self, action: #selector(CoordinateSystemViewController.changeAnchorPoint(_:)), forControlEvents: .ValueChanged)
         switcher.center = CGPointMake(self.view.center.x, redView.frame.maxY + 20)
         self.view.addSubview(switcher)
     }

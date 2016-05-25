@@ -18,7 +18,7 @@ class OffscreenRenderController: UIViewController {
         
         
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: "switchfuc:", forControlEvents: .ValueChanged)
+        transformSegment.addTarget(self, action: #selector(OffscreenRenderController.switchfuc(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)
         
         self.view.layer.addSublayer(shapeLayerRoundedCorners(CGRectMake(50, 150, 100, 100)))
@@ -180,7 +180,9 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
         //create layers
         var recycled = 0;
         var visibleLayers: [CALayer] = []
-        for (var z:CGFloat = DEPTH-1.0; z >= 0.0; z--) {
+        var z:CGFloat = DEPTH - 1.0
+        while z >= 0.0 {
+            z -= 1;
             //increase bounds size to compensate for perspective
             var adjusted = bounds
             adjusted.size.width /= PERSPECTIVE(z*SPACING)
@@ -188,8 +190,9 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
             adjusted.origin.x -= (adjusted.size.width - bounds.size.width) / 2.0;
             adjusted.origin.y -= (adjusted.size.height - bounds.size.height) / 2.0;
         
-            for (var y:CGFloat = 0.0; y < HEIGHT; y++)
+            for yl in 0 ..< Int(HEIGHT)
             {
+                let y = CGFloat(yl);
                 //check if vertically outside visible rect
                 if (y*SPACING < adjusted.origin.y ||
                     y*SPACING >= adjusted.origin.y + adjusted.size.height)
@@ -197,8 +200,9 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
                     continue;
                 }
                 
-                for (var x: CGFloat = 0.0; x < WIDTH; x++)
+                for xl in 0 ..< Int(WIDTH)
                 {
+                    let x = CGFloat(xl)
                     //check if horizontally outside visible rect
                     if (x*SPACING < adjusted.origin.x ||
                         x*SPACING >= adjusted.origin.x + adjusted.size.width)
@@ -210,7 +214,7 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
                     var layer = self.recyclePool.anyObject() as! CALayer?;
                     if (layer != nil)
                     {
-                        recycled++;
+                        recycled += 1;
                         self.recyclePool.removeObject(layer!);
                     }
                     else

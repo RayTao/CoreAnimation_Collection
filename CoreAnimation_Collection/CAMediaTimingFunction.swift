@@ -66,7 +66,7 @@ class KeyFrameMediaTimingViewController: UIViewController {
         
         let changeColorBtn = UIButton.init(frame: CGRectMake(layerView.bounds.width/2-60,
             layerView.bounds.maxY - 40, 120, 31))
-        changeColorBtn.addTarget(self, action: "changeColor", forControlEvents: .TouchUpInside)
+        changeColorBtn.addTarget(self, action: #selector(KeyFrameMediaTimingViewController.changeColor), forControlEvents: .TouchUpInside)
         changeColorBtn.layer.borderColor = UIColor.darkGrayColor().CGColor
         changeColorBtn.layer.borderWidth = 1.0
         changeColorBtn.setTitle("change Color", forState: .Normal)
@@ -110,7 +110,7 @@ class BezierMediaTimingFunctionController: UIViewController {
      
         let transformSegment = UISegmentedControl.init(items: [kCAMediaTimingFunctionLinear,kCAMediaTimingFunctionEaseOut,kCAMediaTimingFunctionEaseIn,kCAMediaTimingFunctionEaseInEaseOut])
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: "switchFunction:", forControlEvents: .ValueChanged)
+        transformSegment.addTarget(self, action: #selector(BezierMediaTimingFunctionController.switchFunction(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)
         
     }
@@ -238,8 +238,8 @@ class BallViewController: UIViewController {
         //generate keyframes
         let numFrames = duration * 60;
         let frames = NSMutableArray();
-        for (var i = 0.0; i < numFrames; i++) {
-            var time = 1.0/numFrames * i;
+        for i in 0 ..< Int(numFrames) {
+            var time = 1.0/numFrames * Double(i);
             //apply easing
             time = bounceEaseOut(time);
             

@@ -23,7 +23,7 @@ class AffineTransformController: UIViewController {
         self.view.addSubview(layerView)
         
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: "changeTransform:", forControlEvents: .ValueChanged)
+        transformSegment.addTarget(self, action: #selector(AffineTransformController.changeTransform(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)
         
         
@@ -91,7 +91,7 @@ class CATransform3DM34Controller: UIViewController {
         
         let transformSegment = UISegmentedControl.init(items: ["透视off","透视on"])
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: "changeSwitch:", forControlEvents: .ValueChanged)
+        transformSegment.addTarget(self, action: #selector(CATransform3DM34Controller.changeSwitch(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)
 
     }
@@ -163,7 +163,7 @@ class DoubleSidedController: UIViewController {
         self.view.addSubview(layerView)
         
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: "changeSwitch:", forControlEvents: .ValueChanged)
+        transformSegment.addTarget(self, action: #selector(CATransform3DM34Controller.changeSwitch(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)
         
     }
@@ -201,7 +201,7 @@ class flattenController: UIViewController {
         let transformSegment = UISegmentedControl.init(items: ["RotateZ ","RotateY","RotateX","Normal"])
 
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: "changeSwitch:", forControlEvents: .ValueChanged)
+        transformSegment.addTarget(self, action: #selector(CATransform3DM34Controller.changeSwitch(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)
         
     }
@@ -244,7 +244,7 @@ class Object3DController: UIViewController {
         super.viewDidLoad()
     
         switching.center = CGPoint(x: self.view.center.x,y: self.view.frame.maxY - 50)
-        switching.addTarget(self, action: "rotation:", forControlEvents: .ValueChanged)
+        switching.addTarget(self, action: #selector(Object3DController.rotation(_:)), forControlEvents: .ValueChanged)
 
         self.view.addSubview(switching)
         self.view.addSubview(containerView)
@@ -264,7 +264,7 @@ class Object3DController: UIViewController {
                 cubeFace.userInteractionEnabled = true
                 label.layer.borderColor = UIColor.purpleColor().CGColor
                 label.layer.borderWidth = 1.0
-                label.addTarget(self, action: "changeBackgroundcolor:", forControlEvents: .TouchUpInside)
+                label.addTarget(self, action: #selector(Object3DController.changeBackgroundcolor(_:)), forControlEvents: .TouchUpInside)
             } else {
                 cubeFace.userInteractionEnabled = false
             }

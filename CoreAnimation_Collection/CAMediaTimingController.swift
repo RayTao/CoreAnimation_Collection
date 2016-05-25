@@ -27,7 +27,7 @@ class DurationRepeatCountController: UIViewController {
         startButton.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
         startButton.setTitle("start", forState: .Normal)
         startButton.backgroundColor = UIColor.purpleColor()
-        startButton.addTarget(self, action: "start", forControlEvents: .TouchUpInside)
+        startButton.addTarget(self, action: #selector(DurationRepeatCountController.start), forControlEvents: .TouchUpInside)
         self.view.addSubview(startButton)
         
         durationField.center = CGPointMake(self.view.center.x, startButton.frame.minY - 50)
@@ -144,7 +144,7 @@ class TimeoffsetSpeedFillmodeController: UIViewController {
         speedSlider.maximumValue = 2.0
         speedSlider.minimumValue = 0.0
         speedSlider.value = 1.0
-        speedSlider.addTarget(self, action: "updateSliders", forControlEvents: .ValueChanged)
+        speedSlider.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.updateSliders), forControlEvents: .ValueChanged)
         self.view.addSubview(speedSlider)
         
         speedLabel.center = CGPointMake(self.view.center.x + 130, self.view.frame.maxY - 50)
@@ -154,7 +154,7 @@ class TimeoffsetSpeedFillmodeController: UIViewController {
         timeOffsetSlider.minimumValue = 0.0
         timeOffsetSlider.value = 0.5
         timeOffsetSlider.center = CGPointMake(self.view.center.x, speedSlider.frame.minY - 30)
-        timeOffsetSlider.addTarget(self, action: "updateSliders", forControlEvents: .ValueChanged)
+        timeOffsetSlider.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.updateSliders), forControlEvents: .ValueChanged)
         self.view.addSubview(timeOffsetSlider)
         
         timeOffsetLabel.center = CGPointMake(self.view.center.x + 130, speedSlider.frame.minY - 30)
@@ -164,7 +164,7 @@ class TimeoffsetSpeedFillmodeController: UIViewController {
         startButton.center = CGPointMake(self.view.center.x, timeOffsetLabel.frame.maxY - 60)
         startButton.setTitle("play", forState: .Normal)
         startButton.backgroundColor = UIColor.purpleColor()
-        startButton.addTarget(self, action: "play", forControlEvents: .TouchUpInside)
+        startButton.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.play), forControlEvents: .TouchUpInside)
         self.view.addSubview(startButton)
         
         transformSegment.center = CGPointMake(self.view.center.x, startButton.frame.minY - 50)
@@ -221,7 +221,7 @@ class ManualAnimationViewController: UIViewController {
         
         //add pan gesture recognizer to handle swipes
         let pan = UIPanGestureRecognizer()
-        pan.addTarget(self, action: "pan:")
+        pan.addTarget(self, action: #selector(ManualAnimationViewController.pan(_:)))
         self.view.addGestureRecognizer(pan);
         
         //pause all layer animations

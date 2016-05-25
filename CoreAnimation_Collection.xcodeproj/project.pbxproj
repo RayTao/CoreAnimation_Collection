@@ -35,11 +35,6 @@
 		E4B07C721C1E54CC003C3BA5 /* AnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C6F1C1E54CC003C3BA5 /* AnimatedButton.swift */; };
 		E4B07C731C1E54CC003C3BA5 /* GooeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C701C1E54CC003C3BA5 /* GooeyViewController.swift */; };
 		E4B07C741C1E54CC003C3BA5 /* TabbarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C711C1E54CC003C3BA5 /* TabbarMenu.swift */; };
-		E4B07C7D1C1E56C9003C3BA5 /* TKExchangeSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C771C1E56C9003C3BA5 /* TKExchangeSwitch.swift */; };
-		E4B07C7E1C1E56C9003C3BA5 /* TKLiquidSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C781C1E56C9003C3BA5 /* TKLiquidSwitch.swift */; };
-		E4B07C7F1C1E56C9003C3BA5 /* TKMainSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C791C1E56C9003C3BA5 /* TKMainSwitcher.swift */; };
-		E4B07C801C1E56C9003C3BA5 /* TKSimpleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C7A1C1E56C9003C3BA5 /* TKSimpleSwitch.swift */; };
-		E4B07C811C1E56C9003C3BA5 /* TKSmileSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C7B1C1E56C9003C3BA5 /* TKSmileSwitch.swift */; };
 		E4B07C861C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B07C841C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift */; };
 		E4B07C871C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B07C851C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib */; };
 		E4C88BE91C74421600F113FC /* EfficientDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */; };
@@ -55,6 +50,11 @@
 		E4E1FFBB1C3E66DD00AD87E5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E1FFBA1C3E66DD00AD87E5 /* GLKit.framework */; };
 		E4E1FFBD1C3E717D00AD87E5 /* SpecialLayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1FFBC1C3E717D00AD87E5 /* SpecialLayerController.swift */; };
 		E4EB17711C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB17701C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift */; };
+		E4ED01941CF579A3000B2744 /* TKBaseSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ED018F1CF579A3000B2744 /* TKBaseSwitcher.swift */; };
+		E4ED01951CF579A3000B2744 /* TKExchangeSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ED01901CF579A3000B2744 /* TKExchangeSwitch.swift */; };
+		E4ED01961CF579A3000B2744 /* TKLiquidSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ED01911CF579A3000B2744 /* TKLiquidSwitch.swift */; };
+		E4ED01971CF579A3000B2744 /* TKSimpleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ED01921CF579A3000B2744 /* TKSimpleSwitch.swift */; };
+		E4ED01981CF579A3000B2744 /* TKSmileSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ED01931CF579A3000B2744 /* TKSmileSwitch.swift */; };
 		E4F8DE141C71750E006DD5C3 /* CAMediaTimingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8DE131C71750E006DD5C3 /* CAMediaTimingController.swift */; };
 		E4F8DE161C71B217006DD5C3 /* CAMediaTimingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8DE151C71B217006DD5C3 /* CAMediaTimingFunction.swift */; };
 		E9C3F4B77D5ED5F49203BFA6 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E316062CC85222F085AB2E14 /* Pods.framework */; };
@@ -120,11 +120,6 @@
 		E4B07C6F1C1E54CC003C3BA5 /* AnimatedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
 		E4B07C701C1E54CC003C3BA5 /* GooeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooeyViewController.swift; sourceTree = "<group>"; };
 		E4B07C711C1E54CC003C3BA5 /* TabbarMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarMenu.swift; sourceTree = "<group>"; };
-		E4B07C771C1E56C9003C3BA5 /* TKExchangeSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKExchangeSwitch.swift; sourceTree = "<group>"; };
-		E4B07C781C1E56C9003C3BA5 /* TKLiquidSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKLiquidSwitch.swift; sourceTree = "<group>"; };
-		E4B07C791C1E56C9003C3BA5 /* TKMainSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKMainSwitcher.swift; sourceTree = "<group>"; };
-		E4B07C7A1C1E56C9003C3BA5 /* TKSimpleSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSimpleSwitch.swift; sourceTree = "<group>"; };
-		E4B07C7B1C1E56C9003C3BA5 /* TKSmileSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSmileSwitch.swift; sourceTree = "<group>"; };
 		E4B07C841C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchersCollectionViewController.swift; sourceTree = "<group>"; };
 		E4B07C851C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchersCollectionViewController.xib; sourceTree = "<group>"; };
 		E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfficientDrawViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +138,11 @@
 		E4E1FFBA1C3E66DD00AD87E5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		E4E1FFBC1C3E717D00AD87E5 /* SpecialLayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialLayerController.swift; sourceTree = "<group>"; };
 		E4EB17701C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImplicitAnomationViewController.swift; sourceTree = "<group>"; };
+		E4ED018F1CF579A3000B2744 /* TKBaseSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKBaseSwitcher.swift; sourceTree = "<group>"; };
+		E4ED01901CF579A3000B2744 /* TKExchangeSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKExchangeSwitch.swift; sourceTree = "<group>"; };
+		E4ED01911CF579A3000B2744 /* TKLiquidSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKLiquidSwitch.swift; sourceTree = "<group>"; };
+		E4ED01921CF579A3000B2744 /* TKSimpleSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSimpleSwitch.swift; sourceTree = "<group>"; };
+		E4ED01931CF579A3000B2744 /* TKSmileSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSmileSwitch.swift; sourceTree = "<group>"; };
 		E4F8DE131C71750E006DD5C3 /* CAMediaTimingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAMediaTimingController.swift; sourceTree = "<group>"; };
 		E4F8DE151C71B217006DD5C3 /* CAMediaTimingFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAMediaTimingFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -343,13 +343,13 @@
 		E4B07C751C1E56C9003C3BA5 /* SwitcherCollection */ = {
 			isa = PBXGroup;
 			children = (
+				E4ED018F1CF579A3000B2744 /* TKBaseSwitcher.swift */,
+				E4ED01901CF579A3000B2744 /* TKExchangeSwitch.swift */,
+				E4ED01911CF579A3000B2744 /* TKLiquidSwitch.swift */,
+				E4ED01921CF579A3000B2744 /* TKSimpleSwitch.swift */,
+				E4ED01931CF579A3000B2744 /* TKSmileSwitch.swift */,
 				E4B07C841C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift */,
 				E4B07C851C1E5BC8003C3BA5 /* SwitchersCollectionViewController.xib */,
-				E4B07C771C1E56C9003C3BA5 /* TKExchangeSwitch.swift */,
-				E4B07C781C1E56C9003C3BA5 /* TKLiquidSwitch.swift */,
-				E4B07C791C1E56C9003C3BA5 /* TKMainSwitcher.swift */,
-				E4B07C7A1C1E56C9003C3BA5 /* TKSimpleSwitch.swift */,
-				E4B07C7B1C1E56C9003C3BA5 /* TKSmileSwitch.swift */,
 			);
 			path = SwitcherCollection;
 			sourceTree = "<group>";
@@ -575,28 +575,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4B07C7F1C1E56C9003C3BA5 /* TKMainSwitcher.swift in Sources */,
 				E4B07C861C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift in Sources */,
 				E4C88BE91C74421600F113FC /* EfficientDrawViewController.swift in Sources */,
 				E4B07C741C1E54CC003C3BA5 /* TabbarMenu.swift in Sources */,
 				E4E1FFBD1C3E717D00AD87E5 /* SpecialLayerController.swift in Sources */,
 				E41D7B5C1C2179CC000B8ACB /* CoordinateSystemViewController.swift in Sources */,
 				E404C7E71C1973B0007DC001 /* ViewController.swift in Sources */,
+				E4ED01941CF579A3000B2744 /* TKBaseSwitcher.swift in Sources */,
 				E4A292921C1C881C004835EB /* R.generated.swift in Sources */,
 				E404C7E51C1973B0007DC001 /* AppDelegate.swift in Sources */,
 				E4F8DE161C71B217006DD5C3 /* CAMediaTimingFunction.swift in Sources */,
 				E4F8DE141C71750E006DD5C3 /* CAMediaTimingController.swift in Sources */,
-				E4B07C801C1E56C9003C3BA5 /* TKSimpleSwitch.swift in Sources */,
 				E453262D1C4B941100882B31 /* ExplicitAnimationViewController.swift in Sources */,
 				E4A2928F1C1C8539004835EB /* ContentsViewController.swift in Sources */,
 				E4EB17711C4A0A1C0016A4CF /* ImplicitAnomationViewController.swift in Sources */,
+				E4ED01951CF579A3000B2744 /* TKExchangeSwitch.swift in Sources */,
 				E46C2BD61C215FE600523D1A /* AnchorPointViewController.swift in Sources */,
 				E4550C361C47351C00831886 /* HelloGLKitViewController.m in Sources */,
 				E4DF6FA51C74B2E900E2A4A7 /* EfficientLayerController.swift in Sources */,
 				E4DD4D381C7CA33A0023606A /* SpreadSubButton.swift in Sources */,
-				E4B07C7D1C1E56C9003C3BA5 /* TKExchangeSwitch.swift in Sources */,
-				E4B07C7E1C1E56C9003C3BA5 /* TKLiquidSwitch.swift in Sources */,
-				E4B07C811C1E56C9003C3BA5 /* TKSmileSwitch.swift in Sources */,
 				E404C8151C19868A007DC001 /* WaveViewController.swift in Sources */,
 				E42F96561C73231700FC1942 /* TimerAnimateViewController.swift in Sources */,
 				E4DD4D3C1C7CA3E70023606A /* ZYSpreadButtonViewController.swift in Sources */,
@@ -604,11 +601,14 @@
 				E4B07C731C1E54CC003C3BA5 /* GooeyViewController.swift in Sources */,
 				E4C88BED1C74426500F113FC /* EfficientDrawView.m in Sources */,
 				E45CC4491C45501000100DD8 /* LayerLabel.m in Sources */,
+				E4ED01961CF579A3000B2744 /* TKLiquidSwitch.swift in Sources */,
 				E4DD4D411C7CA4380023606A /* ZYSpreadButton.m in Sources */,
 				E4DD4D421C7CA4380023606A /* ZYSpreadSubButton.m in Sources */,
+				E4ED01971CF579A3000B2744 /* TKSimpleSwitch.swift in Sources */,
 				E45CC44A1C45501000100DD8 /* ReflectionView.m in Sources */,
 				E41604191C1C747300D29926 /* CALayerViewController.swift in Sources */,
 				E45CC44B1C45501000100DD8 /* ScrollView.m in Sources */,
+				E4ED01981CF579A3000B2744 /* TKSmileSwitch.swift in Sources */,
 				E49180141C21B3CF0010B224 /* CAlayerAppearanceViewController.swift in Sources */,
 				E49180121C21A9170010B224 /* HitTestingViewController.swift in Sources */,
 				E4DD4D371C7CA33A0023606A /* SpreadButton.swift in Sources */,

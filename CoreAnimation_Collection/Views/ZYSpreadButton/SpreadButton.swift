@@ -39,21 +39,24 @@ typealias ButtonDidCloseBlock = (spreadButton: SpreadButton) -> Void
 
 
 class SpreadButton: UIView {
-    
+    let sasas: ButtonWillSpreadBlock = {_ in }
+        
+
+
     lazy var buttonWillSpreadBlock: ButtonWillSpreadBlock = {
-        return {print("Button Will Spread")}
+        return {_ in print("Button Will Spread")}
     }()
     
     lazy var buttonDidSpreadBlock: ButtonDidSpreadBlock = {
-        return { print("Button Did Spread") }
+        return {_ in print("Button Did Spread") }
     }()
     
     lazy var buttonWillCloseBlock: ButtonWillCloseBlock = {
-        return { print("Button Will Close") }
+        return {_ in print("Button Will Close") }
     }()
     
     lazy var buttonDidCloseBlock: ButtonDidCloseBlock = {
-        return { print("Button Did Closed") }
+        return {_ in print("Button Did Closed") }
     }()
     
     private static let sickleSpreadAngleDefault: CGFloat = 90.0
@@ -155,7 +158,7 @@ class SpreadButton: UIView {
         if let nonNilhighlightImage = highlightImage {
             powerButton.setBackgroundImage(nonNilhighlightImage, forState: .Highlighted)
         }
-        powerButton.addTarget(self, action: "tapPowerButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        powerButton.addTarget(self, action:#selector(SpreadButton.tapPowerButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(powerButton)
     }
     
@@ -165,12 +168,12 @@ class SpreadButton: UIView {
         cover.userInteractionEnabled = true
         cover.backgroundColor = defaultCoverColor
         cover.alpha = 0
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapCover")
-        cover.addGestureRecognizer(tapGestureRecognizer)
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SpreadButton.tap))
+//        cover.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func configureGesture() {
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "panSpreadButton:")
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(SpreadButton.panSpreadButton(_:)))
         self.addGestureRecognizer(panGestureRecognizer)
     }
     
@@ -517,7 +520,7 @@ class SpreadButton: UIView {
     
     //setter
     func setSubButtons(buttons: [SpreadSubButton?]) {
-        _ = buttons.flatMap { $0?.addTarget(self, action: "clickedSubButton:", forControlEvents: .TouchUpInside) }
+        _ = buttons.flatMap { $0?.addTarget(self, action:#selector(SpreadButton.clickedSubButton(_:)), forControlEvents: .TouchUpInside) }
         let nonNilButtons = buttons.flatMap { $0 }
         subButtons = Array<SpreadSubButton>()
         subButtons?.appendContentsOf(nonNilButtons)

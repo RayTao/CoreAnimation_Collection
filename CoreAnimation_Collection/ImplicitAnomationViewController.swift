@@ -32,7 +32,7 @@ class CATransactionViewController: UIViewController {
         
         let changeColorBtn = UIButton.init(frame: CGRectMake(layerView.bounds.width/2-60,
             layerView.bounds.maxY - 40, 120, 31))
-        changeColorBtn.addTarget(self, action: "changeColor:", forControlEvents: .TouchUpInside)
+        changeColorBtn.addTarget(self, action: #selector(CATransactionViewController.changeColor(_:)), forControlEvents: .TouchUpInside)
         changeColorBtn.layer.borderColor = UIColor.darkGrayColor().CGColor
         changeColorBtn.layer.borderWidth = 1.0
         changeColorBtn.setTitle("change Color", forState: .Normal)
@@ -40,7 +40,7 @@ class CATransactionViewController: UIViewController {
         layerView.addSubview(changeColorBtn)
         
         let switcher = UISwitch()
-        switcher.addTarget(self, action: "viewCloseCATransaction:", forControlEvents: .ValueChanged)
+        switcher.addTarget(self, action: #selector(CATransactionViewController.viewCloseCATransaction(_:)), forControlEvents: .ValueChanged)
         switcher.center = CGPointMake(self.view.center.x, self.layerView.frame.maxY + 20)
         self.view.addSubview(switcher)
         

@@ -44,7 +44,7 @@ class AnimatedButton: UIButton
     setLineSetting(secondLine)
     self.layer.addSublayer(secondLine)
     
-    self.addTarget(self, action: "animate", forControlEvents: .TouchUpInside)
+    self.addTarget(self, action: #selector(AnimatedButton.animate), forControlEvents: .TouchUpInside)
   }
   
   

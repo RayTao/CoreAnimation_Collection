@@ -120,7 +120,7 @@ class MiniAndMagnificationFilterController: UIViewController {
         };
         
         let switcher = UISwitch()
-        switcher.addTarget(self, action: "changeFilter:", forControlEvents: .ValueChanged)
+        switcher.addTarget(self, action: #selector(MiniAndMagnificationFilterController.changeFilter(_:)), forControlEvents: .ValueChanged)
         switcher.center = CGPointMake(self.view.center.x, digitViews[0].frame.maxY + 20)
         self.view.addSubview(switcher)
         
@@ -133,7 +133,7 @@ class MiniAndMagnificationFilterController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //start timer
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "tick", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(MiniAndMagnificationFilterController.tick), userInfo: nil, repeats: true)
         tick()
     }
     
@@ -203,7 +203,7 @@ class GroupOpacityController:UIViewController {
         
       
         let switcher = UISwitch()
-        switcher.addTarget(self, action: "changeGroupOpacity:", forControlEvents: .ValueChanged)
+        switcher.addTarget(self, action: #selector(GroupOpacityController.changeGroupOpacity(_:)), forControlEvents: .ValueChanged)
         switcher.center = CGPointMake(self.view.center.x, button2.frame.maxY + 20)
         self.view.addSubview(switcher)
     }
@@ -278,7 +278,7 @@ class ShadowViewController: UIViewController {
         layerView1.addSubview(layerView2)
         
         let switcher = UISwitch()
-        switcher.addTarget(self, action: "changeAnchorPoint:", forControlEvents: .ValueChanged)
+        switcher.addTarget(self, action: #selector(ShadowViewController.changeAnchorPoint(_:)), forControlEvents: .ValueChanged)
         switcher.center = CGPointMake(self.view.center.x, shadowView.frame.maxY + 20)
         self.view.addSubview(switcher)
         

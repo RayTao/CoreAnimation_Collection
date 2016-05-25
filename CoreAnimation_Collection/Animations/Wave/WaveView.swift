@@ -47,7 +47,7 @@ class WaveView: UIView {
     func waverLevelCallback(closure: (waveView: WaveView) -> Void) {
         callBack = closure
 //        displayLink!.invalidate()
-        displayLink = CADisplayLink.init(target: self, selector: "invokeWaveCallback")
+        displayLink = CADisplayLink.init(target: self, selector: #selector(WaveView.invokeWaveCallback))
         displayLink!.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
         for i in 0..<self.numberOfWaves {
             let waveLine = CAShapeLayer.init()

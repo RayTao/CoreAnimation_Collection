@@ -23,7 +23,10 @@ class ContentsGravitysViewController: UIViewController {
         layerView.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(layerView)
         
-        for(var i = 0; i < contentsGravitys.count; i += 4) {
+        for il in 0 ..< contentsGravitys.count/4
+        {
+            let i = il*4
+            
             var array = [contentsGravitys[i],contentsGravitys[i+1],contentsGravitys[i+2]]
             if i+3 < contentsGravitys.count {
                 array.append(contentsGravitys[i+3])
@@ -31,7 +34,7 @@ class ContentsGravitysViewController: UIViewController {
             let segmentContents = UISegmentedControl.init(items: array)
             segmentContents.apportionsSegmentWidthsByContent = true
             segmentContents.center = CGPointMake(layerView.center.x, layerView.center.y + 150.0 + CGFloat(40 * i / 4))
-            segmentContents.addTarget(self, action: "contentsGravitysChange:", forControlEvents: .ValueChanged)
+            segmentContents.addTarget(self, action: #selector(ContentsGravitysViewController.contentsGravitysChange(_:)), forControlEvents: .ValueChanged)
             self.view.addSubview(segmentContents)
         }
         
@@ -71,12 +74,12 @@ class ContentsScaleViewController: UIViewController {
 
         maskSegmentContents.apportionsSegmentWidthsByContent = true
         maskSegmentContents.center = CGPointMake(layerView.center.x, layerView.center.y + 150.0)
-        maskSegmentContents.addTarget(self, action: "contentsGravitysChange:", forControlEvents: .ValueChanged)
+        maskSegmentContents.addTarget(self, action: #selector(ContentsGravitysViewController.contentsGravitysChange(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(maskSegmentContents)
         
         scaleSegmentContents.apportionsSegmentWidthsByContent = true
         scaleSegmentContents.center = CGPointMake(layerView.center.x, layerView.center.y + 150.0 + 40)
-        scaleSegmentContents.addTarget(self, action: "contentsGravitysChange:", forControlEvents: .ValueChanged)
+        scaleSegmentContents.addTarget(self, action: #selector(ContentsGravitysViewController.contentsGravitysChange(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(scaleSegmentContents)
 
     }

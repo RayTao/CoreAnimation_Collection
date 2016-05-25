@@ -12,7 +12,7 @@ var count : Int = 0
 
 class SwitchersCollectionViewController: UIViewController {
     
-    @IBOutlet var switchArray: [TKMainSwitch]!
+    @IBOutlet var switchArray: [TKBaseSwitch]!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: "SwitchersCollectionViewController", bundle: nibBundleOrNil)
@@ -29,11 +29,11 @@ class SwitchersCollectionViewController: UIViewController {
     
     func animateSwitch(timer:NSTimer){
         switchArray[count].changeValue()
-        count++
+        count += 1
         if count  == (switchArray.count){
             count = 0
             timer.invalidate()
-            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "animateSwitch:", userInfo: nil, repeats: true)
+            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(SwitchersCollectionViewController.animateSwitch(_:)), userInfo: nil, repeats: true)
         }
     }
     

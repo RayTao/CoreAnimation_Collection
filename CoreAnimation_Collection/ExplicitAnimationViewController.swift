@@ -27,7 +27,7 @@ class PropertyAnimationViewController: UIViewController {
         
         let changeColorBtn = UIButton.init(frame: CGRectMake(layerView.bounds.width/2-60,
             layerView.bounds.maxY - 40, 120, 31))
-        changeColorBtn.addTarget(self, action: "changeColor", forControlEvents: .TouchUpInside)
+        changeColorBtn.addTarget(self, action: #selector(PropertyAnimationViewController.changeColor), forControlEvents: .TouchUpInside)
         changeColorBtn.layer.borderColor = UIColor.darkGrayColor().CGColor
         changeColorBtn.layer.borderWidth = 1.0
         changeColorBtn.setTitle("change Color", forState: .Normal)
@@ -218,13 +218,13 @@ class TransitionViewController: UIViewController {
         
         let transformSegment = UISegmentedControl.init(items: [kCATransitionFade,kCATransitionPush,kCATransitionMoveIn,kCATransitionReveal])
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: "switchImage:", forControlEvents: .ValueChanged)
+        transformSegment.addTarget(self, action: #selector(TransitionViewController.switchImage(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)
 
         let directionSegment = UISegmentedControl.init(items: [kCATransitionFromTop,kCATransitionFromLeft,kCATransitionFromBottom,kCATransitionFromRight])
         directionSegment.center = CGPointMake(self.view.center.x, transformSegment.frame.minY - 50)
         directionSegment.apportionsSegmentWidthsByContent = true
-        directionSegment.addTarget(self, action: "switchDirection:", forControlEvents: .ValueChanged)
+        directionSegment.addTarget(self, action: #selector(TransitionViewController.switchDirection(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(directionSegment)
         
     }
@@ -282,7 +282,7 @@ class LayerTreeTransitionController: UIViewController {
         let button = UIButton.init(frame: CGRectMake(0, 0, 200, 45))
         button.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
         button.setTitle("changeChildViewController", forState: .Normal)
-        button.addTarget(self, action: "changeAni", forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(LayerTreeTransitionController.changeAni), forControlEvents: .TouchUpInside)
         self.view.addSubview(button)
     }
 
@@ -323,7 +323,7 @@ class CustomTransitionController: UIViewController {
         super.viewDidLoad()
         button.center = self.view.center
         button.setTitle("performTransition", forState: .Normal)
-        button.addTarget(self, action: "performTransition", forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(CustomTransitionController.performTransition), forControlEvents: .TouchUpInside)
         button
         self.view.addSubview(button)
         
@@ -374,14 +374,14 @@ class StopAnimationController: CAKeyframeAnimationViewController {
         stopbutton.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
         stopbutton.setTitle("stop", forState: .Normal)
         stopbutton.backgroundColor = UIColor.blueColor()
-        stopbutton.addTarget(self, action: "stop", forControlEvents: .TouchUpInside)
+        stopbutton.addTarget(self, action: #selector(StopAnimationController.stop), forControlEvents: .TouchUpInside)
         self.view.addSubview(stopbutton)
         
         let startbutton = UIButton.init(frame: CGRectMake(0, 0, 200, 45))
         startbutton.center = CGPointMake(self.view.center.x, stopbutton.frame.minY - 50)
         startbutton.setTitle("start", forState: .Normal)
         startbutton.backgroundColor = UIColor.purpleColor()
-        startbutton.addTarget(self, action: "start", forControlEvents: .TouchUpInside)
+        startbutton.addTarget(self, action: #selector(CAKeyframeAnimationViewController.start), forControlEvents: .TouchUpInside)
         self.view.addSubview(startbutton)
     }
 

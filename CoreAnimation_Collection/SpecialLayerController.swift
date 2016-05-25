@@ -27,7 +27,7 @@ class CAShapeLayerController: UIViewController {
         
         let transformSegment = UISegmentedControl.init(items: ["火柴人","圆角"])
         transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: "changeOption:", forControlEvents: .ValueChanged)
+        transformSegment.addTarget(self, action: #selector(CAShapeLayerController.changeOption(_:)), forControlEvents: .ValueChanged)
         self.view.addSubview(transformSegment)
         
         transformSegment.selectedSegmentIndex = 0
@@ -423,12 +423,12 @@ class CAEmitterLayerViewController: UIViewController {
             
             let renderModeSegment = UISegmentedControl.init(items: [kCAEmitterLayerAdditive,kCAEmitterLayerBackToFront,kCAEmitterLayerOldestLast,kCAEmitterLayerOldestFirst,kCAEmitterLayerUnordered])
             renderModeSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-            renderModeSegment.addTarget(self, action: "changeRenderMode:", forControlEvents: .ValueChanged)
+            renderModeSegment.addTarget(self, action: #selector(CAEmitterLayerViewController.changeRenderMode(_:)), forControlEvents: .ValueChanged)
             self.view.addSubview(renderModeSegment)
             
             let preservesDepthSegment = UISegmentedControl.init(items: ["preservesDepthSegment on","preservesDepth off"])
             preservesDepthSegment.center = CGPointMake(self.view.center.x, renderModeSegment.frame.maxY - 50)
-            preservesDepthSegment.addTarget(self, action: "changePreservesDepth:", forControlEvents: .ValueChanged)
+            preservesDepthSegment.addTarget(self, action: #selector(CAEmitterLayerViewController.changePreservesDepth(_:)), forControlEvents: .ValueChanged)
             self.view.addSubview(preservesDepthSegment)
         }
     }

@@ -32,7 +32,7 @@ class AnchorPointViewController: UIViewController {
         self.view.addSubview(secondHand)
         secondHand.center = minuteHand.center
         self.view.addSubview(switcher)
-        switcher.addTarget(self, action: "changeAnchorPoint:", forControlEvents: .ValueChanged)
+        switcher.addTarget(self, action: #selector(AnchorPointViewController.changeAnchorPoint(_:)), forControlEvents: .ValueChanged)
         switcher.center = CGPointMake(minuteHand.center.x, clockHand.frame.maxY + 20)
         switcher.on = true
         
@@ -40,7 +40,7 @@ class AnchorPointViewController: UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "tick", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(AnchorPointViewController.tick), userInfo: nil, repeats: true)
         //set initial hand positions
         tick()
     }

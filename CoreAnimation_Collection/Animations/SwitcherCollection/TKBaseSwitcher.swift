@@ -1,5 +1,5 @@
 //
-//  TKMainSwitcher.swift
+//  TKBaseSwitcher.swift
 //  SwitcherCollection
 //
 //  Created by Tbxark on 15/10/25.
@@ -9,10 +9,14 @@
 import UIKit
 
 typealias ValueChangeHook  = (value:Bool) -> Void
+func CGPointScaleMaker(scale: CGFloat) -> ((CGFloat, CGFloat) -> CGPoint) {
+    return { (x, y) in
+        return CGPointMake(x * scale ,y * scale)}
+}
 
 
 // 自定义 Switch 基类
-class TKMainSwitch: UIControl {
+class TKBaseSwitch: UIControl {
     
     // MARK: - Property
     var valueChange : ValueChangeHook?
@@ -26,7 +30,7 @@ class TKMainSwitch: UIControl {
     }
     
     func setUpView(){
-        let tap = UITapGestureRecognizer(target: self, action: "changeValue")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(TKBaseSwitch.changeValue))
         self.addGestureRecognizer(tap)        
     }
     
@@ -48,9 +52,4 @@ extension UIView{
     }
 }
 
-
-// 柯里化函数,快速创建按比利缩放的 Rect
-func CGPointMake(scale:CGFloat)(_ x: CGFloat, _ y: CGFloat) -> CGPoint{
-    return CGPointMake(x * scale ,y * scale)
-}
 

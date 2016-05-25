@@ -14,7 +14,7 @@ class ZYSpreadButtonViewController: UIViewController {
         let button = UIButton.init(frame: CGRectMake(0, 0, 200, 45))
         button.center = self.view.center
         button.setTitle(" ModeFixed ", forState: .Normal)
-        button.addTarget(self, action: "changePositionMode:", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: #selector(ZYSpreadButtonViewController.changePositionMode(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         return button
     }()
     
