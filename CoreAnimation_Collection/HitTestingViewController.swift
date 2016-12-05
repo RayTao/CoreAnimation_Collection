@@ -16,27 +16,27 @@ class HitTestingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        layerView.frame = CGRectMake(0, 0, 200, 200)
+        layerView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         layerView.center = self.view.center
-        layerView.backgroundColor = UIColor.whiteColor()
+        layerView.backgroundColor = UIColor.white
         self.view.addSubview(layerView)
         
-        blueLayer.backgroundColor = UIColor.blueColor().CGColor
-        blueLayer.frame = CGRectMake(50, 50, 100, 100)
+        blueLayer.backgroundColor = UIColor.blue.cgColor
+        blueLayer.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
         layerView.layer.addSublayer(blueLayer)
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //get touch position
-        var point = touches.first?.locationInView(self.view)
+        var point = touches.first?.location(in: self.view)
         //get touched layer
         let layer = self.layerView.layer.hitTest(point!)
 
         //convert point to the white layer's coordinates
-        point = self.layerView.layer.convertPoint(point!, fromLayer: self.view.layer)
+        point = self.layerView.layer.convert(point!, from: self.view.layer)
         //get layer using containsPoint:
-        if self.layerView.layer.containsPoint(point!) {
-            point = self.blueLayer.convertPoint(point!, fromLayer:self.layerView.layer)
+        if self.layerView.layer.contains(point!) {
+            point = self.blueLayer.convert(point!, from:self.layerView.layer)
         } else {
             return
         }

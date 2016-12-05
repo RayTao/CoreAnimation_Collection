@@ -14,7 +14,7 @@ class SwitchersCollectionViewController: UIViewController {
     
     @IBOutlet var switchArray: [TKBaseSwitch]!
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "SwitchersCollectionViewController", bundle: nibBundleOrNil)
     }
 
@@ -24,16 +24,16 @@ class SwitchersCollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        self.view.backgroundColor = UIColor.groupTableViewBackground
     }
     
-    func animateSwitch(timer:NSTimer){
+    func animateSwitch(_ timer:Timer){
         switchArray[count].changeValue()
         count += 1
         if count  == (switchArray.count){
             count = 0
             timer.invalidate()
-            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(SwitchersCollectionViewController.animateSwitch(_:)), userInfo: nil, repeats: true)
+            Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(SwitchersCollectionViewController.animateSwitch(_:)), userInfo: nil, repeats: true)
         }
     }
     

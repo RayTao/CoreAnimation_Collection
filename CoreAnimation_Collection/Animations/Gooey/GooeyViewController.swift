@@ -16,13 +16,13 @@ class GooeyViewController: UIViewController {
     super.viewDidLoad()
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
 
     menu = TabbarMenu(tabbarHeight: 40.0)
   
   }
   
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         menu.removeFromSuperview()
     }
   

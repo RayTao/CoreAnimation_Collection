@@ -80,11 +80,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let cellIndentifier = "cell"
     lazy var tableView:UITableView = {
-        let tableView = UITableView.init(frame: self.view.bounds, style: .Grouped)
+        let tableView = UITableView.init(frame: self.view.bounds, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 45.0
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIndentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellIndentifier)
         tableView.sectionHeaderHeight = 35.0
         tableView.tableHeaderView = self.titleView(0)
         return tableView
@@ -93,55 +93,55 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor.whiteColor()
-        dataSource = dataSource.reverse()
-        titleArray = titleArray.reverse()
-        headTitle = headTitle.reverse()
+        self.view.backgroundColor = UIColor.white
+        dataSource = dataSource.reversed()
+        titleArray = titleArray.reversed()
+        headTitle = headTitle.reversed()
         
         self.view.addSubview(self.tableView)
     }
 
     //MARK: UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let className = "CoreAnimation_Collection." + dataSource[indexPath.section][indexPath.row]
+        let className = "CoreAnimation_Collection." + dataSource[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
         let aClass = NSClassFromString(className) as! UIViewController.Type
         let VC = aClass.init()
-        VC.view.backgroundColor = UIColor.lightGrayColor()
+        VC.view.backgroundColor = UIColor.lightGray
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return self.titleView(section)
     }
     
-    func titleView(section: Int) -> UIView {
-        let titleLabel = UILabel.init(frame: CGRectMake(20, 0, 280, 30))
+    func titleView(_ section: Int) -> UIView {
+        let titleLabel = UILabel.init(frame: CGRect(x: 20, y: 0, width: 280, height: 30))
         titleLabel.text = "  " + self.headTitle[section]
         return titleLabel
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataSource.count
     }
     
     //MARK: UITableViewDataSource
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource[section].count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier, for: indexPath)
         configureCell(cell, indexPath: indexPath)
         return cell
     }
     
-    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    func configureCell(_ cell: UITableViewCell, indexPath: IndexPath) {
         cell.textLabel?.numberOfLines = 2
-        cell.textLabel?.font = UIFont.systemFontOfSize(12.0)
-        cell.textLabel?.text = titleArray[indexPath.section][indexPath.row]
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 12.0)
+        cell.textLabel?.text = titleArray[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
         
     }
 }

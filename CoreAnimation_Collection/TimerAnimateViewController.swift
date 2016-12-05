@@ -10,10 +10,10 @@ import UIKit
 
 class TimerAnimateViewController: UIViewController {
 
-    let ballView = UIImageView.init(image: R.image.ball)
+    let ballView = UIImageView.init(image: R.image.ball())
     var timer : CADisplayLink!
-    let fromValue = CGPointMake(150, 32);
-    let toValue = CGPointMake(150, 268)
+    let fromValue = CGPoint(x: 150, y: 32);
+    let toValue = CGPoint(x: 150, y: 268)
     let duration = 1.0;
     var timeOffset = 0.0
     var lastStep = CACurrentMediaTime()
@@ -26,15 +26,15 @@ class TimerAnimateViewController: UIViewController {
         animate()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.animate()
     }
     
-    func getInterpolate(from: CGFloat, to: CGFloat, time: CGFloat) -> CGFloat {
+    func getInterpolate(_ from: CGFloat, to: CGFloat, time: CGFloat) -> CGFloat {
         return (to - from) * time + from;
     }
     
-    func bounceEaseOut(t: Double) -> Double {
+    func bounceEaseOut(_ t: Double) -> Double {
         
         if (t < 4/11.0)
         {
@@ -51,19 +51,19 @@ class TimerAnimateViewController: UIViewController {
         return (54/5.0 * t * t) - (513/25.0 * t) + 268/25.0;
     }
     
-    func interpolate(fromeValue: CGPoint,toValue: CGPoint,time: Double) -> NSValue {
+    func interpolate(_ fromeValue: CGPoint,toValue: CGPoint,time: Double) -> NSValue {
         
-        var resultValue = NSValue.init(CGPoint: CGPointMake(0,0))
-        let result = CGPointMake(getInterpolate(fromeValue.x, to: toValue.x, time: CGFloat(time)),
-            getInterpolate(fromeValue.y, to: toValue.y, time: CGFloat(time)));
-        resultValue = NSValue.init(CGPoint: result)
+        var resultValue = NSValue.init(cgPoint: CGPoint(x: 0,y: 0))
+        let result = CGPoint(x: getInterpolate(fromeValue.x, to: toValue.x, time: CGFloat(time)),
+            y: getInterpolate(fromeValue.y, to: toValue.y, time: CGFloat(time)));
+        resultValue = NSValue.init(cgPoint: result)
         
         return resultValue
     }
     
     func animate() {
         //reset ball to top of screen
-        self.ballView.center = CGPointMake(150, 32);
+        self.ballView.center = CGPoint(x: 150, y: 32);
         
         lastStep = CACurrentMediaTime()
         
@@ -71,10 +71,10 @@ class TimerAnimateViewController: UIViewController {
             self.timer.invalidate()
         }
         self.timer = CADisplayLink.init(target: self, selector:#selector(TimerAnimateViewController.step(_:)))
-        self.timer.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        self.timer.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
     }
     
-    func step(timer: CADisplayLink) {
+    func step(_ timer: CADisplayLink) {
         //calculate time delta
         let thisStep = CACurrentMediaTime()
         let stepDuration = thisStep - self.lastStep
@@ -93,7 +93,7 @@ class TimerAnimateViewController: UIViewController {
         let position = interpolate(fromValue, toValue: toValue, time: time)
         
         //move ball view to new position
-        self.ballView.center = position.CGPointValue();
+        self.ballView.center = position.cgPointValue;
         
         //stop the timer if we've reached the end of the animation
         if (self.timeOffset >= self.duration)

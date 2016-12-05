@@ -25,7 +25,7 @@ class TKSimpleSwitch:  TKBaseSwitch{
     var onColor     : UIColor = UIColor(red:0.341,  green:0.914,  blue:0.506, alpha:1)
     var offColor    : UIColor = UIColor(white: 0.9, alpha: 1)
     var lineColor   : UIColor = UIColor(white: 0.8, alpha: 1)
-    var circleColor : UIColor = UIColor.whiteColor()
+    var circleColor : UIColor = UIColor.white
     
     
     
@@ -49,28 +49,28 @@ class TKSimpleSwitch:  TKBaseSwitch{
     // 初始化 View
     override func setUpView(){
         super.setUpView()
-        self.backgroundColor = UIColor.clearColor()
-        let frame = CGRectMake(0, 0, self.bounds.width, self.bounds.height)
+        self.backgroundColor = UIColor.clear
+        let frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         let radius = self.bounds.height/2 - lineWidth
-        let roundedRectPath = UIBezierPath(roundedRect:CGRectInset(frame, lineWidth, lineWidth) , cornerRadius:radius)
+        let roundedRectPath = UIBezierPath(roundedRect:frame.insetBy(dx: lineWidth, dy: lineWidth) , cornerRadius:radius)
         backgroundLayer.fillColor = stateToFillColor(true)
-        backgroundLayer.strokeColor = lineColor.CGColor
+        backgroundLayer.strokeColor = lineColor.cgColor
         backgroundLayer.lineWidth = lineWidth
-        backgroundLayer.path = roundedRectPath.CGPath
+        backgroundLayer.path = roundedRectPath.cgPath
         self.layer.addSublayer(backgroundLayer)
         
         let innerLineWidth =  self.bounds.height - lineWidth*3 + 1
         let swichControlPath = UIBezierPath()
-        swichControlPath.moveToPoint(CGPointMake(lineWidth, 0))
-        swichControlPath.addLineToPoint(CGPointMake(self.bounds.width - 2 * lineWidth - innerLineWidth + 1, 0))
+        swichControlPath.move(to: CGPoint(x: lineWidth, y: 0))
+        swichControlPath.addLine(to: CGPoint(x: self.bounds.width - 2 * lineWidth - innerLineWidth + 1, y: 0))
         var point = backgroundLayer.position
         point.y += (radius + lineWidth)
         point.x += (radius)
         swichControl.position = point
-        swichControl.path = swichControlPath.CGPath
+        swichControl.path = swichControlPath.cgPath
         swichControl.lineCap     = kCALineCapRound
         swichControl.fillColor   = nil
-        swichControl.strokeColor = circleColor.CGColor
+        swichControl.strokeColor = circleColor.cgColor
         swichControl.lineWidth   = innerLineWidth
         swichControl.strokeEnd = 0.0001
         self.layer.addSublayer(swichControl)
@@ -86,7 +86,7 @@ class TKSimpleSwitch:  TKBaseSwitch{
     
     
     // MARK: - Animate
-    func changeValueAnimate(turnOn:Bool, duration:Double){
+    func changeValueAnimate(_ turnOn:Bool, duration:Double){
         
         
         let times = [0,0.49,0.51,1]
@@ -95,15 +95,15 @@ class TKSimpleSwitch:  TKBaseSwitch{
         // 线条运动动画
         let swichControlStrokeStartAnim      = CAKeyframeAnimation(keyPath:"strokeStart")
         swichControlStrokeStartAnim.values   = turnOn ? [1,0,0, 0] : [0,0,0,1]
-        swichControlStrokeStartAnim.keyTimes = times
+        swichControlStrokeStartAnim.keyTimes = times as [NSNumber]?
         swichControlStrokeStartAnim.duration = duration
-        swichControlStrokeStartAnim.removedOnCompletion = true
+        swichControlStrokeStartAnim.isRemovedOnCompletion = true
         
         let swichControlStrokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         swichControlStrokeEndAnim.values   = turnOn ? [1,1,1,0] : [0,1,1,1]
-        swichControlStrokeEndAnim.keyTimes = times
+        swichControlStrokeEndAnim.keyTimes = times as [NSNumber]?
         swichControlStrokeEndAnim.duration = duration
-        swichControlStrokeEndAnim.removedOnCompletion = true
+        swichControlStrokeEndAnim.isRemovedOnCompletion = true
         
         
         
@@ -116,13 +116,13 @@ class TKSimpleSwitch:  TKBaseSwitch{
         backgroundFillColorAnim.keyTimes = [0,0.5,0.51,1]
         backgroundFillColorAnim.duration = duration
         backgroundFillColorAnim.fillMode = kCAFillModeForwards
-        backgroundFillColorAnim.removedOnCompletion = false
+        backgroundFillColorAnim.isRemovedOnCompletion = false
         
 
         // 旋转动画
         if rotateWhenValueChange{
-            UIView.animateWithDuration(duration, animations: { () -> Void in
-                self.transform = CGAffineTransformRotate(self.transform, CGFloat(M_PI))
+            UIView.animate(withDuration: duration, animations: { () -> Void in
+                self.transform = self.transform.rotated(by: CGFloat(M_PI))
             })
         }
         
@@ -131,16 +131,16 @@ class TKSimpleSwitch:  TKBaseSwitch{
         let swichControlChangeStateAnim : CAAnimationGroup = CAAnimationGroup()
         swichControlChangeStateAnim.animations = [swichControlStrokeStartAnim,swichControlStrokeEndAnim]
         swichControlChangeStateAnim.fillMode = kCAFillModeForwards
-        swichControlChangeStateAnim.removedOnCompletion = false
+        swichControlChangeStateAnim.isRemovedOnCompletion = false
         swichControlChangeStateAnim.duration = duration
 
         let animateKey = turnOn ? "TurnOn" : "TurnOff"
-        swichControl.addAnimation(swichControlChangeStateAnim, forKey: animateKey)
-        backgroundLayer.addAnimation(backgroundFillColorAnim, forKey: "Color")
+        swichControl.add(swichControlChangeStateAnim, forKey: animateKey)
+        backgroundLayer.add(backgroundFillColorAnim, forKey: "Color")
     }
     
-    private func stateToFillColor(isOn:Bool) -> CGColorRef{
-        return isOn ?  onColor.CGColor : offColor.CGColor
+    fileprivate func stateToFillColor(_ isOn:Bool) -> CGColor{
+        return isOn ?  onColor.cgColor : offColor.cgColor
     }
     
 }

@@ -18,9 +18,9 @@ class ContentsGravitysViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         //create sublayer
-        layerView.frame = CGRectMake(0, 0, 200, 200)
+        layerView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         layerView.center = self.view.center
-        layerView.backgroundColor = UIColor.whiteColor()
+        layerView.backgroundColor = UIColor.white
         self.view.addSubview(layerView)
         
         for il in 0 ..< contentsGravitys.count/4
@@ -33,18 +33,19 @@ class ContentsGravitysViewController: UIViewController {
             }
             let segmentContents = UISegmentedControl.init(items: array)
             segmentContents.apportionsSegmentWidthsByContent = true
-            segmentContents.center = CGPointMake(layerView.center.x, layerView.center.y + 150.0 + CGFloat(40 * i / 4))
-            segmentContents.addTarget(self, action: #selector(ContentsGravitysViewController.contentsGravitysChange(_:)), forControlEvents: .ValueChanged)
+            segmentContents.center = CGPoint(x: layerView.center.x, y: layerView.center.y + 150.0 + CGFloat(40 * i / 4))
+            segmentContents.addTarget(self, action: #selector(ContentsGravitysViewController.contentsGravitysChange(_:)), for: .valueChanged)
             self.view.addSubview(segmentContents)
         }
         
-        let image = R.image.snowman
-        //add it directly to our view's layer
-        self.layerView.layer.contents = image?.CGImage;
+        if let image = R.image.snowman() {
+            //add it directly to our view's layer
+            self.layerView.layer.contents = image.cgImage;
+        }
     }
 
-    func contentsGravitysChange(segment: UISegmentedControl) {
-        let contentsGravity = segment.titleForSegmentAtIndex(segment.selectedSegmentIndex)
+    func contentsGravitysChange(_ segment: UISegmentedControl) {
+        let contentsGravity = segment.titleForSegment(at: segment.selectedSegmentIndex)
         self.layerView.layer.contentsGravity = contentsGravity!;
 
     }
@@ -60,38 +61,39 @@ class ContentsScaleViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         //create sublayer
-        layerView.frame = CGRectMake(0, 0, 200, 200)
+        layerView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         layerView.center = self.view.center
-        layerView.backgroundColor = UIColor.whiteColor()
+        layerView.backgroundColor = UIColor.white
         self.view.addSubview(layerView)
         
-        let image = R.image.snowman!
-        //add it directly to our view's layer
-        self.layerView.layer.contents = image.CGImage;
+        if let image = R.image.snowman() {
+            //add it directly to our view's layer
+            self.layerView.layer.contents = image.cgImage;
+        }
         
         //center the image
         self.layerView.layer.contentsGravity = kCAGravityCenter;
 
         maskSegmentContents.apportionsSegmentWidthsByContent = true
-        maskSegmentContents.center = CGPointMake(layerView.center.x, layerView.center.y + 150.0)
-        maskSegmentContents.addTarget(self, action: #selector(ContentsGravitysViewController.contentsGravitysChange(_:)), forControlEvents: .ValueChanged)
+        maskSegmentContents.center = CGPoint(x: layerView.center.x, y: layerView.center.y + 150.0)
+        maskSegmentContents.addTarget(self, action: #selector(ContentsGravitysViewController.contentsGravitysChange(_:)), for: .valueChanged)
         self.view.addSubview(maskSegmentContents)
         
         scaleSegmentContents.apportionsSegmentWidthsByContent = true
-        scaleSegmentContents.center = CGPointMake(layerView.center.x, layerView.center.y + 150.0 + 40)
-        scaleSegmentContents.addTarget(self, action: #selector(ContentsGravitysViewController.contentsGravitysChange(_:)), forControlEvents: .ValueChanged)
+        scaleSegmentContents.center = CGPoint(x: layerView.center.x, y: layerView.center.y + 150.0 + 40)
+        scaleSegmentContents.addTarget(self, action: #selector(ContentsGravitysViewController.contentsGravitysChange(_:)), for: .valueChanged)
         self.view.addSubview(scaleSegmentContents)
 
     }
     
-    func contentsGravitysChange(segment: UISegmentedControl) {
-        let image = R.image.snowman!
-        let onOrOff = segment.titleForSegmentAtIndex(segment.selectedSegmentIndex)!
+    func contentsGravitysChange(_ segment: UISegmentedControl) {
+        let image = R.image.snowman()
+        let onOrOff = segment.titleForSegment(at: segment.selectedSegmentIndex)!
         if (onOrOff.hasSuffix("On")) {
             if segment == self.maskSegmentContents {
                 self.layerView.layer.masksToBounds = true;
             } else {
-                self.layerView.layer.contentsScale = image.scale;
+                self.layerView.layer.contentsScale = image!.scale;
                 
             }
         } else {
@@ -107,10 +109,10 @@ class ContentsScaleViewController: UIViewController {
 
 class ContentsRectViewController: UIViewController {
 
-    private let coneView = UIView.init(frame: CGRectMake(10, 10 + 60, 128, 128))
-    private let shipView = UIView.init(frame: CGRectMake(148, 10 + 60, 128, 128))
-    private let iglooVIew = UIView.init(frame: CGRectMake(10, 148 + 60, 128, 128))
-    private let anchorView = UIView.init(frame: CGRectMake(148, 148 + 60, 128, 128))
+    fileprivate let coneView = UIView.init(frame: CGRect(x: 10, y: 10 + 60, width: 128, height: 128))
+    fileprivate let shipView = UIView.init(frame: CGRect(x: 148, y: 10 + 60, width: 128, height: 128))
+    fileprivate let iglooVIew = UIView.init(frame: CGRect(x: 10, y: 148 + 60, width: 128, height: 128))
+    fileprivate let anchorView = UIView.init(frame: CGRect(x: 148, y: 148 + 60, width: 128, height: 128))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,19 +123,20 @@ class ContentsRectViewController: UIViewController {
         self.view.addSubview(anchorView)
         for index in 0..<self.view.subviews.count {
             let subview = self.view.subviews[index]
-            subview.backgroundColor = UIColor.whiteColor()
+            subview.backgroundColor = UIColor.white
         }
         
-        let image = R.image.sprites!
-        self.addSpriteImage(image, contentRect: CGRectMake(0, 0, 0.5, 0.5),toLayer: iglooVIew.layer)
-        self.addSpriteImage(image, contentRect: CGRectMake(0.5, 0, 0.5, 0.5),toLayer: coneView.layer)
-        self.addSpriteImage(image, contentRect: CGRectMake(0, 0.5, 0.5, 0.5),toLayer: anchorView.layer)
-        self.addSpriteImage(image, contentRect: CGRectMake(0.5, 0.5, 0.5, 0.5),toLayer: shipView.layer)
+        if let image = R.image.sprites() {
+            self.addSpriteImage(image, contentRect: CGRect(x: 0, y: 0, width: 0.5, height: 0.5),toLayer: iglooVIew.layer)
+            self.addSpriteImage(image, contentRect: CGRect(x: 0.5, y: 0, width: 0.5, height: 0.5),toLayer: coneView.layer)
+            self.addSpriteImage(image, contentRect: CGRect(x: 0, y: 0.5, width: 0.5, height: 0.5),toLayer: anchorView.layer)
+            self.addSpriteImage(image, contentRect: CGRect(x: 0.5, y: 0.5, width: 0.5, height: 0.5),toLayer: shipView.layer)
+        }
     }
 
-    func addSpriteImage(image: UIImage, contentRect rect: CGRect,toLayer layer: CALayer) {
+    func addSpriteImage(_ image: UIImage, contentRect rect: CGRect,toLayer layer: CALayer) {
         //set image
-        layer.contents = image.CGImage
+        layer.contents = image.cgImage
         //scale contents to fit
         layer.contentsGravity = kCAGravityResizeAspect;
         //set contentsRect
@@ -143,10 +146,10 @@ class ContentsRectViewController: UIViewController {
 
 class ContentsCenterViewController: UIViewController {
     
-    private let button1 = UIView.init(frame: CGRectMake(68.5, 70, 100, 243))
-    private let button2 = UIView.init(frame: CGRectMake(68.5, 320, 243, 100))
-    private let button3 = UIView.init(frame: CGRectMake(200, 70, 100, 243))
-    private let button4 = UIView.init(frame: CGRectMake(68.5, 440, 243, 100))
+    fileprivate let button1 = UIView.init(frame: CGRect(x: 68.5, y: 70, width: 100, height: 243))
+    fileprivate let button2 = UIView.init(frame: CGRect(x: 68.5, y: 320, width: 243, height: 100))
+    fileprivate let button3 = UIView.init(frame: CGRect(x: 200, y: 70, width: 100, height: 243))
+    fileprivate let button4 = UIView.init(frame: CGRect(x: 68.5, y: 440, width: 243, height: 100))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,23 +158,24 @@ class ContentsCenterViewController: UIViewController {
         self.view.addSubview(button3)
         self.view.addSubview(button4)
         
-        let image = R.image.button!
-        addStretchableImage(image, contentCenter: CGRectMake(0.25, 0.25, 0.5, 0.5), toLayer: button1.layer)
-        addStretchableImage(image, contentCenter: CGRectMake(0.25, 0.25, 0.5, 0.5), toLayer: button2.layer)
-        addStretchableImage(image, contentCenter: CGRectMake(0, 0, 1, 1), toLayer: button3.layer)
-        addStretchableImage(image, contentCenter: CGRectMake(0, 0, 1, 1), toLayer: button4.layer)
+        if let image = R.image.button() {
+            addStretchableImage(image, contentCenter: CGRect(x: 0.25, y: 0.25, width: 0.5, height: 0.5), toLayer: button1.layer)
+            addStretchableImage(image, contentCenter: CGRect(x: 0.25, y: 0.25, width: 0.5, height: 0.5), toLayer: button2.layer)
+            addStretchableImage(image, contentCenter: CGRect(x: 0, y: 0, width: 1, height: 1), toLayer: button3.layer)
+            addStretchableImage(image, contentCenter: CGRect(x: 0, y: 0, width: 1, height: 1), toLayer: button4.layer)
+        }
     }
     
-    func addStretchableImage(image: UIImage, contentCenter rect: CGRect,toLayer layer: CALayer) {
+    func addStretchableImage(_ image: UIImage, contentCenter rect: CGRect,toLayer layer: CALayer) {
         //set image
-        layer.contents = image.CGImage
+        layer.contents = image.cgImage
         //set contentsCenter
         layer.contentsCenter = rect;
     }
     
 }
 
-class DrawingViewController: UIViewController {
+class DrawingViewController: UIViewController, CALayerDelegate {
     var layerView: UIView = UIView()
     let blueLayer = CALayer()
     //MARK: blueLayer.delegate必须在deinit设为nil（apple的weak不起作用）不然会崩溃
@@ -183,25 +187,25 @@ class DrawingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        layerView.frame = CGRectMake(0, 0, 200, 200)
+        layerView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         layerView.center = self.view.center
-        layerView.backgroundColor = UIColor.whiteColor()
+        layerView.backgroundColor = UIColor.white
         self.view.addSubview(layerView)
         
-        blueLayer.frame = CGRectMake(50, 50, 100, 100)
-        blueLayer.backgroundColor = UIColor.blueColor().CGColor
+        blueLayer.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
+        blueLayer.backgroundColor = UIColor.blue.cgColor
         
         //set controller as layer delegate
         blueLayer.delegate = self;
         //ensure that layer backing image uses correct scale
-        blueLayer.contentsScale = UIScreen.mainScreen().scale;
+        blueLayer.contentsScale = UIScreen.main.scale;
         //add layer to our view
         self.layerView.layer.addSublayer(blueLayer)
         //force layer to redraw
         blueLayer.display()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     /**
@@ -210,11 +214,11 @@ class DrawingViewController: UIViewController {
      - parameter layer: <#layer description#>
      - parameter ctx:   <#ctx description#>
      */
-    override func drawLayer(layer: CALayer, inContext ctx: CGContext) {
+    func draw(_ layer: CALayer, in ctx: CGContext) {
         //draw a thick red circle
-        CGContextSetLineWidth(ctx, 10.0);
-        CGContextSetStrokeColorWithColor(ctx, UIColor.redColor().CGColor);
-        CGContextStrokeEllipseInRect(ctx, layer.bounds);
+        ctx.setLineWidth(10.0);
+        ctx.setStrokeColor(UIColor.red.cgColor);
+        ctx.strokeEllipse(in: layer.bounds);
     }
 
 }

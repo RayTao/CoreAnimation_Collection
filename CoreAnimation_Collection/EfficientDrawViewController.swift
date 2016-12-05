@@ -10,7 +10,7 @@ import UIKit
 
 class EfficientDrawViewController: UIViewController {
 
-    let drawView = EfficientDrawView.init(frame: CGRectZero)
+    let drawView = EfficientDrawView.init(frame: CGRect.zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()

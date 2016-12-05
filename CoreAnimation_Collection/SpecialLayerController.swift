@@ -16,8 +16,8 @@ class CAShapeLayerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shapeLayer.strokeColor = UIColor.redColor().CGColor;
-        shapeLayer.fillColor = UIColor.clearColor().CGColor;
+        shapeLayer.strokeColor = UIColor.red.cgColor;
+        shapeLayer.fillColor = UIColor.clear.cgColor;
         shapeLayer.lineWidth = 5;
         shapeLayer.lineJoin = kCALineJoinRound;
         shapeLayer.lineCap = kCALineCapRound;
@@ -26,37 +26,37 @@ class CAShapeLayerController: UIViewController {
         self.view.layer.addSublayer(shapeLayer);
         
         let transformSegment = UISegmentedControl.init(items: ["火柴人","圆角"])
-        transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: #selector(CAShapeLayerController.changeOption(_:)), forControlEvents: .ValueChanged)
+        transformSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
+        transformSegment.addTarget(self, action: #selector(CAShapeLayerController.changeOption(_:)), for: .valueChanged)
         self.view.addSubview(transformSegment)
         
         transformSegment.selectedSegmentIndex = 0
         changeOption(transformSegment)
     }
     
-    func changeOption(segment: UISegmentedControl) {
+    func changeOption(_ segment: UISegmentedControl) {
         let selectedIndex = segment.selectedSegmentIndex
         
         //create path
         var path = UIBezierPath();
         if selectedIndex == 0 {
-            path.moveToPoint(CGPointMake(175, 100))
-            path.addArcWithCenter(CGPointMake(150, 100) , radius: 25, startAngle: 0, endAngle:CGFloat(2.0 * M_PI), clockwise: true);
-            path.moveToPoint(CGPointMake(150, 125))
-            path.addLineToPoint(CGPointMake(150, 175))
-            path.addLineToPoint(CGPointMake(125, 225))
-            path.moveToPoint(CGPointMake(150, 175))
-            path.addLineToPoint(CGPointMake(175, 225))
-            path.moveToPoint(CGPointMake(100, 150))
-            path.addLineToPoint(CGPointMake(200, 150))
+            path.move(to: CGPoint(x: 175, y: 100))
+            path.addArc(withCenter: CGPoint(x: 150, y: 100) , radius: 25, startAngle: 0, endAngle:CGFloat(2.0 * M_PI), clockwise: true);
+            path.move(to: CGPoint(x: 150, y: 125))
+            path.addLine(to: CGPoint(x: 150, y: 175))
+            path.addLine(to: CGPoint(x: 125, y: 225))
+            path.move(to: CGPoint(x: 150, y: 175))
+            path.addLine(to: CGPoint(x: 175, y: 225))
+            path.move(to: CGPoint(x: 100, y: 150))
+            path.addLine(to: CGPoint(x: 200, y: 150))
         } else {
-            let rect = CGRectMake(50, 70, 100, 100)
-            let radii = CGSizeMake(20, 20)
+            let rect = CGRect(x: 50, y: 70, width: 100, height: 100)
+            let radii = CGSize(width: 20, height: 20)
             let corners = UIRectCorner.init(rawValue: 3)
             path = UIBezierPath.init(roundedRect: rect, byRoundingCorners: corners, cornerRadii: radii)
         }
         
-        shapeLayer.path = path.CGPath
+        shapeLayer.path = path.cgPath
     }
 }
 
@@ -70,16 +70,16 @@ class CATextLayerController: UIViewController {
         
         //create a text layer
         let textLayer = CATextLayer();
-        textLayer.frame = CGRectMake(50, 65, 200, 200);
+        textLayer.frame = CGRect(x: 50, y: 65, width: 200, height: 200);
         self.view.layer.addSublayer(textLayer)
         
         //uncomment the line below to fix pixelation on Retina screens
-        textLayer.contentsScale = UIScreen.mainScreen().scale;
+        textLayer.contentsScale = UIScreen.main.scale;
         
         //set text attributes
-        textLayer.foregroundColor = UIColor.blackColor().CGColor;
+        textLayer.foregroundColor = UIColor.black.cgColor;
         textLayer.alignmentMode = kCAAlignmentJustified;
-        textLayer.wrapped = true;
+        textLayer.isWrapped = true;
         
         //choose some text
         let text = "Lorem ipsum dolor sit amet, consectetur adipiscing" + "\t elit. Quisque massa arcu, eleifend vel varius in, facilisis pulvinar" + "\t leo. Nunc quis nunc at mauris pharetra condimentum ut ac neque. Nunc" + "\t elementum, libero ut porttitor dictum, diam odio congue lacus, vel" + "\t fringilla sapien diam at purus. Etiam suscipit pretium nunc sit amet" + "\t lobortis"
@@ -88,27 +88,27 @@ class CATextLayerController: UIViewController {
         let string = NSMutableAttributedString.init(string: text)
         
         //choose a font
-        let font = UIFont.systemFontOfSize(15);
+        let font = UIFont.systemFont(ofSize: 15);
         
         //set layer font
-        let fontName = font.fontName;
-        let fontRef = CGFontCreateWithFontName(fontName);
+        let fontName = font.fontName as CFString;
+        let fontRef = CGFont(fontName);
         textLayer.font = fontRef;
         textLayer.fontSize = font.pointSize;
         //        CGFontRelease(fontRef);
         
         //set text attributes
         var attribs = [String(kCTForegroundColorAttributeName):
-            UIColor.blackColor().CGColor,
-            String(kCTFontAttributeName): font];
-        string.setAttributes(attribs as? [String : AnyObject], range: NSMakeRange(6,5))
+            UIColor.black.cgColor,
+            String(kCTFontAttributeName): font] as [String : Any];
+        string.setAttributes(attribs as [String : AnyObject], range: NSMakeRange(6,5))
         
         attribs = [
-            String(kCTForegroundColorAttributeName): UIColor.redColor().CGColor,
-            String(kCTUnderlineStyleAttributeName): NSNumber(int: CTUnderlineStyle.Single.rawValue),
+            String(kCTForegroundColorAttributeName): UIColor.red.cgColor,
+            String(kCTUnderlineStyleAttributeName): NSNumber(value: CTUnderlineStyle.single.rawValue as Int32),
             String(kCTFontAttributeName): font
         ];
-        string.setAttributes(attribs as? [String : AnyObject], range: NSMakeRange(6,5))
+        string.setAttributes(attribs as [String : AnyObject], range: NSMakeRange(6,5))
 
         
         //set layer text
@@ -118,7 +118,7 @@ class CATextLayerController: UIViewController {
         label.attributedText = string.copy() as? NSAttributedString
         
         label.frame = textLayer.frame
-        label.center = CGPointMake(label.center.x, self.view.frame.maxY - 115)
+        label.center = CGPoint(x: label.center.x, y: self.view.frame.maxY - 115)
         self.view.addSubview(label)
     }
 }
@@ -126,7 +126,7 @@ class CATextLayerController: UIViewController {
 /// CATransformLayer用于构造一个层级的3D结构
 class CATransformLayerViewController: UIViewController {
 
-    let containerView = UIView.init(frame: CGRectMake(0, 0, 300, 300))
+    let containerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,24 +154,24 @@ class CATransformLayerViewController: UIViewController {
         self.containerView.layer.addSublayer(cube2);
     }
 
-    func faceWithTransform(transform: CATransform3D) -> CALayer
+    func faceWithTransform(_ transform: CATransform3D) -> CALayer
     {
         //create cube face layer
         let face = CALayer();
-        face.frame = CGRectMake(-50, -50, 100, 100);
+        face.frame = CGRect(x: -50, y: -50, width: 100, height: 100);
         
         //apply a random color
-        let red = CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-        let green = CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-        let blue = CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-        face.backgroundColor = UIColor.init(red: red, green: green, blue: blue, alpha: 1.0).CGColor;
+        let red = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
+        let green = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
+        let blue = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
+        face.backgroundColor = UIColor.init(red: red, green: green, blue: blue, alpha: 1.0).cgColor;
         
         //apply the transform and return
         face.transform = transform;
         return face;
     }
     
-    func cubeWithTransform(transform: CATransform3D) -> CALayer
+    func cubeWithTransform(_ transform: CATransform3D) -> CALayer
     {
         //create cube layer
         let cube = CATransformLayer();
@@ -207,8 +207,8 @@ class CATransformLayerViewController: UIViewController {
         
         //center the cube layer within the container
         let containerSize = self.containerView.bounds.size;
-        cube.position = CGPointMake(containerSize.width / 2.0,
-        containerSize.height / 2.0);
+        cube.position = CGPoint(x: containerSize.width / 2.0,
+        y: containerSize.height / 2.0);
         
         //apply the transform and return
         cube.transform = transform;
@@ -219,7 +219,7 @@ class CATransformLayerViewController: UIViewController {
 
 /// CAGradientLayer渐变图层
 class CAGradientLayerViewController: UIViewController {
-    let containerView = UIView.init(frame: CGRectMake(0, 0, 300, 300))
+    let containerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -243,12 +243,12 @@ class CAGradientLayerViewController: UIViewController {
         gradientLayer.frame = self.containerView.bounds;
         
         //set gradient colors
-        gradientLayer.colors = [UIColor.redColor().CGColor,
-        UIColor.blueColor().CGColor];
+        gradientLayer.colors = [UIColor.red.cgColor,
+        UIColor.blue.cgColor];
         
         //set gradient start and end points
-        gradientLayer.startPoint = CGPointMake(0, 0);
-        gradientLayer.endPoint = CGPointMake(1, 1);
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0);
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1);
         
         return gradientLayer;
     }
@@ -260,8 +260,8 @@ class CAGradientLayerViewController: UIViewController {
     {
         let gradientLayer = catercornerGradient()
         //set gradient colors
-        gradientLayer.colors = [UIColor.redColor().CGColor,UIColor.yellowColor().CGColor,
-            UIColor.blueColor().CGColor];
+        gradientLayer.colors = [UIColor.red.cgColor,UIColor.yellow.cgColor,
+            UIColor.blue.cgColor];
 
         
         //set locations
@@ -274,7 +274,7 @@ class CAGradientLayerViewController: UIViewController {
 /// CAReplicatorLayer: 高效生产相似的图层
 class CAReplicatorLayerViewController: UIViewController {
     
-    let containerView = UIView.init(frame: CGRectMake(0, 0, 300, 300))
+    let containerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -294,9 +294,9 @@ class CAReplicatorLayerViewController: UIViewController {
     func reflectionView() -> ReflectionView
     {
         let reflectionView = ReflectionView.init(frame:
-            CGRectMake((self.view.frame.width - 160) / 2, 100, 160, 160))
+            CGRect(x: (self.view.frame.width - 160) / 2, y: 100, width: 160, height: 160))
         reflectionView.reflectionScale = 1.0
-        let imageView = UIImageView.init(image: R.image.anchor)
+        let imageView = UIImageView.init(image: R.image.anchor())
         imageView.frame = reflectionView.bounds
         reflectionView.addSubview(imageView)
         
@@ -326,8 +326,8 @@ class CAReplicatorLayerViewController: UIViewController {
         
         //create a sublayer and place it inside the replicator
         let layer = CALayer();
-        layer.frame = CGRectMake((replicator.frame.width - 50.0) / 2.0, 100.0, 50.0, 50.0);
-        layer.backgroundColor = UIColor.whiteColor().CGColor;
+        layer.frame = CGRect(x: (replicator.frame.width - 50.0) / 2.0, y: 100.0, width: 50.0, height: 50.0);
+        layer.backgroundColor = UIColor.white.cgColor;
         replicator.addSublayer(layer);
         
         return replicator
@@ -340,10 +340,10 @@ class CAScrollLayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scrollView = ScrollView.init(frame: CGRectMake(0, 0, 200, 200))
+        let scrollView = ScrollView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         scrollView.center = self.view.center
-        let imageView = UIImageView.init(image: R.image.bigSnowman)
-        imageView.frame = CGRectMake(0, 0, 400, 400)
+        let imageView = UIImageView.init(image: R.image.bigSnowman())
+        imageView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
         scrollView.addSubview(imageView)
         
         self.view.addSubview(scrollView)
@@ -351,7 +351,7 @@ class CAScrollLayerViewController: UIViewController {
 }
 
 /// CATiledLayer: 将大图分解成小图,按需载入
-class CATiledLayerViewController: UIViewController {
+class CATiledLayerViewController: UIViewController, CALayerDelegate {
 
     let scrollView = UIScrollView()
     let tileLayer = CATiledLayer();
@@ -363,8 +363,8 @@ class CATiledLayerViewController: UIViewController {
         self.view.addSubview(scrollView)
     
         //add the tiled layer
-        let scale = UIScreen.mainScreen().scale
-        tileLayer.frame = CGRectMake(0, 0, 2048 / scale, 2048 / scale);
+        let scale = UIScreen.main.scale
+        tileLayer.frame = CGRect(x: 0, y: 0, width: 2048 / scale, height: 2048 / scale);
         tileLayer.contentsScale = scale
         tileLayer.delegate = self;
         self.scrollView.layer.addSublayer(tileLayer);
@@ -382,24 +382,24 @@ class CATiledLayerViewController: UIViewController {
         self.tileLayer.delegate = nil
     }
     
-    override func drawLayer(layer: CALayer, inContext ctx: CGContext) {
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+    func draw(_ layer: CALayer, in ctx: CGContext) {
+        DispatchQueue.global(qos: .default).sync(execute: { () -> Void in
             
             //draw a thick red circle
             //determine tile coordinate
             let tiledLayer = layer as! CATiledLayer
-            let bounds = CGContextGetClipBoundingBox(ctx);
-            let scale = UIScreen.mainScreen().scale
+            let bounds = ctx.boundingBoxOfClipPath;
+            let scale = UIScreen.main.scale
             let x = Int(bounds.origin.x / tiledLayer.tileSize.width * scale);
             let y = Int(bounds.origin.y / tiledLayer.tileSize.height * scale);
             //load tile image
             let imageName = NSString.init(format: "Snowman_%02i_%02i", x, y);
             let tileImage = UIImage.init(named: imageName as String);
             print("imageName" + (imageName as String))
-            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.sync(execute: { () -> Void in
                 //draw tile
                 UIGraphicsPushContext(ctx);
-                tileImage?.drawInRect(bounds);
+                tileImage?.draw(in: bounds);
                 UIGraphicsPopContext();
             })
         })
@@ -412,29 +412,29 @@ class CAEmitterLayerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let value = UIInterfaceOrientation.LandscapeRight.rawValue
-        UIDevice.currentDevice().setValue(value, forKey: "orientation")
+        let value = UIInterfaceOrientation.landscapeRight.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
         
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        DispatchQueue.main.async { () -> Void in
             
             self.emitter.frame = self.view.bounds;
-            self.setCAEmitterLayer(self.emitter)
+            _ = self.setCAEmitterLayer(self.emitter)
             self.view.layer.addSublayer(self.emitter);
             
             let renderModeSegment = UISegmentedControl.init(items: [kCAEmitterLayerAdditive,kCAEmitterLayerBackToFront,kCAEmitterLayerOldestLast,kCAEmitterLayerOldestFirst,kCAEmitterLayerUnordered])
-            renderModeSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-            renderModeSegment.addTarget(self, action: #selector(CAEmitterLayerViewController.changeRenderMode(_:)), forControlEvents: .ValueChanged)
+            renderModeSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
+            renderModeSegment.addTarget(self, action: #selector(CAEmitterLayerViewController.changeRenderMode(_:)), for: .valueChanged)
             self.view.addSubview(renderModeSegment)
             
             let preservesDepthSegment = UISegmentedControl.init(items: ["preservesDepthSegment on","preservesDepth off"])
-            preservesDepthSegment.center = CGPointMake(self.view.center.x, renderModeSegment.frame.maxY - 50)
-            preservesDepthSegment.addTarget(self, action: #selector(CAEmitterLayerViewController.changePreservesDepth(_:)), forControlEvents: .ValueChanged)
+            preservesDepthSegment.center = CGPoint(x: self.view.center.x, y: renderModeSegment.frame.maxY - 50)
+            preservesDepthSegment.addTarget(self, action: #selector(CAEmitterLayerViewController.changePreservesDepth(_:)), for: .valueChanged)
             self.view.addSubview(preservesDepthSegment)
         }
     }
     
-    func changePreservesDepth(segment: UISegmentedControl) {
-        let title = segment.titleForSegmentAtIndex(segment.selectedSegmentIndex)!
+    func changePreservesDepth(_ segment: UISegmentedControl) {
+        let title = segment.titleForSegment(at: segment.selectedSegmentIndex)!
         if (title.hasSuffix("on")) {
             emitter.preservesDepth = true
         } else {
@@ -442,26 +442,26 @@ class CAEmitterLayerViewController: UIViewController {
         }
     }
     
-    func changeRenderMode(segment: UISegmentedControl) {
-        let RenderMode = segment.titleForSegmentAtIndex(segment.selectedSegmentIndex)
+    func changeRenderMode(_ segment: UISegmentedControl) {
+        let RenderMode = segment.titleForSegment(at: segment.selectedSegmentIndex)
         self.emitter.renderMode = RenderMode!
     }
     
-    func setCAEmitterLayer(emitter: CAEmitterLayer) -> CAEmitterLayer {
+    func setCAEmitterLayer(_ emitter: CAEmitterLayer) -> CAEmitterLayer {
         //configure emitter
         emitter.renderMode = kCAEmitterLayerAdditive;
         //        emitter.renderMode = kCAEmitterLayerUnordered
         //        emitter.preservesDepth = true
-        emitter.emitterPosition = CGPointMake(emitter.frame.size.width / 2.0,
-            emitter.frame.size.height / 2.0);
+        emitter.emitterPosition = CGPoint(x: emitter.frame.size.width / 2.0,
+            y: emitter.frame.size.height / 2.0);
         
         //create a particle template
         let cell = CAEmitterCell();
-        cell.contents = R.image.spark!.CGImage;
+        cell.contents = R.image.spark()!.cgImage;
         cell.birthRate = 150;
         cell.lifetime = 5.0;
         //orange color
-        cell.color = UIColor.init(red: 1, green: 0.5, blue: 0.2, alpha: 1.0).CGColor;
+        cell.color = UIColor.init(red: 1, green: 0.5, blue: 0.2, alpha: 1.0).cgColor;
         cell.alphaSpeed = -0.4;
         cell.velocity = 50;
         cell.velocityRange = 50;
@@ -476,8 +476,8 @@ class CAEmitterLayerViewController: UIViewController {
     deinit
     {
         print(self.description + " deinit");
-        let value = UIInterfaceOrientation.Portrait.rawValue
-        UIDevice.currentDevice().setValue(value, forKey: "orientation")
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
     }
 }
 
@@ -485,8 +485,8 @@ class CAEmitterLayerViewController: UIViewController {
 *  CAEAGLLayer: 使用OpenGL高效绘制自定义图层
 */
 class CAEAGLLayerViewController: UIViewController {
-    let glView = UIView.init(frame: CGRectMake(0, 0, 200, 200))
-    let glContext = EAGLContext.init(API: .OpenGLES2)
+    let glView = UIView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+    let glContext = EAGLContext.init(api: .openGLES2)
     let glLayer = CAEAGLLayer()
     var framebuffer: GLuint = 0
     var colorRenderbuffer: GLuint = 0
@@ -500,7 +500,7 @@ class CAEAGLLayerViewController: UIViewController {
         glView.center = self.view.center
         self.view.addSubview(glView)
         //set up context
-        EAGLContext.setCurrentContext(self.glContext);
+        EAGLContext.setCurrent(self.glContext);
         
         //set up layer
         self.glLayer.frame = self.glView.bounds;
@@ -524,7 +524,7 @@ class CAEAGLLayerViewController: UIViewController {
         glGenRenderbuffers(1, &colorRenderbuffer);
         glBindRenderbuffer(GLenum(GL_RENDERBUFFER), colorRenderbuffer);
         glFramebufferRenderbuffer(GLenum(GL_FRAMEBUFFER), GLenum(GL_COLOR_ATTACHMENT0), GLenum(GL_RENDERBUFFER), colorRenderbuffer);
-        self.glContext.renderbufferStorage(Int(GL_RENDERBUFFER), fromDrawable: self.glLayer)
+        self.glContext?.renderbufferStorage(Int(GL_RENDERBUFFER), from: self.glLayer)
         glGetRenderbufferParameteriv(GLenum(GL_RENDERBUFFER), GLenum(GL_RENDERBUFFER_WIDTH), &framebufferWidth);
         glGetRenderbufferParameteriv(GLenum(GL_RENDERBUFFER), GLenum(GL_RENDERBUFFER_HEIGHT), &framebufferHeight);
         
@@ -560,15 +560,15 @@ class CAEAGLLayerViewController: UIViewController {
             1.0, 0.0, 0.0, 1.0,]
         
         //draw triangle
-        glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Position.rawValue));
-        glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Color.rawValue));
-        glVertexAttribPointer(GLuint(GLKVertexAttrib.Position.rawValue), 3, GLenum(GL_FLOAT),GLboolean(GL_FALSE), 0, vertices);
-        glVertexAttribPointer(GLuint(GLKVertexAttrib.Color.rawValue), 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, colors);
+        glEnableVertexAttribArray(GLuint(GLKVertexAttrib.position.rawValue));
+        glEnableVertexAttribArray(GLuint(GLKVertexAttrib.color.rawValue));
+        glVertexAttribPointer(GLuint(GLKVertexAttrib.position.rawValue), 3, GLenum(GL_FLOAT),GLboolean(GL_FALSE), 0, vertices);
+        glVertexAttribPointer(GLuint(GLKVertexAttrib.color.rawValue), 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, colors);
         glDrawArrays(GLenum(GL_TRIANGLES), 0, 3);
         
         //present render buffer
         glBindRenderbuffer(GLenum(GL_RENDERBUFFER), colorRenderbuffer);
-        self.glContext.presentRenderbuffer(Int(GL_RENDERBUFFER))
+        self.glContext?.presentRenderbuffer(Int(GL_RENDERBUFFER))
 
     }
 
@@ -597,7 +597,7 @@ class CAEAGLLayerViewController: UIViewController {
 import AVFoundation
 /// AVPlayerLayer: 专门显示视屏的图层
 class AVPlayerLayerViewController: UIViewController {
-    let containerView = UIView.init(frame: CGRectMake(0, 0, 200, 200))
+    let containerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -606,10 +606,10 @@ class AVPlayerLayerViewController: UIViewController {
         self.view.addSubview(containerView)
         
         //get video URL
-        let URL = R.file.shipMp4
+        let URL = R.file.shipMp4()
         
         //create player and player layer
-        let player = AVPlayer.init(URL: URL!)
+        let player = AVPlayer.init(url: URL! as URL)
         let playerLayer = AVPlayerLayer()
         playerLayer.player = player
         
@@ -627,7 +627,7 @@ class AVPlayerLayerViewController: UIViewController {
         //add rounded corners and border
         playerLayer.masksToBounds = true;
         playerLayer.cornerRadius = 20.0;
-        playerLayer.borderColor = UIColor.redColor().CGColor;
+        playerLayer.borderColor = UIColor.red.cgColor;
         playerLayer.borderWidth = 5.0;
         
         //play the video

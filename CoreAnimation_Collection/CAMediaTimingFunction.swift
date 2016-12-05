@@ -7,30 +7,50 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class CAMediaTimingFunctionController: UIViewController {
     
-    let colorView = UIView.init(frame: CGRectMake(0, 0, 100, 100))
+    let colorView = UIView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     let colorLayer = CALayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.colorLayer.frame = colorView.frame;
-        self.colorLayer.position = CGPointMake(self.view.bounds.width / 2,
-            self.view.bounds.height / 2);
-        self.colorLayer.backgroundColor = UIColor.blueColor().CGColor;
+        self.colorLayer.position = CGPoint(x: self.view.bounds.width / 2,
+            y: self.view.bounds.height / 2);
+        self.colorLayer.backgroundColor = UIColor.blue.cgColor;
         self.view.layer.addSublayer(self.colorLayer);
         
-        colorView.backgroundColor = UIColor.redColor()
+        colorView.backgroundColor = UIColor.red
         colorView.center = self.view.center
         self.view.addSubview(colorView)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         //get the touch point
-        let point = touches.first!.locationInView(self.view);
+        let point = touches.first!.location(in: self.view);
         
         //otherwise (slowly) move the layer to new position
         CATransaction.begin()
@@ -39,7 +59,7 @@ class CAMediaTimingFunctionController: UIViewController {
         self.colorLayer.position = point;
         CATransaction.commit();
         
-        UIView.animateWithDuration(1.0, delay: 0.0, options: .CurveEaseOut, animations: { () -> Void in
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: { () -> Void in
                 self.colorView.center = point;
 
             }, completion: nil)
@@ -49,28 +69,28 @@ class CAMediaTimingFunctionController: UIViewController {
 
 class KeyFrameMediaTimingViewController: UIViewController {
     
-    let layerView = UIView.init(frame: CGRectMake(0, 0, 200, 200))
+    let layerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
     let colorLayer = CALayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        layerView.backgroundColor = UIColor.whiteColor()
+        layerView.backgroundColor = UIColor.white
         layerView.center = self.view.center
         self.view.addSubview(layerView)
         
-        colorLayer.frame = CGRectMake(50, 50, 100, 100)
-        self.colorLayer.backgroundColor = UIColor.blueColor().CGColor;
+        colorLayer.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
+        self.colorLayer.backgroundColor = UIColor.blue.cgColor;
         layerView.layer.addSublayer(colorLayer)
         
-        let changeColorBtn = UIButton.init(frame: CGRectMake(layerView.bounds.width/2-60,
-            layerView.bounds.maxY - 40, 120, 31))
-        changeColorBtn.addTarget(self, action: #selector(KeyFrameMediaTimingViewController.changeColor), forControlEvents: .TouchUpInside)
-        changeColorBtn.layer.borderColor = UIColor.darkGrayColor().CGColor
+        let changeColorBtn = UIButton.init(frame: CGRect(x: layerView.bounds.width/2-60,
+            y: layerView.bounds.maxY - 40, width: 120, height: 31))
+        changeColorBtn.addTarget(self, action: #selector(KeyFrameMediaTimingViewController.changeColor), for: .touchUpInside)
+        changeColorBtn.layer.borderColor = UIColor.darkGray.cgColor
         changeColorBtn.layer.borderWidth = 1.0
-        changeColorBtn.setTitle("change Color", forState: .Normal)
-        changeColorBtn.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        changeColorBtn.setTitle("change Color", for: UIControlState())
+        changeColorBtn.setTitleColor(UIColor.blue, for: UIControlState())
         layerView.addSubview(changeColorBtn)
         
     }
@@ -81,10 +101,10 @@ class KeyFrameMediaTimingViewController: UIViewController {
         animation.keyPath = "backgroundColor";
         animation.duration = 4.5;
         animation.values = [
-            UIColor.blueColor().CGColor,
-            UIColor.redColor().CGColor,
-            UIColor.greenColor().CGColor,
-            UIColor.blueColor().CGColor
+            UIColor.blue.cgColor,
+            UIColor.red.cgColor,
+            UIColor.green.cgColor,
+            UIColor.blue.cgColor
         ];
         
         //add timing function
@@ -92,97 +112,97 @@ class KeyFrameMediaTimingViewController: UIViewController {
         animation.timingFunctions = [fn, fn, fn];
         
         //apply animation to layer
-        self.colorLayer.addAnimation(animation, forKey:nil);
+        self.colorLayer.add(animation, forKey:nil);
     }
 }
 
 /// 用贝塞尔曲线画出MediaTimingFunction曲线图
 class BezierMediaTimingFunctionController: UIViewController {
 
-    let layerView = UIView.init(frame: CGRectMake(0, 0, 220, 220))
+    let layerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 220, height: 220))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        layerView.backgroundColor = UIColor.whiteColor()
+        layerView.backgroundColor = UIColor.white
         layerView.center = self.view.center
         self.view.addSubview(layerView)
      
         let transformSegment = UISegmentedControl.init(items: [kCAMediaTimingFunctionLinear,kCAMediaTimingFunctionEaseOut,kCAMediaTimingFunctionEaseIn,kCAMediaTimingFunctionEaseInEaseOut])
-        transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: #selector(BezierMediaTimingFunctionController.switchFunction(_:)), forControlEvents: .ValueChanged)
+        transformSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
+        transformSegment.addTarget(self, action: #selector(BezierMediaTimingFunctionController.switchFunction(_:)), for: .valueChanged)
         self.view.addSubview(transformSegment)
         
     }
     
-    func switchFunction(segment: UISegmentedControl) {
+    func switchFunction(_ segment: UISegmentedControl) {
         if layerView.layer.sublayers?.count > 0 {
             for sublayer in layerView.layer.sublayers! {
                 sublayer.removeFromSuperlayer()
             }
         }
         
-        let title = segment.titleForSegmentAtIndex(segment.selectedSegmentIndex)!
+        let title = segment.titleForSegment(at: segment.selectedSegmentIndex)!
         BezierMediaTimingFunctionController.drawBezier(CAMediaTimingFunction.init(name: title), inView: layerView)
         
     }
     
     
-    class func drawBezier(function: CAMediaTimingFunction, inView: UIView) {
+    class func drawBezier(_ function: CAMediaTimingFunction, inView: UIView) {
 
         //get control points
         var controlPoint1: [Float] = [0,0]
         var controlPoint2: [Float] = [0,0]
-        function.getControlPointAtIndex(1, values: &controlPoint1)
-        function.getControlPointAtIndex(2, values: &controlPoint2)
+        function.getControlPoint(at: 1, values: &controlPoint1)
+        function.getControlPoint(at: 2, values: &controlPoint2)
         
         //create curve
         let path = UIBezierPath.init()
-        path.moveToPoint(CGPointZero)
-        path.addCurveToPoint(CGPointMake(1.0, 1.0), controlPoint1: CGPointMake(CGFloat( controlPoint1[0]), CGFloat(controlPoint1[1])), controlPoint2: CGPointMake(CGFloat( controlPoint2[0]), CGFloat(controlPoint2[1])))
+        path.move(to: CGPoint.zero)
+        path.addCurve(to: CGPoint(x: 1.0, y: 1.0), controlPoint1: CGPoint(x: CGFloat( controlPoint1[0]), y: CGFloat(controlPoint1[1])), controlPoint2: CGPoint(x: CGFloat( controlPoint2[0]), y: CGFloat(controlPoint2[1])))
         
         //scale the path up to a reasonable size for display
         let width = min(inView.frame.width, inView.frame.height)
-        path.applyTransform(CGAffineTransformMakeScale(width, width))
+        path.apply(CGAffineTransform(scaleX: width, y: width))
         
         //create shape layer
         let shapeLayer = CAShapeLayer()
-        shapeLayer.strokeColor = UIColor.redColor().CGColor;
-        shapeLayer.fillColor = UIColor.clearColor().CGColor;
+        shapeLayer.strokeColor = UIColor.red.cgColor;
+        shapeLayer.fillColor = UIColor.clear.cgColor;
         shapeLayer.lineWidth = 4.0;
-        shapeLayer.path = path.CGPath;
+        shapeLayer.path = path.cgPath;
         inView.layer.addSublayer(shapeLayer);
         
         //flip geometry so that 0,0 is in the bottom-left
-        inView.layer.geometryFlipped = true;
+        inView.layer.isGeometryFlipped = true;
     }
     
 } 
 
-class CustomMediaTimingFunctionController: AnchorPointViewController {
+class CustomMediaTimingFunctionController: AnchorPointViewController, CAAnimationDelegate {
 
-    override func setAngle(angle: CGFloat, handView: UIView) {
+    override func setAngle(_ angle: CGFloat, handView: UIView) {
         
         let transform = CATransform3DMakeRotation(angle, 0, 0, 1)
         //create transform animation
         let animation = CABasicAnimation();
         animation.keyPath = "transform";
-        animation.fromValue = handView.layer.presentationLayer()?.valueForKey("transform");
-        animation.toValue = NSValue(CATransform3D: transform);
+        animation.fromValue = handView.layer.presentation()?.value(forKey: "transform");
+        animation.toValue = NSValue(caTransform3D: transform);
         animation.duration = 0.5;
         animation.delegate = self;
         animation.timingFunction = CAMediaTimingFunction.init(controlPoints: 1, 0, 0.75, 1);
         
         //apply animation
         handView.layer.transform = transform;
-        handView.layer.addAnimation(animation, forKey:nil);
+        handView.layer.add(animation, forKey:nil);
     }
 
 }
 
-class BallViewController: UIViewController {
+class BallViewController: UIViewController, CAAnimationDelegate {
 
-    let ballView = UIImageView.init(image: R.image.ball)
+    let ballView = UIImageView.init(image: R.image.ball())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,15 +211,15 @@ class BallViewController: UIViewController {
         animate()
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.animate()
     }
     
-    func getInterpolate(from: CGFloat, to: CGFloat, time: CGFloat) -> CGFloat {
+    func getInterpolate(_ from: CGFloat, to: CGFloat, time: CGFloat) -> CGFloat {
         return (to - from) * time + from;
     }
     
-    func bounceEaseOut(t: Double) -> Double {
+    func bounceEaseOut(_ t: Double) -> Double {
     
         if (t < 4/11.0)
         {
@@ -216,23 +236,23 @@ class BallViewController: UIViewController {
         return (54/5.0 * t * t) - (513/25.0 * t) + 268/25.0;
     }
     
-    func interpolate(fromeValue: CGPoint,toValue: CGPoint,time: Double) -> NSValue {
+    func interpolate(_ fromeValue: CGPoint,toValue: CGPoint,time: Double) -> NSValue {
     
-        var resultValue = NSValue.init(CGPoint: CGPointMake(0,0))
-        let result = CGPointMake(getInterpolate(fromeValue.x, to: toValue.x, time: CGFloat(time)),
-             getInterpolate(fromeValue.y, to: toValue.y, time: CGFloat(time)));
-        resultValue = NSValue.init(CGPoint: result)
+        var resultValue = NSValue.init(cgPoint: CGPoint(x: 0,y: 0))
+        let result = CGPoint(x: getInterpolate(fromeValue.x, to: toValue.x, time: CGFloat(time)),
+             y: getInterpolate(fromeValue.y, to: toValue.y, time: CGFloat(time)));
+        resultValue = NSValue.init(cgPoint: result)
         
         return resultValue
     }
     
     func animate() {
         //reset ball to top of screen
-        self.ballView.center = CGPointMake(150, 32);
+        self.ballView.center = CGPoint(x: 150, y: 32);
         
         //set up animation parameters
-        let fromValue = CGPointMake(150, 32);
-        let toValue = CGPointMake(150, 268)
+        let fromValue = CGPoint(x: 150, y: 32);
+        let toValue = CGPoint(x: 150, y: 268)
         let duration = 1.0;
         
         //generate keyframes
@@ -243,7 +263,7 @@ class BallViewController: UIViewController {
             //apply easing
             time = bounceEaseOut(time);
             
-            frames.addObject(interpolate(fromValue, toValue: toValue, time: time))
+            frames.add(interpolate(fromValue, toValue: toValue, time: time))
         }
         
         //create keyframe animation
@@ -275,8 +295,8 @@ class BallViewController: UIViewController {
         animation.values = frames as [AnyObject];
         
         //apply animation
-        self.ballView.layer.position = CGPointMake(150, 268);
-        self.ballView.layer.addAnimation(animation, forKey:nil);
+        self.ballView.layer.position = CGPoint(x: 150, y: 268);
+        self.ballView.layer.add(animation, forKey:nil);
     
     }
 }

@@ -17,15 +17,15 @@ class CALayerViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         //create sublayer
-        layerView.frame = CGRectMake(0, 0, 200, 200)
+        layerView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         layerView.center = self.view.center
-        layerView.backgroundColor = UIColor.whiteColor()
+        layerView.backgroundColor = UIColor.white
         self.view.addSubview(layerView)
         
         
         let blueLayer = CALayer()
-        blueLayer.frame = CGRectMake(50.0, 50.0, 100.0, 100.0);
-        blueLayer.backgroundColor = UIColor.blueColor().CGColor;
+        blueLayer.frame = CGRect(x: 50.0, y: 50.0, width: 100.0, height: 100.0);
+        blueLayer.backgroundColor = UIColor.blue.cgColor;
         
         //add it to our view
         layerView.layer.addSublayer(blueLayer);

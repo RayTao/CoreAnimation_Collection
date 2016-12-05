@@ -16,20 +16,20 @@ class CoordinateSystemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        greenView.frame = CGRectMake(80, 80, 150, 150)
-        greenView.backgroundColor = UIColor.greenColor()
-        redView.frame = CGRectMake(120, 120, 150, 150)
-        redView.backgroundColor = UIColor.redColor()
+        greenView.frame = CGRect(x: 80, y: 80, width: 150, height: 150)
+        greenView.backgroundColor = UIColor.green
+        redView.frame = CGRect(x: 120, y: 120, width: 150, height: 150)
+        redView.backgroundColor = UIColor.red
         self.view.addSubview(greenView)
         self.view.addSubview(redView)
         
-        switcher.addTarget(self, action: #selector(CoordinateSystemViewController.changeAnchorPoint(_:)), forControlEvents: .ValueChanged)
-        switcher.center = CGPointMake(self.view.center.x, redView.frame.maxY + 20)
+        switcher.addTarget(self, action: #selector(CoordinateSystemViewController.changeAnchorPoint(_:)), for: .valueChanged)
+        switcher.center = CGPoint(x: self.view.center.x, y: redView.frame.maxY + 20)
         self.view.addSubview(switcher)
     }
     
-    func changeAnchorPoint(switcher: UISwitch) {
-        if (switcher.on) {
+    func changeAnchorPoint(_ switcher: UISwitch) {
+        if (switcher.isOn) {
             
             //adjust anchor points
             self.greenView.layer.zPosition = 1.0;

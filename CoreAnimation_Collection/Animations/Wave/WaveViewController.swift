@@ -12,14 +12,14 @@ import AVFoundation
 class WaveViewController: UIViewController {
 
     lazy var recorder: AVAudioRecorder? = {
-        let url = NSURL.fileURLWithPath("/dev/null")
-        let settings: [String : AnyObject] = [AVSampleRateKey: 44100.0, AVFormatIDKey: Int(kAudioFormatAppleLossless),
-            AVNumberOfChannelsKey: 2, AVEncoderAudioQualityKey: 0]
+        let url = URL(fileURLWithPath: "/dev/null")
+        let settings: [String : AnyObject] = [AVSampleRateKey: 44100.0 as AnyObject, AVFormatIDKey: Int(kAudioFormatAppleLossless) as AnyObject,
+            AVNumberOfChannelsKey: 2 as AnyObject, AVEncoderAudioQualityKey: 0 as AnyObject]
         do {
-            let recorder = try AVAudioRecorder.init(URL: url, settings: settings)
+            let recorder = try AVAudioRecorder.init(url: url, settings: settings)
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
             recorder.prepareToRecord()
-            recorder.meteringEnabled = true
+            recorder.isMeteringEnabled = true
             recorder.record()
             return recorder
             
@@ -32,23 +32,23 @@ class WaveViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let waveView = WaveView.init(frame: CGRectMake(0, CGRectGetHeight(self.view.bounds)/2.0 - 50.0, CGRectGetWidth(self.view.bounds), 150.0))
-        waveView.waveColor = UIColor.blackColor()
+        let waveView = WaveView.init(frame: CGRect(x: 0, y: self.view.bounds.height/2.0 - 50.0, width: self.view.bounds.width, height: 150.0))
+        waveView.waveColor = UIColor.black
         waveView.maskBorder = true
 
         weak var weakerRecorder = recorder
         waveView.waverLevelCallback { (wavingView) -> Void in
             weakerRecorder?.updateMeters()
-            let normalizedValue = pow(5, (weakerRecorder?.averagePowerForChannel(0))! / 100)
+            let normalizedValue = pow(5, (weakerRecorder?.averagePower(forChannel: 0))! / 100)
             wavingView.setLevel(Double(normalizedValue))
         }
         self.view.addSubview(waveView)
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
    
     }
     

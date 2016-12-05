@@ -11,19 +11,19 @@ import GLKit
 
 class AffineTransformController: UIViewController {
 
-    let layerView = UIImageView.init(image: R.image.snowman)
+    let layerView = UIImageView.init(image: R.image.snowman())
     let transformSegment = UISegmentedControl.init(items: ["rotation45","combineTransform","MakeShear"])
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let imageSize = layerView.image?.size
-        layerView.backgroundColor = UIColor.whiteColor()
-        layerView.frame = CGRectMake(50, 50, (imageSize?.width)!, (imageSize?.height)!)
+        layerView.backgroundColor = UIColor.white
+        layerView.frame = CGRect(x: 50, y: 50, width: (imageSize?.width)!, height: (imageSize?.height)!)
         self.view.addSubview(layerView)
         
-        transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: #selector(AffineTransformController.changeTransform(_:)), forControlEvents: .ValueChanged)
+        transformSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
+        transformSegment.addTarget(self, action: #selector(AffineTransformController.changeTransform(_:)), for: .valueChanged)
         self.view.addSubview(transformSegment)
         
         
@@ -31,10 +31,10 @@ class AffineTransformController: UIViewController {
         changeTransform(transformSegment)
     }
     
-    func changeTransform(segment: UISegmentedControl) {
+    func changeTransform(_ segment: UISegmentedControl) {
         let selecedIndex = segment.selectedSegmentIndex
-        let title = segment.titleForSegmentAtIndex(selecedIndex)!
-        var transform = CGAffineTransformIdentity;
+        let title = segment.titleForSegment(at: selecedIndex)!
+        var transform = CGAffineTransform.identity;
 
         if (title.hasPrefix("rotation45")) {
             transform = rotation45Transform()
@@ -50,25 +50,25 @@ class AffineTransformController: UIViewController {
     
     func rotation45Transform() -> CGAffineTransform {
         //rotate the layer 45 degrees
-       return CGAffineTransformMakeRotation(CGFloat(M_PI_4))
+       return CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
     }
     
     func combineTransform() -> CGAffineTransform {
-        var transform = CGAffineTransformIdentity;
+        var transform = CGAffineTransform.identity;
         
         //scale by 50%
-        transform = CGAffineTransformScale(transform, 0.5, 0.5);
+        transform = transform.scaledBy(x: 0.5, y: 0.5);
         
         //rotate by 30 degrees
-        transform = CGAffineTransformRotate(transform, CGFloat( M_PI / 180.0 * 30.0));
+        transform = transform.rotated(by: CGFloat( M_PI / 180.0 * 30.0));
         
         //translate by 200 points
-        transform = CGAffineTransformTranslate(transform, 200, 0);
+        transform = transform.translatedBy(x: 200, y: 0);
         return transform
     }
     
-    func CGAffineTransformMakeShear(x: CGFloat,y: CGFloat) -> CGAffineTransform {
-        var transform = CGAffineTransformIdentity;
+    func CGAffineTransformMakeShear(_ x: CGFloat,y: CGFloat) -> CGAffineTransform {
+        var transform = CGAffineTransform.identity;
         transform.c = -x;
         transform.b = y;
         return transform;
@@ -79,24 +79,24 @@ class AffineTransformController: UIViewController {
 /// 设置M34实现透视投影
 class CATransform3DM34Controller: UIViewController {
 
-    let layerView = UIImageView.init(image: R.image.snowman)
+    let layerView = UIImageView.init(image: R.image.snowman())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let imageSize = layerView.image?.size
-        layerView.backgroundColor = UIColor.whiteColor()
-        layerView.frame = CGRectMake(50, 90, (imageSize?.width)!, (imageSize?.height)!)
+        layerView.backgroundColor = UIColor.white
+        layerView.frame = CGRect(x: 50, y: 90, width: (imageSize?.width)!, height: (imageSize?.height)!)
         self.view.addSubview(layerView)
         
         let transformSegment = UISegmentedControl.init(items: ["透视off","透视on"])
-        transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: #selector(CATransform3DM34Controller.changeSwitch(_:)), forControlEvents: .ValueChanged)
+        transformSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
+        transformSegment.addTarget(self, action: #selector(CATransform3DM34Controller.changeSwitch(_:)), for: .valueChanged)
         self.view.addSubview(transformSegment)
 
     }
     
-    func changeSwitch(segment: UISegmentedControl) {
+    func changeSwitch(_ segment: UISegmentedControl) {
         
         var transform = CATransform3DIdentity;
         if (segment.selectedSegmentIndex != 0) {
@@ -114,16 +114,16 @@ class CATransform3DM34Controller: UIViewController {
 class SublayerTransformController: UIViewController {
     
     let containerView = UIView()
-    let layerView1 = UIImageView.init(frame: CGRectMake(20, 65, 140, 140))
-    let layerView2 = UIImageView.init(frame: CGRectMake(165, 65, 140, 140))
+    let layerView1 = UIImageView.init(frame: CGRect(x: 20, y: 65, width: 140, height: 140))
+    let layerView2 = UIImageView.init(frame: CGRect(x: 165, y: 65, width: 140, height: 140))
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         containerView.frame = self.view.bounds
-        layerView1.image = R.image.snowman
-        layerView2.image = R.image.snowman
-        layerView1.backgroundColor = UIColor.whiteColor()
+        layerView1.image = R.image.snowman()
+        layerView2.image = R.image.snowman()
+        layerView1.backgroundColor = UIColor.white
         layerView2.backgroundColor = layerView1.backgroundColor
         layerView1.center.y = containerView.center.y
         layerView2.center.y = containerView.center.y
@@ -150,31 +150,31 @@ class SublayerTransformController: UIViewController {
 /// DoubleSided 决定视图是否需要绘制背面
 class DoubleSidedController: UIViewController {
     
-    let layerView = UIImageView.init(image: R.image.snowman)
+    let layerView = UIImageView.init(image: R.image.snowman())
     let transformSegment = UISegmentedControl.init(items: ["DoubleSided off","DoubleSided on"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let imageSize = layerView.image?.size
-        layerView.backgroundColor = UIColor.whiteColor()
-        layerView.frame = CGRectMake(50, 90, (imageSize?.width)!, (imageSize?.height)!)
+        layerView.backgroundColor = UIColor.white
+        layerView.frame = CGRect(x: 50, y: 90, width: (imageSize?.width)!, height: (imageSize?.height)!)
         
         self.view.addSubview(layerView)
         
-        transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: #selector(CATransform3DM34Controller.changeSwitch(_:)), forControlEvents: .ValueChanged)
+        transformSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
+        transformSegment.addTarget(self, action: #selector(CATransform3DM34Controller.changeSwitch(_:)), for: .valueChanged)
         self.view.addSubview(transformSegment)
         
     }
 
-    func changeSwitch(segment: UISegmentedControl) {
+    func changeSwitch(_ segment: UISegmentedControl) {
         
         var transform = CATransform3DIdentity;
         if (segment.selectedSegmentIndex != 0) {
-            self.layerView.layer.doubleSided = true
+            self.layerView.layer.isDoubleSided = true
         } else {
-            self.layerView.layer.doubleSided = false
+            self.layerView.layer.isDoubleSided = false
         }
         //rotate by 45 degrees along the Y axis
         transform = CATransform3DRotate(transform, CGFloat(M_PI), 0, 1, 0);
@@ -185,8 +185,8 @@ class DoubleSidedController: UIViewController {
 /// 通过旋转展现扁平化特性
 class flattenController: UIViewController {
     
-    let outerView = UIView.init(frame: CGRectMake(0, 0, 200, 200))
-    let innerView = UIView.init(frame: CGRectMake(50, 50, 100, 100))
+    let outerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+    let innerView = UIView.init(frame: CGRect(x: 50, y: 50, width: 100, height: 100))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -194,19 +194,19 @@ class flattenController: UIViewController {
         self.view.addSubview(outerView)
         outerView.addSubview(innerView)
         
-        outerView.backgroundColor = UIColor.whiteColor()
-        innerView.backgroundColor = UIColor.redColor()
+        outerView.backgroundColor = UIColor.white
+        innerView.backgroundColor = UIColor.red
         outerView.center = self.view.center
         
         let transformSegment = UISegmentedControl.init(items: ["RotateZ ","RotateY","RotateX","Normal"])
 
-        transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: #selector(CATransform3DM34Controller.changeSwitch(_:)), forControlEvents: .ValueChanged)
+        transformSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
+        transformSegment.addTarget(self, action: #selector(CATransform3DM34Controller.changeSwitch(_:)), for: .valueChanged)
         self.view.addSubview(transformSegment)
         
     }
     
-    func changeSwitch(segment: UISegmentedControl) {
+    func changeSwitch(_ segment: UISegmentedControl) {
         let selectedIndex = segment.selectedSegmentIndex
         var outer = CATransform3DIdentity;
         var inner = CATransform3DIdentity;
@@ -236,7 +236,7 @@ class flattenController: UIViewController {
 /// 通过3D布局和计算光源阴影展现固体特征
 class Object3DController: UIViewController {
     
-    let containerView = UIView.init(frame: CGRectMake(0, 0, 300, 300))
+    let containerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
     var faces: [UIView] = []
     let switching = UISwitch()
     
@@ -244,29 +244,29 @@ class Object3DController: UIViewController {
         super.viewDidLoad()
     
         switching.center = CGPoint(x: self.view.center.x,y: self.view.frame.maxY - 50)
-        switching.addTarget(self, action: #selector(Object3DController.rotation(_:)), forControlEvents: .ValueChanged)
+        switching.addTarget(self, action: #selector(Object3DController.rotation(_:)), for: .valueChanged)
 
         self.view.addSubview(switching)
         self.view.addSubview(containerView)
         containerView.center = self.view.center
     
         for i in 0...5 {
-            let cubeFace = UIView.init(frame: CGRectMake(0, 0, 200, 200))
-            cubeFace.backgroundColor = UIColor.whiteColor()
-            let label = UIButton.init(frame: CGRectMake(50, 50, 100, 100))
-            label.setTitle(String(i + 1), forState: .Normal)
-            let color = CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-            let color1 = CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-            let color2 = CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-            label.setTitleColor(UIColor(red: color, green: color1, blue: color2, alpha: 1), forState: .Normal)
-            label.titleLabel?.font = UIFont.systemFontOfSize(22.0)
+            let cubeFace = UIView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+            cubeFace.backgroundColor = UIColor.white
+            let label = UIButton.init(frame: CGRect(x: 50, y: 50, width: 100, height: 100))
+            label.setTitle(String(i + 1), for: UIControlState())
+            let color = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
+            let color1 = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
+            let color2 = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
+            label.setTitleColor(UIColor(red: color, green: color1, blue: color2, alpha: 1), for: UIControlState())
+            label.titleLabel?.font = UIFont.systemFont(ofSize: 22.0)
             if i == 2 {
-                cubeFace.userInteractionEnabled = true
-                label.layer.borderColor = UIColor.purpleColor().CGColor
+                cubeFace.isUserInteractionEnabled = true
+                label.layer.borderColor = UIColor.purple.cgColor
                 label.layer.borderWidth = 1.0
-                label.addTarget(self, action: #selector(Object3DController.changeBackgroundcolor(_:)), forControlEvents: .TouchUpInside)
+                label.addTarget(self, action: #selector(Object3DController.changeBackgroundcolor(_:)), for: .touchUpInside)
             } else {
-                cubeFace.userInteractionEnabled = false
+                cubeFace.isUserInteractionEnabled = false
             }
             
             cubeFace.addSubview(label)
@@ -305,23 +305,23 @@ class Object3DController: UIViewController {
         addFace(5, transform: transform)
     }
     
-    func changeBackgroundcolor(changedButton: UIButton) {
-        changedButton.backgroundColor = UIColor.blueColor()
+    func changeBackgroundcolor(_ changedButton: UIButton) {
+        changedButton.backgroundColor = UIColor.blue
     }
     
-    func addFace(index: Int,transform: CATransform3D) {
+    func addFace(_ index: Int,transform: CATransform3D) {
         self.containerView.addSubview(self.faces[index])
         
         let containerSize = self.containerView.bounds.size;
-        self.faces[index].center = CGPointMake(containerSize.width / 2.0,
-            containerSize.height / 2.0);
+        self.faces[index].center = CGPoint(x: containerSize.width / 2.0,
+            y: containerSize.height / 2.0);
         
         self.faces[index].layer.transform = transform
         //apply lighting
         self.applyLightingToFace(self.faces[index].layer)
     }
     
-    func matrixFrom3DTransformation(transform: CATransform3D) -> GLKMatrix4 {
+    func matrixFrom3DTransformation(_ transform: CATransform3D) -> GLKMatrix4 {
     
         let matrix = GLKMatrix4Make(Float(transform.m11), Float(transform.m12), Float(transform.m13), Float(transform.m14),
         Float(transform.m21), Float(transform.m22), Float(transform.m23), Float(transform.m24),
@@ -331,7 +331,7 @@ class Object3DController: UIViewController {
         return matrix;
     }
     
-    func applyLightingToFace(face: CALayer) {
+    func applyLightingToFace(_ face: CALayer) {
         //add lighting layer
         let layer = CALayer()
         layer.frame = face.bounds;
@@ -356,13 +356,13 @@ class Object3DController: UIViewController {
         //set lighting layer opacity
         let shadow: CGFloat = 1.0 + CGFloat(dotProduct) - 0.5;
         let color = UIColor.init(white: 0, alpha: shadow)
-        layer.backgroundColor = color.CGColor;
+        layer.backgroundColor = color.cgColor;
     }
     
-    func rotation(switcher: UISwitch) {
+    func rotation(_ switcher: UISwitch) {
         //set up the container sublayer transform
         var perspective = CATransform3DIdentity;
-        if switcher.on {
+        if switcher.isOn {
             perspective.m34 = -1.0 / 500.0;
             perspective = CATransform3DRotate(perspective, -CGFloat(M_PI_4), 1, 0, 0);
             perspective = CATransform3DRotate(perspective, -CGFloat(M_PI_4), 0, 1, 0);

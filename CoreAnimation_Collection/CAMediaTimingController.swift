@@ -8,43 +8,43 @@
 
 import UIKit
 
-class DurationRepeatCountController: UIViewController {
+class DurationRepeatCountController: UIViewController, CAAnimationDelegate {
     
     let shipLayer = CALayer();
-    let durationField = UITextField.init(frame: CGRectMake(0, 0, 200, 45));
-    let repeatField = UITextField.init(frame: CGRectMake(0, 0, 200, 45));
-    let startButton = UIButton.init(frame: CGRectMake(0, 0, 200, 45));
+    let durationField = UITextField.init(frame: CGRect(x: 0, y: 0, width: 200, height: 45));
+    let repeatField = UITextField.init(frame: CGRect(x: 0, y: 0, width: 200, height: 45));
+    let startButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 45));
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //add the ship
-        shipLayer.frame = CGRectMake(0, 0, 128, 128);
-        shipLayer.position = CGPointMake(150, 150);
-        shipLayer.contents = R.image.ship?.CGImage
+        shipLayer.frame = CGRect(x: 0, y: 0, width: 128, height: 128);
+        shipLayer.position = CGPoint(x: 150, y: 150);
+        shipLayer.contents = R.image.ship()?.cgImage
         self.view.layer.addSublayer(shipLayer);
         
-        startButton.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        startButton.setTitle("start", forState: .Normal)
-        startButton.backgroundColor = UIColor.purpleColor()
-        startButton.addTarget(self, action: #selector(DurationRepeatCountController.start), forControlEvents: .TouchUpInside)
+        startButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
+        startButton.setTitle("start", for: UIControlState())
+        startButton.backgroundColor = UIColor.purple
+        startButton.addTarget(self, action: #selector(DurationRepeatCountController.start), for: .touchUpInside)
         self.view.addSubview(startButton)
         
-        durationField.center = CGPointMake(self.view.center.x, startButton.frame.minY - 50)
+        durationField.center = CGPoint(x: self.view.center.x, y: startButton.frame.minY - 50)
         durationField.placeholder = "duration"
-        durationField.backgroundColor = UIColor.whiteColor()
+        durationField.backgroundColor = UIColor.white
         self.view.addSubview(durationField)
         
-        repeatField.center = CGPointMake(self.view.center.x, durationField.frame.minY - 50)
+        repeatField.center = CGPoint(x: self.view.center.x, y: durationField.frame.minY - 50)
         repeatField.placeholder = "repeatCount"
-        repeatField.backgroundColor = UIColor.whiteColor()
+        repeatField.backgroundColor = UIColor.white
         self.view.addSubview(repeatField)
         
     }
     
-    func setControlsEnable(enabled: Bool) {
+    func setControlsEnable(_ enabled: Bool) {
         for control in [durationField, startButton, repeatField] {
-            control.enabled = enabled
+            control.isEnabled = enabled
             control.alpha = enabled ? 1.0 : 0.25
         }
     }
@@ -65,12 +65,12 @@ class DurationRepeatCountController: UIViewController {
         }
         animation.byValue = (M_PI * 2);
         animation.delegate = self
-        shipLayer.addAnimation(animation, forKey:nil);
+        shipLayer.add(animation, forKey:nil);
         
         setControlsEnable(false)
     }
     
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         setControlsEnable(true)
     }
 }
@@ -82,10 +82,10 @@ class AutoreversesRepeatDurationController: UIViewController {
         
         //add the ship
         let doorLayer = CALayer()
-        doorLayer.frame = CGRectMake(0, 0, 128, 256);
+        doorLayer.frame = CGRect(x: 0, y: 0, width: 128, height: 256);
         doorLayer.position = self.view.center;
-        doorLayer.contents = R.image.door?.CGImage
-        doorLayer.anchorPoint = CGPointMake(0.0, 0.5)
+        doorLayer.contents = R.image.door()?.cgImage
+        doorLayer.anchorPoint = CGPoint(x: 0.0, y: 0.5)
         self.view.layer.addSublayer(doorLayer);
         
         //apply perspective transform
@@ -100,7 +100,7 @@ class AutoreversesRepeatDurationController: UIViewController {
         animation.repeatDuration = Double(1000000)
         animation.autoreverses = true
         animation.toValue = (-M_PI / 2);
-        doorLayer.addAnimation(animation, forKey:nil);
+        doorLayer.add(animation, forKey:nil);
     }
 
 }
@@ -111,63 +111,63 @@ class TimeoffsetSpeedFillmodeController: UIViewController {
     let animationKey = "rotateAnimation"
     let shipLayer = CALayer();
     let bezierPath = UIBezierPath()
-    let speedLabel = UILabel.init(frame: CGRectMake(0, 0, 133, 21))
-    let timeOffsetLabel = UILabel.init(frame: CGRectMake(0, 0, 133, 21));
-    let speedSlider = UISlider.init(frame: CGRectMake(0, 0, 130, 30));
-    let timeOffsetSlider = UISlider.init(frame: CGRectMake(0, 0, 130, 30));
+    let speedLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 133, height: 21))
+    let timeOffsetLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 133, height: 21));
+    let speedSlider = UISlider.init(frame: CGRect(x: 0, y: 0, width: 130, height: 30));
+    let timeOffsetSlider = UISlider.init(frame: CGRect(x: 0, y: 0, width: 130, height: 30));
     let transformSegment = UISegmentedControl.init(items: [kCAFillModeForwards,kCAFillModeBackwards,kCAFillModeBoth,kCAFillModeRemoved])
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //create a path
-        bezierPath.moveToPoint(CGPointMake(0, 150));
-        bezierPath.addCurveToPoint(CGPointMake(300, 150),
-            controlPoint1:CGPointMake(75, 0),
-            controlPoint2:CGPointMake(225, 300));
+        bezierPath.move(to: CGPoint(x: 0, y: 150));
+        bezierPath.addCurve(to: CGPoint(x: 300, y: 150),
+            controlPoint1:CGPoint(x: 75, y: 0),
+            controlPoint2:CGPoint(x: 225, y: 300));
         
         //draw the path using a CAShapeLayer
         let pathLayer = CAShapeLayer()
-        pathLayer.path = bezierPath.CGPath;
-        pathLayer.fillColor = UIColor.clearColor().CGColor;
-        pathLayer.strokeColor = UIColor.redColor().CGColor;
+        pathLayer.path = bezierPath.cgPath;
+        pathLayer.fillColor = UIColor.clear.cgColor;
+        pathLayer.strokeColor = UIColor.red.cgColor;
         pathLayer.lineWidth = 3.0;
         self.view.layer.addSublayer(pathLayer);
         
         //add the ship
-        shipLayer.frame = CGRectMake(0, 0, 64, 64);
-        shipLayer.position = CGPointMake(0, 150);
-        shipLayer.contents = R.image.ship?.CGImage
+        shipLayer.frame = CGRect(x: 0, y: 0, width: 64, height: 64);
+        shipLayer.position = CGPoint(x: 0, y: 150);
+        shipLayer.contents = R.image.ship()?.cgImage
         self.view.layer.addSublayer(shipLayer)
         
-        speedSlider.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
+        speedSlider.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
         speedSlider.maximumValue = 2.0
         speedSlider.minimumValue = 0.0
         speedSlider.value = 1.0
-        speedSlider.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.updateSliders), forControlEvents: .ValueChanged)
+        speedSlider.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.updateSliders), for: .valueChanged)
         self.view.addSubview(speedSlider)
         
-        speedLabel.center = CGPointMake(self.view.center.x + 130, self.view.frame.maxY - 50)
+        speedLabel.center = CGPoint(x: self.view.center.x + 130, y: self.view.frame.maxY - 50)
         self.view.addSubview(speedLabel)
         
         timeOffsetSlider.maximumValue = 1.0
         timeOffsetSlider.minimumValue = 0.0
         timeOffsetSlider.value = 0.5
-        timeOffsetSlider.center = CGPointMake(self.view.center.x, speedSlider.frame.minY - 30)
-        timeOffsetSlider.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.updateSliders), forControlEvents: .ValueChanged)
+        timeOffsetSlider.center = CGPoint(x: self.view.center.x, y: speedSlider.frame.minY - 30)
+        timeOffsetSlider.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.updateSliders), for: .valueChanged)
         self.view.addSubview(timeOffsetSlider)
         
-        timeOffsetLabel.center = CGPointMake(self.view.center.x + 130, speedSlider.frame.minY - 30)
+        timeOffsetLabel.center = CGPoint(x: self.view.center.x + 130, y: speedSlider.frame.minY - 30)
         self.view.addSubview(timeOffsetLabel)
 
-        let startButton = UIButton.init(frame: CGRectMake(0, 0, 200, 45))
-        startButton.center = CGPointMake(self.view.center.x, timeOffsetLabel.frame.maxY - 60)
-        startButton.setTitle("play", forState: .Normal)
-        startButton.backgroundColor = UIColor.purpleColor()
-        startButton.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.play), forControlEvents: .TouchUpInside)
+        let startButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 45))
+        startButton.center = CGPoint(x: self.view.center.x, y: timeOffsetLabel.frame.maxY - 60)
+        startButton.setTitle("play", for: UIControlState())
+        startButton.backgroundColor = UIColor.purple
+        startButton.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.play), for: .touchUpInside)
         self.view.addSubview(startButton)
         
-        transformSegment.center = CGPointMake(self.view.center.x, startButton.frame.minY - 50)
+        transformSegment.center = CGPoint(x: self.view.center.x, y: startButton.frame.minY - 50)
         self.view.addSubview(transformSegment)
 
         
@@ -189,11 +189,11 @@ class TimeoffsetSpeedFillmodeController: UIViewController {
         animation.timeOffset = CFTimeInterval(timeOffsetSlider.value)
         animation.speed = speedSlider.value
         animation.duration = 1.0;
-        animation.path = bezierPath.CGPath;
+        animation.path = bezierPath.cgPath;
         animation.rotationMode = "auto"
-        animation.removedOnCompletion = false
-        animation.fillMode = transformSegment.titleForSegmentAtIndex(transformSegment.selectedSegmentIndex)!;
-        shipLayer.addAnimation(animation, forKey:animationKey);
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = transformSegment.titleForSegment(at: transformSegment.selectedSegmentIndex)!;
+        shipLayer.add(animation, forKey:animationKey);
         
     }
 
@@ -208,10 +208,10 @@ class ManualAnimationViewController: UIViewController {
         super.viewDidLoad()
         
         //add the ship
-        doorLayer.frame = CGRectMake(0, 0, 128, 256);
+        doorLayer.frame = CGRect(x: 0, y: 0, width: 128, height: 256);
         doorLayer.position = self.view.center;
-        doorLayer.contents = R.image.door?.CGImage
-        doorLayer.anchorPoint = CGPointMake(0.0, 0.5)
+        doorLayer.contents = R.image.door()?.cgImage
+        doorLayer.anchorPoint = CGPoint(x: 0.0, y: 0.5)
         self.view.layer.addSublayer(doorLayer);
         
         //apply perspective transform
@@ -232,12 +232,12 @@ class ManualAnimationViewController: UIViewController {
         animation.keyPath = "transform.rotation.y";
         animation.duration = 1.0
         animation.toValue = (-M_PI / 2);
-        doorLayer.addAnimation(animation, forKey:nil);
+        doorLayer.add(animation, forKey:nil);
     }
 
-    func pan(pan: UIPanGestureRecognizer) {
+    func pan(_ pan: UIPanGestureRecognizer) {
         //get horizontal component of pan gesture
-        var x = pan.translationInView(self.view).x
+        var x = pan.translation(in: self.view).x
      
         //convert from points to animation duration
         //using a reasonable scale factor
@@ -249,7 +249,7 @@ class ManualAnimationViewController: UIViewController {
         self.doorLayer.timeOffset = timeOffset;
         
         //reset pan gesture
-        pan.setTranslation(CGPointZero, inView:self.view);
+        pan.setTranslation(CGPoint.zero, in:self.view);
         
     }
 }

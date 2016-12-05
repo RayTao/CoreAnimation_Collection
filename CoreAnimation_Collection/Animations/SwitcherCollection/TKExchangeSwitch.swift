@@ -43,24 +43,24 @@ class TKExchangeSwitch:  TKBaseSwitch{
         super.setUpView()
         
         let radius = self.bounds.height/2 - lineWidth
-        let position = CGPointMake(radius, radius + lineWidth)
+        let position = CGPoint(x: radius, y: radius + lineWidth)
         
         let backLayerPath = UIBezierPath()
-        backLayerPath.moveToPoint(CGPointMake(lineWidth, 0))
-        backLayerPath.addLineToPoint(CGPointMake(self.bounds.width - 4 * lineWidth, 0))
+        backLayerPath.move(to: CGPoint(x: lineWidth, y: 0))
+        backLayerPath.addLine(to: CGPoint(x: self.bounds.width - 4 * lineWidth, y: 0))
         
         backgroundLayer.position = position
-        backgroundLayer.fillColor = switchColor.CGColor
-        backgroundLayer.strokeColor = switchColor.CGColor
+        backgroundLayer.fillColor = switchColor.cgColor
+        backgroundLayer.strokeColor = switchColor.cgColor
         backgroundLayer.lineWidth = self.bounds.height
         backgroundLayer.lineCap = kCALineCapRound
-        backgroundLayer.path = backLayerPath.CGPath
+        backgroundLayer.path = backLayerPath.cgPath
         self.layer.addSublayer(backgroundLayer)
         
         let swichRadius = self.bounds.height - lineWidth
-        swichControl = TKExchangeCircleView(frame: CGRectMake(lineWidth/2, lineWidth/2, swichRadius, swichRadius))
-        swichControl.onLayer.fillColor = onColor.CGColor
-        swichControl.offLayer.fillColor = offColor.CGColor
+        swichControl = TKExchangeCircleView(frame: CGRect(x: lineWidth/2, y: lineWidth/2, width: swichRadius, height: swichRadius))
+        swichControl.onLayer.fillColor = onColor.cgColor
+        swichControl.offLayer.fillColor = offColor.cgColor
         self.addSubview(swichControl)
     }
     
@@ -71,7 +71,7 @@ class TKExchangeSwitch:  TKBaseSwitch{
     }
     
     // MARK: - Animate
-    func changeValueAnimate(turnOn:Bool, duration:Double){
+    func changeValueAnimate(_ turnOn:Bool, duration:Double){
         
         let keyTimes = [0,0.4,0.6,1]
         var frame    = self.swichControl.frame
@@ -79,28 +79,28 @@ class TKExchangeSwitch:  TKBaseSwitch{
         
         let swichControlStrokeStartAnim      = CAKeyframeAnimation(keyPath:"strokeStart")
         swichControlStrokeStartAnim.values   = [0,0.45,0.45, 0]
-        swichControlStrokeStartAnim.keyTimes = keyTimes
+        swichControlStrokeStartAnim.keyTimes = keyTimes as [NSNumber]?
         swichControlStrokeStartAnim.duration = duration
-        swichControlStrokeStartAnim.removedOnCompletion = true
+        swichControlStrokeStartAnim.isRemovedOnCompletion = true
         
         let swichControlStrokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         swichControlStrokeEndAnim.values   = [1,0.55,0.55, 1]
-        swichControlStrokeEndAnim.keyTimes = keyTimes
+        swichControlStrokeEndAnim.keyTimes = keyTimes as [NSNumber]?
         swichControlStrokeEndAnim.duration = duration
-        swichControlStrokeEndAnim.removedOnCompletion = true
+        swichControlStrokeEndAnim.isRemovedOnCompletion = true
         
         let swichControlChangeStateAnim : CAAnimationGroup = CAAnimationGroup()
         swichControlChangeStateAnim.animations = [swichControlStrokeStartAnim,swichControlStrokeEndAnim]
         swichControlChangeStateAnim.fillMode = kCAFillModeForwards
-        swichControlChangeStateAnim.removedOnCompletion = false
+        swichControlChangeStateAnim.isRemovedOnCompletion = false
         swichControlChangeStateAnim.duration = duration
         
-        backgroundLayer.addAnimation(swichControlChangeStateAnim, forKey: "SwitchBackground")
+        backgroundLayer.add(swichControlChangeStateAnim, forKey: "SwitchBackground")
         swichControl.exchangeAnimate(turnOn, duration: duration)
         
-        UIView.animateWithDuration(duration) { () -> Void in
+        UIView.animate(withDuration: duration, animations: { () -> Void in
             self.swichControl.frame = frame
-        }
+        }) 
     }
 }
 
@@ -125,29 +125,29 @@ class TKExchangeCircleView : UIView {
     
     
     // MARK: - Private Func
-    private func setUpLayer(){
+    fileprivate func setUpLayer(){
         let radius = min(self.bounds.width, self.bounds.height)
         
-        offLayer.frame = CGRectMake(0, 0, radius, radius)
-        offLayer.path = UIBezierPath(ovalInRect:CGRectMake(0, 0, radius, radius)).CGPath;
+        offLayer.frame = CGRect(x: 0, y: 0, width: radius, height: radius)
+        offLayer.path = UIBezierPath(ovalIn:CGRect(x: 0, y: 0, width: radius, height: radius)).cgPath;
         offLayer.transform = CATransform3DMakeScale(0, 0, 1)
         self.layer.addSublayer(offLayer)
         
-        onLayer.frame = CGRectMake(0, 0, radius, radius)
-        onLayer.path =  UIBezierPath(ovalInRect:CGRectMake(0, 0, radius, radius)).CGPath;
+        onLayer.frame = CGRect(x: 0, y: 0, width: radius, height: radius)
+        onLayer.path =  UIBezierPath(ovalIn:CGRect(x: 0, y: 0, width: radius, height: radius)).cgPath;
         self.layer.addSublayer(onLayer)
     }
     
     
-    func exchangeAnimate(turnOn:Bool,duration:Double){
+    func exchangeAnimate(_ turnOn:Bool,duration:Double){
     
         let fillMode : String = kCAFillModeForwards
         
-        let hideValues = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 1)),
-                          NSValue(CATransform3D: CATransform3DIdentity)]
+        let hideValues = [NSValue(caTransform3D: CATransform3DMakeScale(0, 0, 1)),
+                          NSValue(caTransform3D: CATransform3DIdentity)]
         
-        let showValues = [NSValue(CATransform3D: CATransform3DIdentity),
-                          NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 1))]
+        let showValues = [NSValue(caTransform3D: CATransform3DIdentity),
+                          NSValue(caTransform3D: CATransform3DMakeScale(0, 0, 1))]
         
         let showTimingFunction = CAMediaTimingFunction(controlPoints: 0, 0, 0, 1)
         let hideTimingFunction = CAMediaTimingFunction(controlPoints: 0, 0, 1, 1)
@@ -160,24 +160,24 @@ class TKExchangeCircleView : UIView {
         ////OffLayer animation
         let offLayerTransformAnim            = CAKeyframeAnimation(keyPath:"transform")
         offLayerTransformAnim.values         = turnOn ? hideValues : showValues
-        offLayerTransformAnim.keyTimes       = keyTimes
+        offLayerTransformAnim.keyTimes       = keyTimes as [NSNumber]?
         offLayerTransformAnim.duration       = duration
         offLayerTransformAnim.timingFunction = turnOn ? hideTimingFunction : showTimingFunction
         offLayerTransformAnim.fillMode       = fillMode
-        offLayerTransformAnim.removedOnCompletion = false
+        offLayerTransformAnim.isRemovedOnCompletion = false
         
         ////OnLayer animation
         let onLayerTransformAnim      = CAKeyframeAnimation(keyPath:"transform")
         onLayerTransformAnim.values   = turnOn ? showValues : hideValues
-        onLayerTransformAnim.keyTimes = keyTimes
+        onLayerTransformAnim.keyTimes = keyTimes as [NSNumber]?
         onLayerTransformAnim.duration = duration
         offLayerTransformAnim.timingFunction = turnOn ? showTimingFunction : hideTimingFunction
         onLayerTransformAnim.fillMode = fillMode
-        onLayerTransformAnim.removedOnCompletion = false
+        onLayerTransformAnim.isRemovedOnCompletion = false
         
         
-        onLayer.addAnimation(onLayerTransformAnim, forKey: "OnAnimate")
-        offLayer.addAnimation(offLayerTransformAnim, forKey: "OffAnimate")
+        onLayer.add(onLayerTransformAnim, forKey: "OnAnimate")
+        offLayer.add(offLayerTransformAnim, forKey: "OffAnimate")
     }
     
 }

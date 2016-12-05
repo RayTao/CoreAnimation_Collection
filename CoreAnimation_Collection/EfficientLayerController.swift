@@ -17,20 +17,20 @@ class OffscreenRenderController: UIViewController {
         super.viewDidLoad()
         
         
-        transformSegment.center = CGPointMake(self.view.center.x, self.view.frame.maxY - 50)
-        transformSegment.addTarget(self, action: #selector(OffscreenRenderController.switchfuc(_:)), forControlEvents: .ValueChanged)
+        transformSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
+        transformSegment.addTarget(self, action: #selector(OffscreenRenderController.switchfuc(_:)), for: .valueChanged)
         self.view.addSubview(transformSegment)
         
-        self.view.layer.addSublayer(shapeLayerRoundedCorners(CGRectMake(50, 150, 100, 100)))
-        self.view.layer.addSublayer(cornerRadiusAndMask(CGRectMake(50, 150 + 100, 100, 100)))
+        self.view.layer.addSublayer(shapeLayerRoundedCorners(CGRect(x: 50, y: 150, width: 100, height: 100)))
+        self.view.layer.addSublayer(cornerRadiusAndMask(CGRect(x: 50, y: 150 + 100, width: 100, height: 100)))
         //contentsCenter: CGRectMake(0.5, 0.5, 0, 0))保证边框不变形，不影响性能
-        self.view.layer.addSublayer(imageBackLayer(CGRectMake(50 + 110, 150, 100, 100),contentsCenter: CGRectMake(0.5, 0.5, 0, 0)))
+        self.view.layer.addSublayer(imageBackLayer(CGRect(x: 50 + 110, y: 150, width: 100, height: 100),contentsCenter: CGRect(x: 0.5, y: 0.5, width: 0, height: 0)))
         
-        self.view.layer.addSublayer(maskRoundedLayer(CGRectMake(50 + 110, 150 + 100, 100, 100)))
+        self.view.layer.addSublayer(maskRoundedLayer(CGRect(x: 50 + 110, y: 150 + 100, width: 100, height: 100)))
 
     }
 
-    func switchfuc(segment: UISegmentedControl) {
+    func switchfuc(_ segment: UISegmentedControl) {
         let index = segment.selectedSegmentIndex
         if let _ = self.view.layer.sublayers?.first {
             for sublayer in self.view.layer.sublayers! {
@@ -42,10 +42,10 @@ class OffscreenRenderController: UIViewController {
         
         switch (index){
         case 0:
-            self.view.layer.addSublayer(shapeLayerRoundedCorners(CGRectMake(50, 150, 100, 100)))
-            self.view.layer.addSublayer(cornerRadiusAndMask(CGRectMake(50, 150 + 100, 100, 100)))
+            self.view.layer.addSublayer(shapeLayerRoundedCorners(CGRect(x: 50, y: 150, width: 100, height: 100)))
+            self.view.layer.addSublayer(cornerRadiusAndMask(CGRect(x: 50, y: 150 + 100, width: 100, height: 100)))
         case 1:
-            self.view.layer.addSublayer(imageBackLayer(CGRectMake(50 + 110, 150, 100, 100),contentsCenter: CGRectMake(0.5, 0.5, 0, 0)))
+            self.view.layer.addSublayer(imageBackLayer(CGRect(x: 50 + 110, y: 150, width: 100, height: 100),contentsCenter: CGRect(x: 0.5, y: 0.5, width: 0, height: 0)))
         default:
             break
         }
@@ -54,22 +54,22 @@ class OffscreenRenderController: UIViewController {
     
     
     //
-    func imageBackLayer(frame: CGRect,contentsCenter: CGRect) -> CALayer {
+    func imageBackLayer(_ frame: CGRect,contentsCenter: CGRect) -> CALayer {
         let blueLayer = CALayer()
         blueLayer.frame = frame
         blueLayer.contentsCenter = contentsCenter
-        blueLayer.contentsScale = UIScreen.mainScreen().scale
-        blueLayer.contents = R.image.rounded?.CGImage
+        blueLayer.contentsScale = UIScreen.main.scale
+        blueLayer.contents = R.image.rounded()?.cgImage
         blueLayer.masksToBounds = true
         
         blueLayer.addSublayer(whiteLayer())
         return blueLayer
     }
     
-    func cornerRadiusAndMask(frame: CGRect) -> CALayer {
+    func cornerRadiusAndMask(_ frame: CGRect) -> CALayer {
         let redLayer = CALayer()
         redLayer.frame = frame
-        redLayer.backgroundColor = UIColor.redColor().CGColor
+        redLayer.backgroundColor = UIColor.red.cgColor
         redLayer.cornerRadius = 20.0
         redLayer.masksToBounds = true
         
@@ -77,17 +77,17 @@ class OffscreenRenderController: UIViewController {
         return redLayer
     }
     
-    func maskRoundedLayer(frame: CGRect) -> CALayer {
+    func maskRoundedLayer(_ frame: CGRect) -> CALayer {
         
         let layer = CALayer()
         layer.frame = frame
         layer.masksToBounds = true
-        layer.backgroundColor = UIColor.blueColor().CGColor
+        layer.backgroundColor = UIColor.blue.cgColor
         
         let blueLayer = CAShapeLayer()
         blueLayer.frame = layer.bounds
-        blueLayer.fillColor = UIColor.blueColor().CGColor
-        blueLayer.path = UIBezierPath.init(roundedRect: CGRectMake(0, 0, frame.width, frame.height), cornerRadius: 20.0).CGPath
+        blueLayer.fillColor = UIColor.blue.cgColor
+        blueLayer.path = UIBezierPath.init(roundedRect: CGRect(x: 0, y: 0, width: frame.width, height: frame.height), cornerRadius: 20.0).cgPath
         
         layer.mask = blueLayer
         
@@ -98,12 +98,12 @@ class OffscreenRenderController: UIViewController {
     /**
      cornerRadius配合masksToBounds使用产生离屏渲染，所以用CAShapeLayer配合masksToBounds达成同样效果
      */
-    func shapeLayerRoundedCorners(frame: CGRect) -> CAShapeLayer {
+    func shapeLayerRoundedCorners(_ frame: CGRect) -> CAShapeLayer {
         
         let blueLayer = CAShapeLayer()
         blueLayer.frame = frame
-        blueLayer.fillColor = UIColor.blueColor().CGColor
-        blueLayer.path = UIBezierPath.init(roundedRect: CGRectMake(0, 0, frame.width, frame.height), cornerRadius: 20.0).CGPath
+        blueLayer.fillColor = UIColor.blue.cgColor
+        blueLayer.path = UIBezierPath.init(roundedRect: CGRect(x: 0, y: 0, width: frame.width, height: frame.height), cornerRadius: 20.0).cgPath
         blueLayer.masksToBounds = true
         
         blueLayer.addSublayer(whiteLayer())
@@ -113,8 +113,8 @@ class OffscreenRenderController: UIViewController {
     
     func whiteLayer() -> CALayer {
         let whiteLayer = CALayer()
-        whiteLayer.frame = CGRectMake(-20, 0, 50, 50)
-        whiteLayer.backgroundColor = UIColor.whiteColor().CGColor
+        whiteLayer.frame = CGRect(x: -20, y: 0, width: 50, height: 50)
+        whiteLayer.backgroundColor = UIColor.white.cgColor
         return whiteLayer
     }
 
@@ -122,7 +122,7 @@ class OffscreenRenderController: UIViewController {
 
 class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
 
-    let scrollView = UIScrollView.init(frame: CGRectMake(0, 0, 320, 560))
+    let scrollView = UIScrollView.init(frame: CGRect(x: 0, y: 0, width: 320, height: 560))
     
     let WIDTH: CGFloat = 100.0
     let HEIGHT: CGFloat = 100.0
@@ -130,7 +130,7 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
     let SIZE: CGFloat = 100.0
     let SPACING: CGFloat = 150.0
     let CAMERA_DISTANCE: CGFloat = 500.0
-    func PERSPECTIVE(z: CGFloat) -> CGFloat {
+    func PERSPECTIVE(_ z: CGFloat) -> CGFloat {
         return CAMERA_DISTANCE/(z + CAMERA_DISTANCE)
     }
     
@@ -139,10 +139,10 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
         self.scrollView.frame = self.view.bounds
-        self.scrollView.contentSize =  CGSizeMake((WIDTH - 1)*SPACING,
-            (HEIGHT - 1)*SPACING);
+        self.scrollView.contentSize =  CGSize(width: (WIDTH - 1)*SPACING,
+            height: (HEIGHT - 1)*SPACING);
         self.scrollView.delegate = self
         self.view.addSubview(self.scrollView)
         
@@ -157,7 +157,7 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
         updateLayers()
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         updateLayers()
     }
@@ -166,11 +166,11 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
         //calculate clipping bounds
         var bounds = self.scrollView.bounds
         bounds.origin = self.scrollView.contentOffset
-        bounds = CGRectInset(bounds, -SIZE/2.0, -SIZE/2.0)
+        bounds = bounds.insetBy(dx: -SIZE/2.0, dy: -SIZE/2.0)
         
         //add existing layers to pool
         if self.scrollView.layer.sublayers != nil {
-            self.recyclePool.addObjectsFromArray(self.scrollView.layer.sublayers!);
+            self.recyclePool.addObjects(from: self.scrollView.layer.sublayers!);
         }
         
         //disable animation
@@ -215,20 +215,20 @@ class InvisiableViewController: UIViewController ,UIScrollViewDelegate {
                     if (layer != nil)
                     {
                         recycled += 1;
-                        self.recyclePool.removeObject(layer!);
+                        self.recyclePool.remove(layer!);
                     }
                     else
                     {
                         //otherwise create a new one
                         layer = CALayer();
-                        layer?.frame = CGRectMake(0, 0, SIZE, SIZE);
+                        layer?.frame = CGRect(x: 0, y: 0, width: SIZE, height: SIZE);
                     }
                     
-                    layer?.position = CGPointMake(x*SPACING, y*SPACING);
+                    layer?.position = CGPoint(x: x*SPACING, y: y*SPACING);
                     layer?.zPosition = -z*SPACING;
                     
                     //set background color
-                    layer?.backgroundColor = UIColor.init(white: 1 - z*(1.0/DEPTH), alpha: 1.0).CGColor;
+                    layer?.backgroundColor = UIColor.init(white: 1 - z*(1.0/DEPTH), alpha: 1.0).cgColor;
                     //attach to scroll view
                     visibleLayers.append(layer!);
                 }

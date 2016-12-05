@@ -8,10 +8,10 @@
 
 import UIKit
 
-typealias ValueChangeHook  = (value:Bool) -> Void
-func CGPointScaleMaker(scale: CGFloat) -> ((CGFloat, CGFloat) -> CGPoint) {
+typealias ValueChangeHook  = (_ value:Bool) -> Void
+func CGPointScaleMaker(_ scale: CGFloat) -> ((CGFloat, CGFloat) -> CGPoint) {
     return { (x, y) in
-        return CGPointMake(x * scale ,y * scale)}
+        return CGPoint(x: x * scale ,y: y * scale)}
 }
 
 
@@ -36,9 +36,9 @@ class TKBaseSwitch: UIControl {
     
     func changeValue(){
         if valueChange != nil{
-            valueChange!(value: isOn)
+            valueChange!(isOn)
         }
-        sendActionsForControlEvents(UIControlEvents.ValueChanged);
+        sendActions(for: UIControlEvents.valueChanged);
         on = !on
     }
 
