@@ -219,7 +219,11 @@ class CATransformLayerViewController: UIViewController {
 
 /// CAGradientLayer渐变图层
 class CAGradientLayerViewController: UIViewController {
+    
     let containerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+    var gradientLayer = CAGradientLayer()
+    let startPoint = UISlider.init(frame: CGRect(x: 0, y: 0, width: 80, height: 41))
+    let endPoint = UISlider.init(frame: CGRect(x: 0, y: 0, width: 80, height: 41))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -227,7 +231,8 @@ class CAGradientLayerViewController: UIViewController {
         self.view.addSubview(containerView)
         containerView.center = self.view.center
         
-        self.containerView.layer.addSublayer(catercornerGradient());
+        self.gradientLayer = catercornerGradient()
+        self.containerView.layer.addSublayer(gradientLayer);
 //        self.containerView.layer.addSublayer(locationsGradient());
 
     

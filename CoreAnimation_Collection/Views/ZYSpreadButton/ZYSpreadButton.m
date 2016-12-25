@@ -8,7 +8,7 @@
 
 #import "ZYSpreadButton.h"
 
-@interface ZYSpreadButton ()
+@interface ZYSpreadButton () <CAAnimationDelegate>
 
 @property (strong, nonatomic) UIDynamicAnimator *animator;
 
@@ -210,7 +210,7 @@
             break;
     }
     
-    CGPoint startOutSidePoint;
+    CGPoint startOutSidePoint = CGPointZero;
     CGFloat startAngle = 0.0;
     for (ZYSpreadSubButton *btn in _subButtons) {
         btn.transform = CGAffineTransformMakeTranslation(1.0, 1.0);

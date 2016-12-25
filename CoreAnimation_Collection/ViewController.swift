@@ -40,8 +40,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ["EfficientDrawViewController"],
         ["EfficientImageViewController"],
         ["OffscreenRenderController","InvisiableViewController"],
-        ["WaveViewController","GooeyViewController",
-            "SwitchersCollectionViewController","ZYSpreadButtonViewController"]
+        ["WaveViewController",
+         "GooeyViewController",
+            "SwitchersCollectionViewController",
+            "ZYSpreadButtonViewController",
+            "OpacityGradientViewController"]
     ]
     var titleArray = [["1.1 CALayer"],
         ["2.1 contentsGravitys\n决定内容在图片中的对齐方式","2.2 ContentsScale and MaskToBounds\n像素和点的比例 是否显示超出边界的内容",
@@ -70,7 +73,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ["12.1 efficient draw view"],
         ["13.1 efficient image"],
         ["14.1 Offscreen-Render","14.2 减少图层"],
-        ["Waveing\n类似siri的波浪","Gooey\n橡皮筋弹性动画","SwitcherCollection\n开关动画合集","ZYSpreadButton"]
+        ["Waveing\n类似siri的波浪","Gooey\n橡皮筋弹性动画","SwitcherCollection\n开关动画合集","ZYSpreadButton","透明渐变"]
     ]
     var headTitle:[String] = ["图层树CALayer",
         "寄宿图contents","图层几何学","视觉效果","图层变换","专属图层","隐式动画",

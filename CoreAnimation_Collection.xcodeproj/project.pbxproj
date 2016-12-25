@@ -56,6 +56,8 @@
 		E4ED01961CF579A3000B2744 /* TKLiquidSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ED01911CF579A3000B2744 /* TKLiquidSwitch.swift */; };
 		E4ED01971CF579A3000B2744 /* TKSimpleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ED01921CF579A3000B2744 /* TKSimpleSwitch.swift */; };
 		E4ED01981CF579A3000B2744 /* TKSmileSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4ED01931CF579A3000B2744 /* TKSmileSwitch.swift */; };
+		E4F2A58D1DF5D1B00088C0CD /* OpacityGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2A58C1DF5D1B00088C0CD /* OpacityGradientView.swift */; };
+		E4F2A5901DF5D3DD0088C0CD /* OpacityGradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2A58F1DF5D3DD0088C0CD /* OpacityGradientViewController.swift */; };
 		E4F8DE141C71750E006DD5C3 /* CAMediaTimingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8DE131C71750E006DD5C3 /* CAMediaTimingController.swift */; };
 		E4F8DE161C71B217006DD5C3 /* CAMediaTimingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F8DE151C71B217006DD5C3 /* CAMediaTimingFunction.swift */; };
 /* End PBXBuildFile section */
@@ -144,6 +146,8 @@
 		E4ED01911CF579A3000B2744 /* TKLiquidSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKLiquidSwitch.swift; sourceTree = "<group>"; };
 		E4ED01921CF579A3000B2744 /* TKSimpleSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSimpleSwitch.swift; sourceTree = "<group>"; };
 		E4ED01931CF579A3000B2744 /* TKSmileSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TKSmileSwitch.swift; sourceTree = "<group>"; };
+		E4F2A58C1DF5D1B00088C0CD /* OpacityGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpacityGradientView.swift; sourceTree = "<group>"; };
+		E4F2A58F1DF5D3DD0088C0CD /* OpacityGradientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpacityGradientViewController.swift; sourceTree = "<group>"; };
 		E4F8DE131C71750E006DD5C3 /* CAMediaTimingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAMediaTimingController.swift; sourceTree = "<group>"; };
 		E4F8DE151C71B217006DD5C3 /* CAMediaTimingFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAMediaTimingFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,6 +244,7 @@
 				E4DF6FA41C74B2E900E2A4A7 /* EfficientLayerController.swift */,
 				E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */,
 				E42F96551C73231700FC1942 /* TimerAnimateViewController.swift */,
+				E4F2A58F1DF5D3DD0088C0CD /* OpacityGradientViewController.swift */,
 				E4550C341C47351C00831886 /* HelloGLKitViewController.h */,
 				E4550C351C47351C00831886 /* HelloGLKitViewController.m */,
 				E45CC43F1C45501000100DD8 /* Views */,
@@ -296,6 +301,7 @@
 		E45CC43F1C45501000100DD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E4F2A5881DF5D1810088C0CD /* OpacityGradientView */,
 				E4DD4D301C7CA33A0023606A /* ZYSpreadButton */,
 				E4C88BEA1C74426500F113FC /* EfficientDrawView */,
 				E45CC4401C45501000100DD8 /* LayerLabel */,
@@ -376,6 +382,14 @@
 				E4DD4D401C7CA4380023606A /* ZYSpreadSubButton.m */,
 			);
 			path = ZYSpreadButton;
+			sourceTree = "<group>";
+		};
+		E4F2A5881DF5D1810088C0CD /* OpacityGradientView */ = {
+			isa = PBXGroup;
+			children = (
+				E4F2A58C1DF5D1B00088C0CD /* OpacityGradientView.swift */,
+			);
+			path = OpacityGradientView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -581,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4F2A58D1DF5D1B00088C0CD /* OpacityGradientView.swift in Sources */,
 				E4B07C861C1E5BC8003C3BA5 /* SwitchersCollectionViewController.swift in Sources */,
 				E4C88BE91C74421600F113FC /* EfficientDrawViewController.swift in Sources */,
 				E4B07C741C1E54CC003C3BA5 /* TabbarMenu.swift in Sources */,
@@ -616,6 +631,7 @@
 				E45CC44B1C45501000100DD8 /* ScrollView.m in Sources */,
 				E4ED01981CF579A3000B2744 /* TKSmileSwitch.swift in Sources */,
 				E49180141C21B3CF0010B224 /* CAlayerAppearanceViewController.swift in Sources */,
+				E4F2A5901DF5D3DD0088C0CD /* OpacityGradientViewController.swift in Sources */,
 				E49180121C21A9170010B224 /* HitTestingViewController.swift in Sources */,
 				E4DD4D371C7CA33A0023606A /* SpreadButton.swift in Sources */,
 				E4B07C721C1E54CC003C3BA5 /* AnimatedButton.swift in Sources */,
