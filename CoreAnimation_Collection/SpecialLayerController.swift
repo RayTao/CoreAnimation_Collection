@@ -222,9 +222,7 @@ class CAGradientLayerViewController: UIViewController {
     
     let containerView = UIView.init(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
     var gradientLayer = CAGradientLayer()
-    let startPoint = UISlider.init(frame: CGRect(x: 0, y: 0, width: 80, height: 41))
-    let endPoint = UISlider.init(frame: CGRect(x: 0, y: 0, width: 80, height: 41))
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -233,10 +231,9 @@ class CAGradientLayerViewController: UIViewController {
         
         self.gradientLayer = catercornerGradient()
         self.containerView.layer.addSublayer(gradientLayer);
-//        self.containerView.layer.addSublayer(locationsGradient());
-
-    
+        
     }
+    
     
     /**
      获取对角线渐变图层
@@ -248,32 +245,19 @@ class CAGradientLayerViewController: UIViewController {
         gradientLayer.frame = self.containerView.bounds;
         
         //set gradient colors
-        gradientLayer.colors = [UIColor.red.cgColor,
-        UIColor.blue.cgColor];
+        gradientLayer.colors = [UIColor.red.cgColor,UIColor.yellow.cgColor,
+                                UIColor.blue.cgColor];
         
-        //set gradient start and end points
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0);
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1);
-        
+        //starPoint endPoint代表渐变范围和方向
+        gradientLayer.startPoint = CGPoint(x: 1, y: 0);
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.5);
+        //locations表示的是颜色在Layer坐标系相对位置处要开始进行渐变颜色了.
+        //默认是nil,整个图层平均渐变例如[0,0.5,1]
+        gradientLayer.locations = [0.25,0.5,0.75];
+
         return gradientLayer;
     }
     
-    /**
-     多重渐变图层,定位颜色区域
-     */
-    func locationsGradient() -> CAGradientLayer
-    {
-        let gradientLayer = catercornerGradient()
-        //set gradient colors
-        gradientLayer.colors = [UIColor.red.cgColor,UIColor.yellow.cgColor,
-            UIColor.blue.cgColor];
-
-        
-        //set locations
-        gradientLayer.locations = [0.0, 0.25, 0.5];
-        
-        return gradientLayer
-    }
 }
 
 /// CAReplicatorLayer: 高效生产相似的图层
