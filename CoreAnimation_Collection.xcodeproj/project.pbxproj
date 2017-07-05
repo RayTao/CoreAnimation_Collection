@@ -19,6 +19,9 @@
 		E404C8171C1986AB007DC001 /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E404C8161C1986AB007DC001 /* WaveView.swift */; };
 		E41604191C1C747300D29926 /* CALayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41604181C1C747300D29926 /* CALayerViewController.swift */; };
 		E41D7B5C1C2179CC000B8ACB /* CoordinateSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41D7B5B1C2179CC000B8ACB /* CoordinateSystemViewController.swift */; };
+		E42368FF1F0CC95300087197 /* UIBezierPath+TextPath.m in Sources */ = {isa = PBXBuildFile; fileRef = E42368FE1F0CC95300087197 /* UIBezierPath+TextPath.m */; };
+		E42369021F0CC9AF00087197 /* NSString+TextAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E42369011F0CC9AF00087197 /* NSString+TextAnimation.m */; };
+		E42369041F0CCBDE00087197 /* TextPathController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42369031F0CCBDE00087197 /* TextPathController.swift */; };
 		E42F96561C73231700FC1942 /* TimerAnimateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42F96551C73231700FC1942 /* TimerAnimateViewController.swift */; };
 		E453262D1C4B941100882B31 /* ExplicitAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E453262C1C4B941100882B31 /* ExplicitAnimationViewController.swift */; };
 		E4550C361C47351C00831886 /* HelloGLKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4550C351C47351C00831886 /* HelloGLKitViewController.m */; };
@@ -101,6 +104,11 @@
 		E404C8161C1986AB007DC001 /* WaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		E41604181C1C747300D29926 /* CALayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerViewController.swift; sourceTree = "<group>"; };
 		E41D7B5B1C2179CC000B8ACB /* CoordinateSystemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateSystemViewController.swift; sourceTree = "<group>"; };
+		E42368FD1F0CC95300087197 /* UIBezierPath+TextPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+TextPath.h"; sourceTree = "<group>"; };
+		E42368FE1F0CC95300087197 /* UIBezierPath+TextPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+TextPath.m"; sourceTree = "<group>"; };
+		E42369001F0CC9AF00087197 /* NSString+TextAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TextAnimation.h"; sourceTree = "<group>"; };
+		E42369011F0CC9AF00087197 /* NSString+TextAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextAnimation.m"; sourceTree = "<group>"; };
+		E42369031F0CCBDE00087197 /* TextPathController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextPathController.swift; sourceTree = "<group>"; };
 		E42F96551C73231700FC1942 /* TimerAnimateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerAnimateViewController.swift; sourceTree = "<group>"; };
 		E453262C1C4B941100882B31 /* ExplicitAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplicitAnimationViewController.swift; sourceTree = "<group>"; };
 		E4550C341C47351C00831886 /* HelloGLKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloGLKitViewController.h; sourceTree = "<group>"; };
@@ -245,6 +253,7 @@
 				E4C88BE81C74421600F113FC /* EfficientDrawViewController.swift */,
 				E42F96551C73231700FC1942 /* TimerAnimateViewController.swift */,
 				E4F2A58F1DF5D3DD0088C0CD /* OpacityGradientViewController.swift */,
+				E42369031F0CCBDE00087197 /* TextPathController.swift */,
 				E4550C341C47351C00831886 /* HelloGLKitViewController.h */,
 				E4550C351C47351C00831886 /* HelloGLKitViewController.m */,
 				E45CC43F1C45501000100DD8 /* Views */,
@@ -282,6 +291,7 @@
 		E404C8121C198650007DC001 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				E42368FC1F0CC92200087197 /* TextPatch */,
 				E4B07C751C1E56C9003C3BA5 /* SwitcherCollection */,
 				E4B07C6E1C1E54CC003C3BA5 /* Gooey */,
 				E404C8131C198650007DC001 /* Wave */,
@@ -296,6 +306,17 @@
 				E404C8161C1986AB007DC001 /* WaveView.swift */,
 			);
 			path = Wave;
+			sourceTree = "<group>";
+		};
+		E42368FC1F0CC92200087197 /* TextPatch */ = {
+			isa = PBXGroup;
+			children = (
+				E42368FD1F0CC95300087197 /* UIBezierPath+TextPath.h */,
+				E42368FE1F0CC95300087197 /* UIBezierPath+TextPath.m */,
+				E42369001F0CC9AF00087197 /* NSString+TextAnimation.h */,
+				E42369011F0CC9AF00087197 /* NSString+TextAnimation.m */,
+			);
+			path = TextPatch;
 			sourceTree = "<group>";
 		};
 		E45CC43F1C45501000100DD8 /* Views */ = {
@@ -536,9 +557,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CoreAnimation_Collection/Pods-CoreAnimation_Collection-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -551,13 +575,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoreAnimation_Collection-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ACECDD182E45BBA439594A59 /* [CP] Copy Pods Resources */ = {
@@ -604,7 +631,9 @@
 				E404C7E71C1973B0007DC001 /* ViewController.swift in Sources */,
 				E4ED01941CF579A3000B2744 /* TKBaseSwitcher.swift in Sources */,
 				E4A292921C1C881C004835EB /* R.generated.swift in Sources */,
+				E42369041F0CCBDE00087197 /* TextPathController.swift in Sources */,
 				E404C7E51C1973B0007DC001 /* AppDelegate.swift in Sources */,
+				E42368FF1F0CC95300087197 /* UIBezierPath+TextPath.m in Sources */,
 				E4F8DE161C71B217006DD5C3 /* CAMediaTimingFunction.swift in Sources */,
 				E4F8DE141C71750E006DD5C3 /* CAMediaTimingController.swift in Sources */,
 				E453262D1C4B941100882B31 /* ExplicitAnimationViewController.swift in Sources */,
@@ -633,6 +662,7 @@
 				E49180141C21B3CF0010B224 /* CAlayerAppearanceViewController.swift in Sources */,
 				E4F2A5901DF5D3DD0088C0CD /* OpacityGradientViewController.swift in Sources */,
 				E49180121C21A9170010B224 /* HitTestingViewController.swift in Sources */,
+				E42369021F0CC9AF00087197 /* NSString+TextAnimation.m in Sources */,
 				E4DD4D371C7CA33A0023606A /* SpreadButton.swift in Sources */,
 				E4B07C721C1E54CC003C3BA5 /* AnimatedButton.swift in Sources */,
 				E40450311C3CAA4000F88AAF /* TransformController.swift in Sources */,

@@ -113,7 +113,7 @@ class WaveView: UIView {
                 //Thanks to https://github.com/stefanceriu/SCSiriWaveformView
                 // We use a parable to scale the sinus wave, that has its peak in the middle of the view.
                 let scaling = -pow(x / waveMid - 1, 2) + 1  // make center bigger
-                var y = scaling * self.maxAmplitude * CGFloat(normedAmplitude) * CGFloat(sinf(Float(2 * CGFloat(M_PI)*(x / self.waveWidth) * frequency + phase))) + (self.waveHeight * 0.5)
+                var y = scaling * self.maxAmplitude * CGFloat(normedAmplitude) * CGFloat(sinf(Float(2 * CGFloat(Double.pi)*(x / self.waveWidth) * frequency + phase))) + (self.waveHeight * 0.5)
                 y /= 3.0
                 if (x==0) {
                     wavelinePath.move(to: CGPoint(x: x, y: y))

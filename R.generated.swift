@@ -10,7 +10,7 @@ import UIKit
 /// This `R` struct is generated and contains references to static resources.
 struct R: Rswift.Validatable {
   fileprivate static let applicationLocale = hostingBundle.preferredLocalizations.first.flatMap(Locale.init) ?? Locale.current
-  fileprivate static let hostingBundle = Bundle(identifier: "com.Ray.CoreAnimation-Collection") ?? Bundle.main
+  fileprivate static let hostingBundle = Bundle(for: R.Class.self)
   
   static func validate() throws {
     try intern.validate()
@@ -56,7 +56,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 96 images.
+  /// This `R.image` struct is generated, and contains static references to 97 images.
   struct image {
     /// Image `Anchor`.
     static let anchor = Rswift.ImageResource(bundle: R.hostingBundle, name: "Anchor")
@@ -232,6 +232,8 @@ struct R: Rswift.Validatable {
     static let juice_highlight = Rswift.ImageResource(bundle: R.hostingBundle, name: "juice_highlight")
     /// Image `juice`.
     static let juice = Rswift.ImageResource(bundle: R.hostingBundle, name: "juice")
+    /// Image `pen`.
+    static let pen = Rswift.ImageResource(bundle: R.hostingBundle, name: "pen")
     /// Image `pencil_highlight`.
     static let pencil_highlight = Rswift.ImageResource(bundle: R.hostingBundle, name: "pencil_highlight")
     /// Image `pencil`.
@@ -686,6 +688,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.juice_highlight, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "pen", bundle: ..., traitCollection: ...)`
+    static func pen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.pen, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "pencil", bundle: ..., traitCollection: ...)`
     static func pencil(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.pencil, compatibleWith: traitCollection)
@@ -782,6 +789,8 @@ struct R: Rswift.Validatable {
     
     fileprivate init() {}
   }
+  
+  fileprivate class Class {}
   
   fileprivate init() {}
 }

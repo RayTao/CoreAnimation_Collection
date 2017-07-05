@@ -76,7 +76,7 @@ class ZYSpreadButtonViewController: UIViewController {
         
         
         //you can assign the Blocks like this
-        zySpreadButton?.buttonWillSpreadBlock = { print("\($0?.frame.maxY) will spread") }
+        zySpreadButton?.buttonWillSpreadBlock = { print("\(String(describing: $0?.frame.maxY)) will spread") }
         zySpreadButton?.buttonDidSpreadBlock = { _ in print("did spread") }
         zySpreadButton?.buttonWillCloseBlock = { _ in print("will closed") }
         zySpreadButton?.buttonDidCloseBlock = { _ in print("did closed") }

@@ -9,7 +9,7 @@
 import UIKit
 
 
-let π = CGFloat(M_PI)
+let π = CGFloat(Double.pi)
 
 enum SpreadDirection {
     case spreadDirectionTop

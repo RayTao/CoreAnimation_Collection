@@ -144,7 +144,7 @@ class RotationViewController: UIViewController {
         let animation = CABasicAnimation();
         animation.keyPath = "transform.rotation.x";
         animation.duration = 2.0;
-        animation.byValue = (M_PI * 2);
+        animation.byValue = (Double.pi * 2);
         shipLayer.add(animation, forKey:nil);
         
     }
@@ -352,7 +352,7 @@ class CustomTransitionController: UIViewController {
         UIView.animate(withDuration: 1.0, animations: { () -> Void in
             //scale, rotate and fade the view
             var transform = CGAffineTransform(scaleX: 0.01, y: 0.01);
-            transform = transform.rotated(by: CGFloat(M_PI_2));
+            transform = transform.rotated(by: CGFloat(Double.pi / 2));
             coverView.transform = transform;
             coverView.alpha = 0.0;
             

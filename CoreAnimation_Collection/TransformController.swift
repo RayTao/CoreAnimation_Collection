@@ -50,7 +50,7 @@ class AffineTransformController: UIViewController {
     
     func rotation45Transform() -> CGAffineTransform {
         //rotate the layer 45 degrees
-       return CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+       return CGAffineTransform(rotationAngle: CGFloat(Double.pi / 4))
     }
     
     func combineTransform() -> CGAffineTransform {
@@ -60,7 +60,7 @@ class AffineTransformController: UIViewController {
         transform = transform.scaledBy(x: 0.5, y: 0.5);
         
         //rotate by 30 degrees
-        transform = transform.rotated(by: CGFloat( M_PI / 180.0 * 30.0));
+        transform = transform.rotated(by: CGFloat( Double.pi / 180.0 * 30.0));
         
         //translate by 200 points
         transform = transform.translatedBy(x: 200, y: 0);
@@ -103,7 +103,7 @@ class CATransform3DM34Controller: UIViewController {
             transform.m34 = -1.0 / 500.0
         }
         //rotate by 45 degrees along the Y axis
-        transform = CATransform3DRotate(transform, CGFloat(M_PI_4), 0, 1, 0);
+        transform = CATransform3DRotate(transform, CGFloat(Double.pi / 4), 0, 1, 0);
         self.layerView.layer.transform = transform;
     
     
@@ -138,11 +138,11 @@ class SublayerTransformController: UIViewController {
         self.containerView.layer.sublayerTransform = perspective;
         
         //rotate layerView1 by 45 degrees along the Y axis
-        let transform1 = CATransform3DMakeRotation(CGFloat(M_PI_4), 0, 1, 0);
+        let transform1 = CATransform3DMakeRotation(CGFloat(Double.pi / 4), 0, 1, 0);
         self.layerView1.layer.transform = transform1;
         
         //rotate layerView2 by 45 degrees along the Y axis
-        let transform2 = CATransform3DMakeRotation(-CGFloat(M_PI_4), 0, 1, 0);
+        let transform2 = CATransform3DMakeRotation(-CGFloat(Double.pi / 4), 0, 1, 0);
         self.layerView2.layer.transform = transform2;
     }
 }
@@ -177,7 +177,7 @@ class DoubleSidedController: UIViewController {
             self.layerView.layer.isDoubleSided = false
         }
         //rotate by 45 degrees along the Y axis
-        transform = CATransform3DRotate(transform, CGFloat(M_PI), 0, 1, 0);
+        transform = CATransform3DRotate(transform, CGFloat(Double.pi), 0, 1, 0);
         self.layerView.layer.transform = transform;
     }
 }
@@ -212,19 +212,19 @@ class flattenController: UIViewController {
         var inner = CATransform3DIdentity;
         
         if selectedIndex == 0 {
-            outer = CATransform3DRotate(outer,CGFloat(M_PI_4), 0, 0, 1);
-            inner = CATransform3DRotate(inner,-CGFloat(M_PI_4), 0, 0, 1);
+            outer = CATransform3DRotate(outer,CGFloat(Double.pi / 4), 0, 0, 1);
+            inner = CATransform3DRotate(inner,-CGFloat(Double.pi / 4), 0, 0, 1);
         } else if selectedIndex == 1 {
             outer.m34 = -1.0 / 500.0;
             inner.m34 = -1.0 / 500.0;
-            outer = CATransform3DRotate(outer,CGFloat(M_PI_4), 0, 1, 0);
-            inner = CATransform3DRotate(inner,-CGFloat(M_PI_4), 0, 1, 0);
+            outer = CATransform3DRotate(outer,CGFloat(Double.pi / 4), 0, 1, 0);
+            inner = CATransform3DRotate(inner,-CGFloat(Double.pi / 4), 0, 1, 0);
             
         } else if selectedIndex == 2 {
             outer.m34 = -1.0 / 500.0;
             inner.m34 = -1.0 / 500.0;
-            outer = CATransform3DRotate(outer,CGFloat(M_PI_4), 1, 0, 0);
-            inner = CATransform3DRotate(inner,-CGFloat(M_PI_4), 1, 0, 0);
+            outer = CATransform3DRotate(outer,CGFloat(Double.pi / 4), 1, 0, 0);
+            inner = CATransform3DRotate(inner,-CGFloat(Double.pi / 4), 1, 0, 0);
          
         }
 
@@ -280,28 +280,28 @@ class Object3DController: UIViewController {
         
         //add cube face 2
         transform = CATransform3DMakeTranslation(100, 0, 0);
-        transform = CATransform3DRotate(transform, CGFloat(M_PI_2), 0, 1, 0);
+        transform = CATransform3DRotate(transform, CGFloat(Double.pi / 2), 0, 1, 0);
         addFace(1, transform: transform)
         
         //add cube face 3
         //move this code after the setup for face no. 6 to enable button
         transform = CATransform3DMakeTranslation(0, -100, 0);
-        transform = CATransform3DRotate(transform, CGFloat(M_PI_2), 1, 0, 0);
+        transform = CATransform3DRotate(transform, CGFloat(Double.pi / 2), 1, 0, 0);
         addFace(2, transform: transform)
         
         //add cube face 4
         transform = CATransform3DMakeTranslation(0, 100, 0);
-        transform = CATransform3DRotate(transform, -CGFloat(M_PI_2), 1, 0, 0);
+        transform = CATransform3DRotate(transform, -CGFloat(Double.pi / 2), 1, 0, 0);
         addFace(3, transform: transform)
         
         //add cube face 5
         transform = CATransform3DMakeTranslation(-100, 0, 0);
-        transform = CATransform3DRotate(transform, -CGFloat(M_PI_2), 0, 1, 0);
+        transform = CATransform3DRotate(transform, -CGFloat(Double.pi / 2), 0, 1, 0);
         addFace(4, transform: transform)
         
         //add cube face 6
         transform = CATransform3DMakeTranslation(0, 0, -100);
-        transform = CATransform3DRotate(transform, CGFloat(M_PI), 0, 1, 0);
+        transform = CATransform3DRotate(transform, CGFloat(Double.pi), 0, 1, 0);
         addFace(5, transform: transform)
     }
     
@@ -364,8 +364,8 @@ class Object3DController: UIViewController {
         var perspective = CATransform3DIdentity;
         if switcher.isOn {
             perspective.m34 = -1.0 / 500.0;
-            perspective = CATransform3DRotate(perspective, -CGFloat(M_PI_4), 1, 0, 0);
-            perspective = CATransform3DRotate(perspective, -CGFloat(M_PI_4), 0, 1, 0);
+            perspective = CATransform3DRotate(perspective, -CGFloat(Double.pi / 4), 1, 0, 0);
+            perspective = CATransform3DRotate(perspective, -CGFloat(Double.pi / 4), 0, 1, 0);
         }
         self.containerView.layer.sublayerTransform = perspective;
     }

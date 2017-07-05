@@ -8,3 +8,4 @@
 #import "HelloGLKitViewController.h"
 #import "EfficientDrawView.h"
 #import "ZYSpreadButton.h"
+#import "NSString+TextAnimation.h"

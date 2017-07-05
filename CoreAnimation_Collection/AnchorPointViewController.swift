@@ -55,13 +55,13 @@ class AnchorPointViewController: UIViewController {
         let calendar = Calendar.init(identifier: Calendar.Identifier.gregorian)
         let components = (calendar as NSCalendar?)?.components([.hour,.minute,.second], from: Date())
         //calculate hour hand angle
-        let hourAngle = (Double(components!.hour!) / 12.0) * M_PI * 2.0;
+        let hourAngle = (Double(components!.hour!) / 12.0) * Double.pi * 2.0;
         
         //calculate minute hand angle
-        let minuteAngle = (Double(components!.minute!) / 60.0) * M_PI * 2.0;
+        let minuteAngle = (Double(components!.minute!) / 60.0) * Double.pi * 2.0;
         
         //calculate second hand angle
-        let secondAngle = (Double(components!.second!) / 60.0) * M_PI * 2.0;
+        let secondAngle = (Double(components!.second!) / 60.0) * Double.pi * 2.0;
         
         setAngle(CGFloat(hourAngle), handView: hourHand)
         setAngle(CGFloat(minuteAngle), handView: minuteHand)

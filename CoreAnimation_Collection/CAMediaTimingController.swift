@@ -63,7 +63,7 @@ class DurationRepeatCountController: UIViewController, CAAnimationDelegate {
         if repeatCount != nil {
             animation.repeatCount = repeatCount!
         }
-        animation.byValue = (M_PI * 2);
+        animation.byValue = (Double.pi * 2);
         animation.delegate = self
         shipLayer.add(animation, forKey:nil);
         
@@ -99,7 +99,7 @@ class AutoreversesRepeatDurationController: UIViewController {
         animation.duration = 2.0
         animation.repeatDuration = Double(1000000)
         animation.autoreverses = true
-        animation.toValue = (-M_PI / 2);
+        animation.toValue = (-Double.pi / 2);
         doorLayer.add(animation, forKey:nil);
     }
 
@@ -231,7 +231,7 @@ class ManualAnimationViewController: UIViewController {
         let animation = CABasicAnimation();
         animation.keyPath = "transform.rotation.y";
         animation.duration = 1.0
-        animation.toValue = (-M_PI / 2);
+        animation.toValue = (-Double.pi / 2);
         doorLayer.add(animation, forKey:nil);
     }
 

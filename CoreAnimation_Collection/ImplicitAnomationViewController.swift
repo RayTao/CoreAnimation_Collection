@@ -69,7 +69,7 @@ class CATransactionViewController: UIViewController {
         
         //rotate the layer 90 degrees
         var transform = CGAffineTransform.init()
-        transform = layer.affineTransform().rotated(by: CGFloat(M_PI_2))
+        transform = layer.affineTransform().rotated(by: CGFloat(Double.pi / 2))
         layer.setAffineTransform(transform)
         
         //randomize the layer background color

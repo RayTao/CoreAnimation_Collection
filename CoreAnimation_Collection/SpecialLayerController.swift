@@ -41,7 +41,7 @@ class CAShapeLayerController: UIViewController {
         var path = UIBezierPath();
         if selectedIndex == 0 {
             path.move(to: CGPoint(x: 175, y: 100))
-            path.addArc(withCenter: CGPoint(x: 150, y: 100) , radius: 25, startAngle: 0, endAngle:CGFloat(2.0 * M_PI), clockwise: true);
+            path.addArc(withCenter: CGPoint(x: 150, y: 100) , radius: 25, startAngle: 0, endAngle:CGFloat(2.0 * Double.pi), clockwise: true);
             path.move(to: CGPoint(x: 150, y: 125))
             path.addLine(to: CGPoint(x: 150, y: 175))
             path.addLine(to: CGPoint(x: 125, y: 225))
@@ -148,8 +148,8 @@ class CATransformLayerViewController: UIViewController {
         //set up the transform for cube 2 and add it
         var c2t = CATransform3DIdentity;
         c2t = CATransform3DTranslate(c2t, 100, 0, 0);
-        c2t = CATransform3DRotate(c2t, -CGFloat(M_PI_4), 1, 0, 0);
-        c2t = CATransform3DRotate(c2t, -CGFloat(M_PI_4), 0, 1, 0);
+        c2t = CATransform3DRotate(c2t, -CGFloat(Double.pi / 4), 1, 0, 0);
+        c2t = CATransform3DRotate(c2t, -CGFloat(Double.pi / 4), 0, 1, 0);
         let cube2 = self.cubeWithTransform(c2t);
         self.containerView.layer.addSublayer(cube2);
     }
@@ -182,27 +182,27 @@ class CATransformLayerViewController: UIViewController {
         
         //add cube face 2
         ct = CATransform3DMakeTranslation(50, 0, 0);
-        ct = CATransform3DRotate(ct, CGFloat(M_PI_2), 0, 1, 0);
+        ct = CATransform3DRotate(ct, CGFloat(Double.pi / 2), 0, 1, 0);
         cube.addSublayer(self.faceWithTransform(ct));
         
         //add cube face 3
         ct = CATransform3DMakeTranslation(0, -50, 0);
-        ct = CATransform3DRotate(ct, CGFloat(M_PI_2), 1, 0, 0);
+        ct = CATransform3DRotate(ct, CGFloat(Double.pi / 2), 1, 0, 0);
         cube.addSublayer(self.faceWithTransform(ct));
         
         //add cube face 4
         ct = CATransform3DMakeTranslation(0, 50, 0);
-        ct = CATransform3DRotate(ct, -CGFloat(M_PI_2), 1, 0, 0);
+        ct = CATransform3DRotate(ct, -CGFloat(Double.pi / 2), 1, 0, 0);
         cube.addSublayer(self.faceWithTransform(ct));
         
         //add cube face 5
         ct = CATransform3DMakeTranslation(-50, 0, 0);
-        ct = CATransform3DRotate(ct, -CGFloat(M_PI_2), 0, 1, 0);
+        ct = CATransform3DRotate(ct, -CGFloat(Double.pi / 2), 0, 1, 0);
         cube.addSublayer(self.faceWithTransform(ct));
         
         //add cube face 6
         ct = CATransform3DMakeTranslation(0, 0, -50);
-        ct = CATransform3DRotate(ct, CGFloat(M_PI), 0, 1, 0);
+        ct = CATransform3DRotate(ct, CGFloat(Double.pi), 0, 1, 0);
         cube.addSublayer(self.faceWithTransform(ct));
         
         //center the cube layer within the container
@@ -305,7 +305,7 @@ class CAReplicatorLayerViewController: UIViewController {
         //apply a transform for each instance
         var transform = CATransform3DIdentity;
         transform = CATransform3DTranslate(transform, 0, 100, 0);
-        transform = CATransform3DRotate(transform, CGFloat(M_PI) / 5.0, 0, 0, 1);
+        transform = CATransform3DRotate(transform, CGFloat(Double.pi) / 5.0, 0, 0, 1);
         transform = CATransform3DTranslate(transform, 0, -100, 0);
         replicator.instanceTransform = transform;
         
@@ -454,7 +454,7 @@ class CAEmitterLayerViewController: UIViewController {
         cell.alphaSpeed = -0.4;
         cell.velocity = 50;
         cell.velocityRange = 50;
-        cell.emissionRange = CGFloat(M_PI * 2.0);
+        cell.emissionRange = CGFloat(Double.pi * 2.0);
         
         //add particle template to emitter
         emitter.emitterCells = [cell];
@@ -609,7 +609,7 @@ class AVPlayerLayerViewController: UIViewController {
         //transform layer
         var transform = CATransform3DIdentity;
         transform.m34 = -1.0 / 500.0;
-        transform = CATransform3DRotate(transform, -CGFloat(M_PI_4), 1, 1, 0);
+        transform = CATransform3DRotate(transform, -CGFloat(Double.pi / 4), 1, 1, 0);
         playerLayer.transform = transform;
 
         
