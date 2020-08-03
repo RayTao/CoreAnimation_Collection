@@ -110,10 +110,10 @@ class MiniAndMagnificationFilterController: UIViewController {
             //set contents
             subview.layer.contents = digitsImage?.cgImage;
             subview.layer.contentsRect = CGRect(x: 0, y: 0, width: 0.1, height: 1.0);
-            subview.layer.contentsGravity = kCAGravityResizeAspect;
+            subview.layer.contentsGravity = CALayerContentsGravity.resizeAspect;
             
             //use nearest-neighbor scaling
-            view.layer.magnificationFilter = kCAFilterNearest;
+            view.layer.magnificationFilter = CALayerContentsFilter.nearest;
             
             self.view.addSubview(subview)
             digitViews.append(subview)
@@ -147,20 +147,20 @@ class MiniAndMagnificationFilterController: UIViewController {
         view.layer.contentsRect = CGRect(x: CGFloat(digit) * 0.1, y: 0, width: 0.1, height: 1.0)
     }
     
-    func changeFilter(_ switcher: UISwitch) {
+    @objc func changeFilter(_ switcher: UISwitch) {
         for index in 0...5 {
             //use nearest-neighbor scaling
             if switcher.isOn {
-                digitViews[index].layer.magnificationFilter = kCAFilterNearest;
+                digitViews[index].layer.magnificationFilter = CALayerContentsFilter.nearest;
             } else {
-                digitViews[index].layer.magnificationFilter = kCAFilterLinear;
+                digitViews[index].layer.magnificationFilter = CALayerContentsFilter.linear;
             }
         };
         
        
     }
     
-    func tick() {
+    @objc func tick() {
         let calendar = Calendar.init(identifier: Calendar.Identifier.gregorian)
         let components = (calendar as NSCalendar?)?.components([.hour,.minute,.second], from: Date())
         
@@ -208,7 +208,7 @@ class GroupOpacityController:UIViewController {
         self.view.addSubview(switcher)
     }
     
-    func changeGroupOpacity(_ switcher:UISwitch) {
+    @objc func changeGroupOpacity(_ switcher:UISwitch) {
         let button2: UIView = containerView.viewWithTag(100)!
         if switcher.isOn {
             //enable rasterization for the translucent button
@@ -310,7 +310,7 @@ class ShadowViewController: UIViewController {
         }
     }
     
-    func changeAnchorPoint(_ switcher: UISwitch) {
+    @objc func changeAnchorPoint(_ switcher: UISwitch) {
         if (switcher.isOn) {
             cone2.isHidden = false
             cone1.isHidden = false

@@ -31,7 +31,7 @@ class AffineTransformController: UIViewController {
         changeTransform(transformSegment)
     }
     
-    func changeTransform(_ segment: UISegmentedControl) {
+    @objc func changeTransform(_ segment: UISegmentedControl) {
         let selecedIndex = segment.selectedSegmentIndex
         let title = segment.titleForSegment(at: selecedIndex)!
         var transform = CGAffineTransform.identity;
@@ -96,7 +96,7 @@ class CATransform3DM34Controller: UIViewController {
 
     }
     
-    func changeSwitch(_ segment: UISegmentedControl) {
+    @objc func changeSwitch(_ segment: UISegmentedControl) {
         
         var transform = CATransform3DIdentity;
         if (segment.selectedSegmentIndex != 0) {
@@ -254,11 +254,11 @@ class Object3DController: UIViewController {
             let cubeFace = UIView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
             cubeFace.backgroundColor = UIColor.white
             let label = UIButton.init(frame: CGRect(x: 50, y: 50, width: 100, height: 100))
-            label.setTitle(String(i + 1), for: UIControlState())
+            label.setTitle(String(i + 1), for: .normal)
             let color = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
             let color1 = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
             let color2 = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
-            label.setTitleColor(UIColor(red: color, green: color1, blue: color2, alpha: 1), for: UIControlState())
+            label.setTitleColor(UIColor(red: color, green: color1, blue: color2, alpha: 1), for: .normal)
             label.titleLabel?.font = UIFont.systemFont(ofSize: 22.0)
             if i == 2 {
                 cubeFace.isUserInteractionEnabled = true
@@ -305,7 +305,7 @@ class Object3DController: UIViewController {
         addFace(5, transform: transform)
     }
     
-    func changeBackgroundcolor(_ changedButton: UIButton) {
+    @objc func changeBackgroundcolor(_ changedButton: UIButton) {
         changedButton.backgroundColor = UIColor.blue
     }
     
@@ -359,7 +359,7 @@ class Object3DController: UIViewController {
         layer.backgroundColor = color.cgColor;
     }
     
-    func rotation(_ switcher: UISwitch) {
+    @objc func rotation(_ switcher: UISwitch) {
         //set up the container sublayer transform
         var perspective = CATransform3DIdentity;
         if switcher.isOn {

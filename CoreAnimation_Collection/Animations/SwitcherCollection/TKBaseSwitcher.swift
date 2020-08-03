@@ -34,11 +34,11 @@ class TKBaseSwitch: UIControl {
         self.addGestureRecognizer(tap)        
     }
     
-    func changeValue(){
+    @objc func changeValue(){
         if valueChange != nil{
             valueChange!(isOn)
         }
-        sendActions(for: UIControlEvents.valueChanged);
+        sendActions(for: .valueChanged);
         on = !on
     }
 

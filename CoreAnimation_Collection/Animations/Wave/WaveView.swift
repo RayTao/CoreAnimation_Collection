@@ -48,11 +48,11 @@ class WaveView: UIView {
         callBack = closure
 //        displayLink!.invalidate()
         displayLink = CADisplayLink.init(target: self, selector: #selector(WaveView.invokeWaveCallback))
-        displayLink!.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+        displayLink!.add(to: RunLoop.current, forMode: .common)
         for i in 0..<self.numberOfWaves {
             let waveLine = CAShapeLayer.init()
-            waveLine.lineCap = kCALineCapButt
-            waveLine.lineJoin = kCALineJoinRound
+            waveLine.lineCap = CAShapeLayerLineCap.butt
+            waveLine.lineJoin = CAShapeLayerLineJoin.round
             waveLine.fillColor = UIColor.clear.cgColor
             waveLine.lineWidth = (i == 0 ? mainWaveWidth : decorativeWavesWidth)
             let progress = 1.0 - Double(i) / Double(numberOfWaves)
@@ -89,7 +89,7 @@ class WaveView: UIView {
 
     }
     
-    func invokeWaveCallback() {
+    @objc func invokeWaveCallback() {
         callBack(self)
     }
     

@@ -17,7 +17,7 @@ class WaveViewController: UIViewController {
             AVNumberOfChannelsKey: 2 as AnyObject, AVEncoderAudioQualityKey: 0 as AnyObject]
         do {
             let recorder = try AVAudioRecorder.init(url: url, settings: settings)
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord)
             recorder.prepareToRecord()
             recorder.isMeteringEnabled = true
             recorder.record()

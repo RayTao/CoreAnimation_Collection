@@ -27,7 +27,7 @@ class SwitchersCollectionViewController: UIViewController {
         self.view.backgroundColor = UIColor.groupTableViewBackground
     }
     
-    func animateSwitch(_ timer:Timer){
+    @objc func animateSwitch(_ timer:Timer){
         switchArray[count].changeValue()
         count += 1
         if count  == (switchArray.count){

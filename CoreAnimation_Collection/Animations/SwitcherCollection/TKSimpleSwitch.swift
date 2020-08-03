@@ -68,7 +68,7 @@ class TKSimpleSwitch:  TKBaseSwitch{
         point.x += (radius)
         swichControl.position = point
         swichControl.path = swichControlPath.cgPath
-        swichControl.lineCap     = kCALineCapRound
+        swichControl.lineCap     = CAShapeLayerLineCap.round
         swichControl.fillColor   = nil
         swichControl.strokeColor = circleColor.cgColor
         swichControl.lineWidth   = innerLineWidth
@@ -115,7 +115,7 @@ class TKSimpleSwitch:  TKBaseSwitch{
                                             stateToFillColor(turnOn)]
         backgroundFillColorAnim.keyTimes = [0,0.5,0.51,1]
         backgroundFillColorAnim.duration = duration
-        backgroundFillColorAnim.fillMode = kCAFillModeForwards
+        backgroundFillColorAnim.fillMode = CAMediaTimingFillMode.forwards
         backgroundFillColorAnim.isRemovedOnCompletion = false
         
 
@@ -130,7 +130,7 @@ class TKSimpleSwitch:  TKBaseSwitch{
         // 动画组
         let swichControlChangeStateAnim : CAAnimationGroup = CAAnimationGroup()
         swichControlChangeStateAnim.animations = [swichControlStrokeStartAnim,swichControlStrokeEndAnim]
-        swichControlChangeStateAnim.fillMode = kCAFillModeForwards
+        swichControlChangeStateAnim.fillMode = CAMediaTimingFillMode.forwards
         swichControlChangeStateAnim.isRemovedOnCompletion = false
         swichControlChangeStateAnim.duration = duration
 

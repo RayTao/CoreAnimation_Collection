@@ -55,7 +55,7 @@ class CAMediaTimingFunctionController: UIViewController {
         //otherwise (slowly) move the layer to new position
         CATransaction.begin()
         CATransaction.setAnimationDuration(2.0);
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseOut))
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeOut))
         self.colorLayer.position = point;
         CATransaction.commit();
         
@@ -89,13 +89,13 @@ class KeyFrameMediaTimingViewController: UIViewController {
         changeColorBtn.addTarget(self, action: #selector(KeyFrameMediaTimingViewController.changeColor), for: .touchUpInside)
         changeColorBtn.layer.borderColor = UIColor.darkGray.cgColor
         changeColorBtn.layer.borderWidth = 1.0
-        changeColorBtn.setTitle("change Color", for: UIControlState())
-        changeColorBtn.setTitleColor(UIColor.blue, for: UIControlState())
+        changeColorBtn.setTitle("change Color", for: .normal)
+        changeColorBtn.setTitleColor(UIColor.blue, for: .normal)
         layerView.addSubview(changeColorBtn)
         
     }
     
-    func changeColor() {
+    @objc func changeColor() {
         //create a keyframe animation
         let animation = CAKeyframeAnimation();
         animation.keyPath = "backgroundColor";
@@ -108,7 +108,7 @@ class KeyFrameMediaTimingViewController: UIViewController {
         ];
         
         //add timing function
-        let fn = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseIn)
+        let fn = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeIn)
         animation.timingFunctions = [fn, fn, fn];
         
         //apply animation to layer
@@ -128,14 +128,14 @@ class BezierMediaTimingFunctionController: UIViewController {
         layerView.center = self.view.center
         self.view.addSubview(layerView)
      
-        let transformSegment = UISegmentedControl.init(items: [kCAMediaTimingFunctionLinear,kCAMediaTimingFunctionEaseOut,kCAMediaTimingFunctionEaseIn,kCAMediaTimingFunctionEaseInEaseOut])
+        let transformSegment = UISegmentedControl.init(items: [CAMediaTimingFunctionName.linear,CAMediaTimingFunctionName.easeOut,CAMediaTimingFunctionName.easeIn,CAMediaTimingFunctionName.easeInEaseOut])
         transformSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
         transformSegment.addTarget(self, action: #selector(BezierMediaTimingFunctionController.switchFunction(_:)), for: .valueChanged)
         self.view.addSubview(transformSegment)
         
     }
     
-    func switchFunction(_ segment: UISegmentedControl) {
+    @objc func switchFunction(_ segment: UISegmentedControl) {
         if layerView.layer.sublayers?.count > 0 {
             for sublayer in layerView.layer.sublayers! {
                 sublayer.removeFromSuperlayer()
@@ -143,7 +143,7 @@ class BezierMediaTimingFunctionController: UIViewController {
         }
         
         let title = segment.titleForSegment(at: segment.selectedSegmentIndex)!
-        BezierMediaTimingFunctionController.drawBezier(CAMediaTimingFunction.init(name: title), inView: layerView)
+        BezierMediaTimingFunctionController.drawBezier(CAMediaTimingFunction.init(name: CAMediaTimingFunctionName(rawValue: title)), inView: layerView)
         
     }
     

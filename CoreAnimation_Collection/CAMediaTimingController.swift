@@ -25,7 +25,7 @@ class DurationRepeatCountController: UIViewController, CAAnimationDelegate {
         self.view.layer.addSublayer(shipLayer);
         
         startButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
-        startButton.setTitle("start", for: UIControlState())
+        startButton.setTitle("start", for: .normal)
         startButton.backgroundColor = UIColor.purple
         startButton.addTarget(self, action: #selector(DurationRepeatCountController.start), for: .touchUpInside)
         self.view.addSubview(startButton)
@@ -49,7 +49,7 @@ class DurationRepeatCountController: UIViewController, CAAnimationDelegate {
         }
     }
     
-    func start() {
+    @objc func start() {
         
         let duration = Double(durationField.text!)
         let repeatCount = Float(repeatField.text!)
@@ -115,7 +115,7 @@ class TimeoffsetSpeedFillmodeController: UIViewController {
     let timeOffsetLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 133, height: 21));
     let speedSlider = UISlider.init(frame: CGRect(x: 0, y: 0, width: 130, height: 30));
     let timeOffsetSlider = UISlider.init(frame: CGRect(x: 0, y: 0, width: 130, height: 30));
-    let transformSegment = UISegmentedControl.init(items: [kCAFillModeForwards,kCAFillModeBackwards,kCAFillModeBoth,kCAFillModeRemoved])
+    let transformSegment = UISegmentedControl.init(items: [.forwards,CAMediaTimingFillMode.backwards,CAMediaTimingFillMode.both,CAMediaTimingFillMode.removed])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,7 +162,7 @@ class TimeoffsetSpeedFillmodeController: UIViewController {
 
         let startButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 45))
         startButton.center = CGPoint(x: self.view.center.x, y: timeOffsetLabel.frame.maxY - 60)
-        startButton.setTitle("play", for: UIControlState())
+        startButton.setTitle("play", for: .normal)
         startButton.backgroundColor = UIColor.purple
         startButton.addTarget(self, action: #selector(TimeoffsetSpeedFillmodeController.play), for: .touchUpInside)
         self.view.addSubview(startButton)
@@ -175,13 +175,13 @@ class TimeoffsetSpeedFillmodeController: UIViewController {
         updateSliders()
     }
     
-    func updateSliders() {
+    @objc func updateSliders() {
       
         timeOffsetLabel.text = "\(timeOffsetSlider.value)"
         speedLabel.text = "\(speedSlider.value)"
     }
 
-    func play() {
+    @objc func play() {
         
         //create the keyframe animation
         let animation = CAKeyframeAnimation();
@@ -190,9 +190,9 @@ class TimeoffsetSpeedFillmodeController: UIViewController {
         animation.speed = speedSlider.value
         animation.duration = 1.0;
         animation.path = bezierPath.cgPath;
-        animation.rotationMode = "auto"
+        animation.rotationMode = CAAnimationRotationMode(rawValue: "auto")
         animation.isRemovedOnCompletion = false
-        animation.fillMode = transformSegment.titleForSegment(at: transformSegment.selectedSegmentIndex)!;
+        animation.fillMode = CAMediaTimingFillMode(rawValue: transformSegment.titleForSegment(at: transformSegment.selectedSegmentIndex)!);
         shipLayer.add(animation, forKey:animationKey);
         
     }
@@ -235,7 +235,7 @@ class ManualAnimationViewController: UIViewController {
         doorLayer.add(animation, forKey:nil);
     }
 
-    func pan(_ pan: UIPanGestureRecognizer) {
+    @objc func pan(_ pan: UIPanGestureRecognizer) {
         //get horizontal component of pan gesture
         var x = pan.translation(in: self.view).x
      

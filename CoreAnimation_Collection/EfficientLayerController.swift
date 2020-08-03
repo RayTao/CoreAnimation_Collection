@@ -30,7 +30,7 @@ class OffscreenRenderController: UIViewController {
 
     }
 
-    func switchfuc(_ segment: UISegmentedControl) {
+    @objc func switchfuc(_ segment: UISegmentedControl) {
         let index = segment.selectedSegmentIndex
         if let _ = self.view.layer.sublayers?.first {
             for sublayer in self.view.layer.sublayers! {

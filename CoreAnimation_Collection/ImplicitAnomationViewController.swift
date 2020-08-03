@@ -25,8 +25,8 @@ class CATransactionViewController: UIViewController {
         colorLayer.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
         //add a custom action
         let transition = CATransition()
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromLeft;
+        transition.type = CATransitionType.push;
+        transition.subtype = CATransitionSubtype.fromLeft;
         self.colorLayer.actions = ["backgroundColor": transition];
         layerView.layer.addSublayer(colorLayer)
         
@@ -35,8 +35,8 @@ class CATransactionViewController: UIViewController {
         changeColorBtn.addTarget(self, action: #selector(CATransactionViewController.changeColor(_:)), for: .touchUpInside)
         changeColorBtn.layer.borderColor = UIColor.darkGray.cgColor
         changeColorBtn.layer.borderWidth = 1.0
-        changeColorBtn.setTitle("change Color", for: UIControlState())
-        changeColorBtn.setTitleColor(UIColor.blue, for: UIControlState())
+        changeColorBtn.setTitle("change Color", for: .normal)
+        changeColorBtn.setTitleColor(UIColor.blue, for: .normal)
         layerView.addSubview(changeColorBtn)
         
         let switcher = UISwitch()
@@ -50,7 +50,7 @@ class CATransactionViewController: UIViewController {
     /**
      改变颜色，默认animationDutarion 0.25s
      */
-    func changeColor(_ button: UIButton)
+    @objc func changeColor(_ button: UIButton)
     {
         changeLayerColor(self.colorLayer)
     }
@@ -87,7 +87,7 @@ class CATransactionViewController: UIViewController {
     /**
      属性在动画块之外发生,uiview 返回nil来禁止隐式动画
      */
-    func viewCloseCATransaction(_ switcher: UISwitch)
+    @objc func viewCloseCATransaction(_ switcher: UISwitch)
     {
         //test layer action when outside of animation block
         if switcher.isOn {

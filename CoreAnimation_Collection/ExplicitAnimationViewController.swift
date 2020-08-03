@@ -30,13 +30,13 @@ class PropertyAnimationViewController: UIViewController, CAAnimationDelegate {
         changeColorBtn.addTarget(self, action: #selector(PropertyAnimationViewController.changeColor), for: .touchUpInside)
         changeColorBtn.layer.borderColor = UIColor.darkGray.cgColor
         changeColorBtn.layer.borderWidth = 1.0
-        changeColorBtn.setTitle("change Color", for: UIControlState())
-        changeColorBtn.setTitleColor(UIColor.blue, for: UIControlState())
+        changeColorBtn.setTitle("change Color", for: .normal)
+        changeColorBtn.setTitleColor(UIColor.blue, for: .normal)
         layerView.addSubview(changeColorBtn)
         
     }
     
-    func changeColor() {
+    @objc func changeColor() {
         //randomize the layer background color
         let red = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
         let green = CGFloat(CGFloat(arc4random())/CGFloat(RAND_MAX))
@@ -100,13 +100,13 @@ class CAKeyframeAnimationViewController: PropertyAnimationViewController {
         start()
     }
 
-    func start() {
+    @objc func start() {
         //create the keyframe animation
         let animation = CAKeyframeAnimation();
         animation.keyPath = "position";
         animation.duration = 4.0;
         animation.path = bezierPath.cgPath;
-        animation.rotationMode = "auto"
+        animation.rotationMode = CAAnimationRotationMode(rawValue: "auto")
         shipLayer.add(animation, forKey:animationKey);
         
     }
@@ -184,7 +184,7 @@ class AnimationGroupViewController: UIViewController {
         animation.keyPath = "position";
         animation.duration = 4.0;
         animation.path = bezierPath.cgPath;
-        animation.rotationMode = "auto"
+        animation.rotationMode = CAAnimationRotationMode(rawValue: "auto")
 
         let animation2 = CABasicAnimation()
         animation2.keyPath = "backgroundColor"
@@ -208,7 +208,7 @@ class TransitionViewController: UIViewController {
     let images = [R.image.anchor()!, R.image.cone()!,
         R.image.igloo()!, R.image.spaceship()!]
     let animationKey = "transition"
-    var transitionDirection = kCATransitionFromLeft;
+    var transitionDirection = CATransitionSubtype.fromLeft;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -216,12 +216,12 @@ class TransitionViewController: UIViewController {
         imageView.center = self.view.center
         self.view.addSubview(imageView)
         
-        let transformSegment = UISegmentedControl.init(items: [kCATransitionFade,kCATransitionPush,kCATransitionMoveIn,kCATransitionReveal])
+        let transformSegment = UISegmentedControl.init(items: [CATransitionType.fade,CATransitionType.push,CATransitionType.moveIn,CATransitionType.reveal])
         transformSegment.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
         transformSegment.addTarget(self, action: #selector(TransitionViewController.switchImage(_:)), for: .valueChanged)
         self.view.addSubview(transformSegment)
 
-        let directionSegment = UISegmentedControl.init(items: [kCATransitionFromTop,kCATransitionFromLeft,kCATransitionFromBottom,kCATransitionFromRight])
+        let directionSegment = UISegmentedControl.init(items: [CATransitionSubtype.fromTop,CATransitionSubtype.fromLeft,CATransitionSubtype.fromBottom,CATransitionSubtype.fromRight])
         directionSegment.center = CGPoint(x: self.view.center.x, y: transformSegment.frame.minY - 50)
         directionSegment.apportionsSegmentWidthsByContent = true
         directionSegment.addTarget(self, action: #selector(TransitionViewController.switchDirection(_:)), for: .valueChanged)
@@ -229,21 +229,21 @@ class TransitionViewController: UIViewController {
         
     }
 
-    func switchDirection(_ segment: UISegmentedControl) {
+    @objc func switchDirection(_ segment: UISegmentedControl) {
     
-        self.transitionDirection = segment.titleForSegment(at: segment.selectedSegmentIndex)!;
+        self.transitionDirection = CATransitionSubtype(rawValue: segment.titleForSegment(at: segment.selectedSegmentIndex)!);
     }
     
-    func switchImage(_ segment: UISegmentedControl) {
+    @objc func switchImage(_ segment: UISegmentedControl) {
         
         if let animation = self.imageView.layer.animation(forKey: animationKey) {
             let transition = animation as! CATransition
-            transition.type = segment.titleForSegment(at: segment.selectedSegmentIndex)!;
+            transition.type = CATransitionType(rawValue: segment.titleForSegment(at: segment.selectedSegmentIndex)!);
             transition.subtype = transitionDirection
         } else {
             //set up crossfade transition
             let transition = CATransition();
-            transition.type = segment.titleForSegment(at: segment.selectedSegmentIndex)!;
+            transition.type = CATransitionType(rawValue: segment.titleForSegment(at: segment.selectedSegmentIndex)!);
             transition.subtype = transitionDirection
 
             //apply transition to imageview backing layer
@@ -252,7 +252,7 @@ class TransitionViewController: UIViewController {
         
         //cycle to next image
         let currentImage = self.imageView.image;
-        var index = self.images.index { (indexImage) -> Bool in
+        var index = self.images.firstIndex { (indexImage) -> Bool in
             indexImage == currentImage
         }!
         index = (index + 1) % self.images.count;
@@ -281,17 +281,17 @@ class LayerTreeTransitionController: UIViewController {
         
         let button = UIButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 45))
         button.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
-        button.setTitle("changeChildViewController", for: UIControlState())
+        button.setTitle("changeChildViewController", for: .normal)
         button.addTarget(self, action: #selector(LayerTreeTransitionController.changeAni), for: .touchUpInside)
         self.view.addSubview(button)
     }
 
-    func changeAni() {
+    @objc func changeAni() {
         change = !change
         
         //set up crossfade transition
         let transition = CATransition();
-        transition.type = kCATransitionPush;
+        transition.type = CATransitionType.push;
         self.view.layer.add(transition, forKey: nil)
         
         for index in 0..<self.view.layer.sublayers!.count {
@@ -322,14 +322,14 @@ class CustomTransitionController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         button.center = self.view.center
-        button.setTitle("performTransition", for: UIControlState())
+        button.setTitle("performTransition", for: .normal)
         button.addTarget(self, action: #selector(CustomTransitionController.performTransition), for: .touchUpInside)
         self.view.addSubview(button)
         
     }
     
     
-    func performTransition() {
+    @objc func performTransition() {
         button.isEnabled = false
         
         //preserve the current view snapshot
@@ -371,20 +371,20 @@ class StopAnimationController: CAKeyframeAnimationViewController {
         
         let stopbutton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 45))
         stopbutton.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - 50)
-        stopbutton.setTitle("stop", for: UIControlState())
+        stopbutton.setTitle("stop", for: .normal)
         stopbutton.backgroundColor = UIColor.blue
         stopbutton.addTarget(self, action: #selector(StopAnimationController.stop), for: .touchUpInside)
         self.view.addSubview(stopbutton)
         
         let startbutton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 45))
         startbutton.center = CGPoint(x: self.view.center.x, y: stopbutton.frame.minY - 50)
-        startbutton.setTitle("start", for: UIControlState())
+        startbutton.setTitle("start", for: .normal)
         startbutton.backgroundColor = UIColor.purple
         startbutton.addTarget(self, action: #selector(CAKeyframeAnimationViewController.start), for: .touchUpInside)
         self.view.addSubview(startbutton)
     }
 
-    func stop() {
+    @objc func stop() {
         self.shipLayer.removeAnimation(forKey: animationKey)
     }
 

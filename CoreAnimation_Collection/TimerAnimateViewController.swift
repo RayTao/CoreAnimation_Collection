@@ -71,10 +71,10 @@ class TimerAnimateViewController: UIViewController {
             self.timer.invalidate()
         }
         self.timer = CADisplayLink.init(target: self, selector:#selector(TimerAnimateViewController.step(_:)))
-        self.timer.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
+        self.timer.add(to: RunLoop.main, forMode: .common)
     }
     
-    func step(_ timer: CADisplayLink) {
+    @objc func step(_ timer: CADisplayLink) {
         //calculate time delta
         let thisStep = CACurrentMediaTime()
         let stepDuration = thisStep - self.lastStep

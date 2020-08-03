@@ -13,8 +13,8 @@ class ZYSpreadButtonViewController: UIViewController {
     lazy var changePositionModeButton: UIButton = {
         let button = UIButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 45))
         button.center = self.view.center
-        button.setTitle(" ModeFixed ", for: UIControlState())
-        button.addTarget(self, action: #selector(ZYSpreadButtonViewController.changePositionMode(_:)), for: UIControlEvents.touchUpInside)
+        button.setTitle(" ModeFixed ", for: .normal)
+        button.addTarget(self, action: #selector(ZYSpreadButtonViewController.changePositionMode(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -140,16 +140,16 @@ class ZYSpreadButtonViewController: UIViewController {
         }
     }
     
-    func changePositionMode(_ sender: AnyObject) {
+    @objc func changePositionMode(_ sender: AnyObject) {
         
         //display with Swift Code
         if spreadButton != nil {
             if spreadButton?.positionMode == SpreadPositionMode.spreadPositionModeFixed {
                 spreadButton?.positionMode = SpreadPositionMode.spreadPositionModeTouchBorder
-                sender.setTitle(" ModeTouchBorder ", for: UIControlState())
+                sender.setTitle(" ModeTouchBorder ", for: .normal)
             } else {
                 spreadButton?.positionMode = SpreadPositionMode.spreadPositionModeFixed
-                sender.setTitle(" ModeFixed ", for: UIControlState())
+                sender.setTitle(" ModeFixed ", for: .normal)
             }
         }
         
@@ -157,10 +157,10 @@ class ZYSpreadButtonViewController: UIViewController {
         if zySpreadButton != nil {
             if zySpreadButton.positionMode == SpreadPositionModeFixed {
                 zySpreadButton.positionMode = SpreadPositionModeTouchBorder
-                sender.setTitle(" ModeTouchBorder ", for: UIControlState())
+                sender.setTitle(" ModeTouchBorder ", for: .normal)
             } else {
                 zySpreadButton.positionMode = SpreadPositionModeFixed
-                sender.setTitle(" ModeFixed ", for: UIControlState())
+                sender.setTitle(" ModeFixed ", for: .normal)
             }
         }
     }

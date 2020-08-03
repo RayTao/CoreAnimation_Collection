@@ -14,7 +14,7 @@ class AnchorPointViewController: UIViewController {
     let secondHand = UIImageView.init(image: R.image.secondHand())
     let clockHand = UIImageView.init(image: R.image.clockFace())
     let switcher = UISwitch()
-    weak var timer = Timer()
+    weak var timer: Timer?
     
     deinit {
         print("AnchorPointViewController deinit");
@@ -50,7 +50,7 @@ class AnchorPointViewController: UIViewController {
         timer?.invalidate()
     }
     
-    func tick() {
+    @objc func tick() {
 
         let calendar = Calendar.init(identifier: Calendar.Identifier.gregorian)
         let components = (calendar as NSCalendar?)?.components([.hour,.minute,.second], from: Date())
@@ -74,7 +74,7 @@ class AnchorPointViewController: UIViewController {
         handView.transform = CGAffineTransform(rotationAngle: angle);
     }
     
-    func changeAnchorPoint(_ switcher: UISwitch) {
+    @objc func changeAnchorPoint(_ switcher: UISwitch) {
         if (switcher.isOn) {
             
             //adjust anchor points

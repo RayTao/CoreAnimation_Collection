@@ -154,11 +154,11 @@ class SpreadButton: UIView, CAAnimationDelegate {
     func configureMainButton(_ image: UIImage, highlightImage: UIImage?) {
         powerButton = UIButton(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
         //初始位置
-        powerButton.setBackgroundImage(image, for: UIControlState())
+        powerButton.setBackgroundImage(image, for: .normal)
         if let nonNilhighlightImage = highlightImage {
             powerButton.setBackgroundImage(nonNilhighlightImage, for: .highlighted)
         }
-        powerButton.addTarget(self, action:#selector(SpreadButton.tapPowerButton(_:)), for: UIControlEvents.touchUpInside)
+        powerButton.addTarget(self, action:#selector(SpreadButton.tapPowerButton(_:)), for: .touchUpInside)
         self.addSubview(powerButton)
     }
     
@@ -177,7 +177,7 @@ class SpreadButton: UIView, CAAnimationDelegate {
         self.addGestureRecognizer(panGestureRecognizer)
     }
     
-    func tapPowerButton(_ button: UIButton) {
+    @objc func tapPowerButton(_ button: UIButton) {
         isSpread ? closeButton(nil) : spreadButton()
     }
     
@@ -187,7 +187,7 @@ class SpreadButton: UIView, CAAnimationDelegate {
         }
     }
     
-    func panSpreadButton(_ gesture: UIPanGestureRecognizer) {
+    @objc func panSpreadButton(_ gesture: UIPanGestureRecognizer) {
         //drag the powerButton
         if isSpread {
             return
@@ -221,7 +221,7 @@ class SpreadButton: UIView, CAAnimationDelegate {
                 touchBorderAnimation.fromValue = location as AnyObject
                 touchBorderAnimation.toValue = destinationLocation as AnyObject
                 touchBorderAnimation.duration = SpreadButton.touchBorderAnimationDuringDefault
-                touchBorderAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+                touchBorderAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
                 self.layer.add(touchBorderAnimation, forKey: "touchBorder")
                 
                 CATransaction.begin()
@@ -344,7 +344,7 @@ class SpreadButton: UIView, CAAnimationDelegate {
             }
             positionAnimation.path = animationPath.cgPath
             btn.layer.add(positionAnimation, forKey: "sickleSpread")
-            positionAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            positionAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             
             CATransaction.begin()
             //设置kCATransactionDisableActions的valu为true, 来禁用layer的implicit animations
@@ -393,7 +393,7 @@ class SpreadButton: UIView, CAAnimationDelegate {
             //TODO这里错了。。times?
             positionAnimation.values = [0.0, 1.0]
             positionAnimation.duration = animationDuringClose
-            positionAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            positionAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             btn.layer.add(positionAnimation, forKey: "close")
             
             CATransaction.begin()
@@ -408,13 +408,13 @@ class SpreadButton: UIView, CAAnimationDelegate {
             alphaAnimation.fromValue = 1.0
             alphaAnimation.toValue = 0.0
             alphaAnimation.duration = animationDuringClose
-            alphaAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+            alphaAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
             
             let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
             scaleAnimation.fromValue = 1.0
             scaleAnimation.toValue = 3.0
             scaleAnimation.duration = animationDuringClose
-            scaleAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+            scaleAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
             
             let dismissGroupAnimation = CAAnimationGroup()
             dismissGroupAnimation.animations = [alphaAnimation, scaleAnimation]
@@ -520,13 +520,13 @@ class SpreadButton: UIView, CAAnimationDelegate {
     
     //setter
     func setSubButtons(_ buttons: [SpreadSubButton?]) {
-        _ = buttons.flatMap { $0?.addTarget(self, action:#selector(SpreadButton.clickedSubButton(_:)), for: .touchUpInside) }
-        let nonNilButtons = buttons.flatMap { $0 }
+        _ = buttons.compactMap { $0?.addTarget(self, action:#selector(SpreadButton.clickedSubButton(_:)), for: .touchUpInside) }
+        let nonNilButtons = buttons.compactMap { $0 }
         subButtons = Array<SpreadSubButton>()
         subButtons?.append(contentsOf: nonNilButtons)
     }
     
-    func clickedSubButton(_ sender: SpreadSubButton) {
+    @objc func clickedSubButton(_ sender: SpreadSubButton) {
         closeButton(sender)
         let index = subButtons?.index(of: sender)
         if let nonNilIndex = index {

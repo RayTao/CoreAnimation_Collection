@@ -10,12 +10,12 @@ import UIKit
 
 class ContentsGravitysViewController: UIViewController {
     let layerView = UIView()
-    let contentsGravitys:[String] = [kCAGravityCenter,kCAGravityTop,kCAGravityBottom,kCAGravityLeft,kCAGravityRight,kCAGravityTopLeft,kCAGravityTopRight,kCAGravityBottomLeft,kCAGravityBottomRight,kCAGravityResize,kCAGravityResizeAspect,kCAGravityResizeAspectFill]
+    let contentsGravitys:[CALayerContentsGravity] = [.center,.top,.bottom,.left,.right,.topLeft,.topRight,.bottomLeft,.bottomRight,.resize,.resizeAspect,.resizeAspectFill]
     var segmentContentsArray: [UISegmentedControl]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let _ = CALayerContentsGravity.center
         // Do any additional setup after loading the view.
         //create sublayer
         layerView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
@@ -44,9 +44,9 @@ class ContentsGravitysViewController: UIViewController {
         }
     }
 
-    func contentsGravitysChange(_ segment: UISegmentedControl) {
+    @objc func contentsGravitysChange(_ segment: UISegmentedControl) {
         let contentsGravity = segment.titleForSegment(at: segment.selectedSegmentIndex)
-        self.layerView.layer.contentsGravity = contentsGravity!;
+        self.layerView.layer.contentsGravity = CALayerContentsGravity(rawValue: contentsGravity!);
 
     }
 }
@@ -72,7 +72,7 @@ class ContentsScaleViewController: UIViewController {
         }
         
         //center the image
-        self.layerView.layer.contentsGravity = kCAGravityCenter;
+        self.layerView.layer.contentsGravity = CALayerContentsGravity.center;
 
         maskSegmentContents.apportionsSegmentWidthsByContent = true
         maskSegmentContents.center = CGPoint(x: layerView.center.x, y: layerView.center.y + 150.0)
@@ -138,7 +138,7 @@ class ContentsRectViewController: UIViewController {
         //set image
         layer.contents = image.cgImage
         //scale contents to fit
-        layer.contentsGravity = kCAGravityResizeAspect;
+        layer.contentsGravity = .resizeAspect;
         //set contentsRect
         layer.contentsRect = rect;
     }

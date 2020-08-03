@@ -22,7 +22,7 @@ class SpreadSubButton: UIButton {
         
         let buttonFrame = CGRect(x: 0, y: 0, width: nonNilBackgroundImage.size.width, height: nonNilBackgroundImage.size.height)
         super.init(frame: buttonFrame)
-        self.setBackgroundImage(nonNilBackgroundImage, for: UIControlState())
+        self.setBackgroundImage(nonNilBackgroundImage, for: .normal)
         
         if let nonNilHighlightImage = highlightImage {
             self.setBackgroundImage(nonNilHighlightImage, for: .highlighted)

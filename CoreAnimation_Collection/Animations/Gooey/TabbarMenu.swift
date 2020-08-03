@@ -53,7 +53,7 @@ class TabbarMenu: UIView{
     
     let context = UIGraphicsGetCurrentContext()
     context?.addPath(path.cgPath)
-    UIColor(colorLiteralRed: 50/255.0, green: 58/255.0, blue: 68/255.0, alpha: 1.0).set()
+    UIColor(red: 50/255.0, green: 58/255.0, blue: 68/255.0, alpha: 1.0).set()
     context?.fillPath()
   }
   
@@ -169,7 +169,7 @@ class TabbarMenu: UIView{
     if displayLink == nil
     {
       self.displayLink = CADisplayLink(target: self, selector: #selector(TabbarMenu.update(_:)))
-      self.displayLink.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+        self.displayLink.add(to: RunLoop.main, forMode: .default)
     }
     animationCount += 1
   }

@@ -28,7 +28,7 @@ class CoordinateSystemViewController: UIViewController {
         self.view.addSubview(switcher)
     }
     
-    func changeAnchorPoint(_ switcher: UISwitch) {
+    @objc func changeAnchorPoint(_ switcher: UISwitch) {
         if (switcher.isOn) {
             
             //adjust anchor points
